@@ -22,12 +22,12 @@ CREATE TABLE users (
 );
 
 CREATE TABLE book (
-	isbn varchar(15) NOT NULL,
+	isbn varchar(15) NOT NULL UNIQUE,
 	title varchar(50) NOT NULL,
 	author varchar(50) NOT NULL,
 	book_description varchar(2000) NOT NULL,
 	format varchar(10) CHECK (format IN ('paper','digital','audio','other')),
-	CONSTRAINT pk_book_isbn PRIMARY KEY (isbn)
+	CONSTRAINT pk_book_id PRIMARY KEY (isbn),
 );
 
 CREATE TABLE book_user (
@@ -61,4 +61,5 @@ CREATE TABLE prize_winner (
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-COMMIT;
+commit;
+
