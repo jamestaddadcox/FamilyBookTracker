@@ -1,6 +1,6 @@
 package com.techelevator.security;
 
-import com.techelevator.security.dao.UserDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.security.model.Authority;
 import com.techelevator.security.model.User;
 import org.slf4j.Logger;
