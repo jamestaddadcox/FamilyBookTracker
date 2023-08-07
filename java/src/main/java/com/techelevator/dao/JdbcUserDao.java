@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.techelevator.model.Book;
 import com.techelevator.security.exception.DaoException;
 import com.techelevator.security.model.RegisterUserDto;
 import com.techelevator.model.User;
@@ -36,6 +37,26 @@ public class JdbcUserDao implements UserDao {
             throw new DaoException("Unable to connect to server or database", e);
         }
         return user;
+    }
+
+    @Override
+    public String getFullNameById(int id) {
+        return null;
+    }
+
+    @Override
+    public boolean addBookToList(Book book) {
+        return false;
+    }
+
+    @Override
+    public List<Book> listBooksByUserId(int id) {
+        return null;
+    }
+
+    @Override
+    public boolean deleteBookFromListByIsbn(String isbn) {
+        return false;
     }
 
     @Override
@@ -85,6 +106,11 @@ public class JdbcUserDao implements UserDao {
             throw new DaoException("Data integrity violation", e);
         }
         return newUser;
+    }
+
+    @Override
+    public User createChildUser(RegisterUserDto childUser) {
+        return null;
     }
 
     private User mapRowToUser(SqlRowSet rs) {
