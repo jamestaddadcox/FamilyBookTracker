@@ -1,4 +1,4 @@
-package com.techelevator.controller;
+package com.techelevator.security.controller;
 
 import javax.validation.Valid;
 
