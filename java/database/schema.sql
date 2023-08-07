@@ -27,8 +27,7 @@ CREATE TABLE book (
 	author varchar(50) NOT NULL,
 	book_description varchar(2000) NOT NULL,
 	format varchar(10) CHECK (format IN ('paper','digital','audio','other')),
-	CONSTRAINT pk_book_isbn PRIMARY KEY (book_isbn)
-
+	CONSTRAINT pk_book_id PRIMARY KEY (isbn),
 );
 
 CREATE TABLE book_user (
