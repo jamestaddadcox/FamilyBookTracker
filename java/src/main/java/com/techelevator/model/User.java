@@ -1,13 +1,14 @@
-package com.techelevator.security.model;
+package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.techelevator.security.model.Authority;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class User {
 
+   private String firstName;
+   private String lastName;
    private int id;
    private String username;
    @JsonIgnore
@@ -18,7 +19,9 @@ public class User {
 
    public User() { }
 
-   public User(int id, String username, String password, String authorities) {
+   public User(int id, String username, String password, String authorities, String firstName, String lastName) {
+      this.firstName = firstName;
+      this.lastName = lastName;
       this.id = id;
       this.username = username;
       this.password = password;
@@ -36,6 +39,10 @@ public class User {
 
    public String getUsername() {
       return username;
+   }
+
+   public void getFullName(String firstName, String lastName) {
+      String fullName = firstName + " " + lastName;
    }
 
    public void setUsername(String username) {

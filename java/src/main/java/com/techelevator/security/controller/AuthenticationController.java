@@ -6,7 +6,7 @@ import com.techelevator.security.exception.DaoException;
 import com.techelevator.security.model.LoginDto;
 import com.techelevator.security.model.LoginResponseDto;
 import com.techelevator.security.model.RegisterUserDto;
-import com.techelevator.security.model.User;
+import com.techelevator.model.User;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
