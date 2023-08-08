@@ -72,24 +72,49 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public User createUser(RegisterUserDto user) {
-        User newUser = null;
-        String insertUserSql = "INSERT INTO users (username, password_hash, role) values (?, ?, ?) RETURNING user_id";
-        String password_hash = new BCryptPasswordEncoder().encode(user.getPassword());
-        String ssRole = user.getRole().toUpperCase().startsWith("ROLE_") ? user.getRole().toUpperCase() : "ROLE_" + user.getRole().toUpperCase();
+        return createUserWithRole(user, "ADMIN");
+    }
+
+    @Override
+    public User createChildUser(RegisterUserDto childUser) {
+        return createUserWithRole(childUser, "CHILD");
+    }
+
+    private User createUserWithRole(RegisterUserDto newUser, String role) {
+        User createdUser = null;
+        String insertUserSql = "INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?) RETURNING user_id";
+        String passwordHash = new BCryptPasswordEncoder().encode(newUser.getPassword());
+        String formattedRole = role.startsWith("ROLE_") ? role : "ROLE_" + role;
+
         try {
-            int newUserId = jdbcTemplate.queryForObject(insertUserSql, int.class, user.getUsername(), password_hash, ssRole);
-            newUser = getUserById(newUserId);
+            int newUserId = jdbcTemplate.queryForObject(insertUserSql, int.class, newUser.getUsername(), passwordHash, formattedRole);
+            createdUser = getUserById(newUserId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
             throw new DaoException("Data integrity violation", e);
         }
-        return newUser;
+
+        return createdUser;
     }
+
+
+    @Override
+    public boolean deactivateFamilyMember(User user) {
+        String sql = "UPDATE user SET activated = false WHERE user_id = ?;";
+        try {
+            int numRowsUpdated = jdbcTemplate.update(sql, user.getUserId());
+            return numRowsUpdated > 0;
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+}
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
-        user.setId(rs.getInt("user_id"));
+        user.setUserId(rs.getInt("user_id"));
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(Objects.requireNonNull(rs.getString("role")));

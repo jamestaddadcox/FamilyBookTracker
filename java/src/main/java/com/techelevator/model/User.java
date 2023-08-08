@@ -7,9 +7,13 @@ import java.util.*;
 
 public class User {
 
+   private String avatarUrl;
    private String firstName;
    private String lastName;
-   private int id;
+   private int userId;
+
+   private int familyId;
+   boolean isChild;
    private String username;
    @JsonIgnore
    private String password;
@@ -19,22 +23,25 @@ public class User {
 
    public User() { }
 
-   public User(int id, String username, String password, String authorities, String firstName, String lastName) {
+   public User(String avatarUrl, int userId, String username, String password, String authorities, String firstName, String lastName, int familyId) {
       this.firstName = firstName;
       this.lastName = lastName;
-      this.id = id;
+      this.userId = userId;
+      this.familyId = familyId;
       this.username = username;
       this.password = password;
       if (authorities != null) this.setAuthorities(authorities);
       this.activated = true;
+      this.isChild = false;
+      this.avatarUrl = avatarUrl;
    }
 
-   public int getId() {
-      return id;
+   public int getUserId() {
+      return userId;
    }
 
-   public void setId(int id) {
-      this.id = id;
+   public void setUserId(int id) {
+      this.userId = id;
    }
 
    public String getUsername() {
@@ -81,12 +88,44 @@ public class User {
       }
    }
 
+   public String getFirstName() {
+      return firstName;
+   }
+
+   public void setFirstName(String firstName) {
+      this.firstName = firstName;
+   }
+
+   public String getLastName() {
+      return lastName;
+   }
+
+   public void setLastName(String lastName) {
+      this.lastName = lastName;
+   }
+
+   public int getFamilyId() {
+      return familyId;
+   }
+
+   public void setFamilyId(int familyId) {
+      this.familyId = familyId;
+   }
+
+   public boolean isChild() {
+      return isChild;
+   }
+
+   public void setChild(boolean child) {
+      isChild = child;
+   }
+
    @Override
    public boolean equals(Object o) {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
       User user = (User) o;
-      return id == user.id &&
+      return userId == user.userId &&
               activated == user.activated &&
               Objects.equals(username, user.username) &&
               Objects.equals(password, user.password) &&
@@ -95,13 +134,13 @@ public class User {
 
    @Override
    public int hashCode() {
-      return Objects.hash(id, username, password, activated, authorities);
+      return Objects.hash(userId, username, password, activated, authorities);
    }
 
    @Override
    public String toString() {
       return "User{" +
-              "id=" + id +
+              "id=" + userId +
               ", username='" + username + '\'' +
               ", activated=" + activated +
               ", authorities=" + authorities +
