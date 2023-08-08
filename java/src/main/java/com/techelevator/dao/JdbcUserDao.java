@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JdbcUserDao implements UserDao {
 
+    private List<Book> bookList;
     private final JdbcTemplate jdbcTemplate;
 
     public JdbcUserDao(JdbcTemplate jdbcTemplate) {
@@ -39,25 +40,15 @@ public class JdbcUserDao implements UserDao {
         return user;
     }
 
-    @Override
-    public String getFullNameById(int id) {
-        return null;
-    }
+//    @Override
+//    public boolean addBookToList(Book book) {     // Same as create book from BookDAO ? Do we want the user to add a book to their own list or the main database?
+//        return false;                             // addBook might belong in the BookUserDAO
+//    }
 
-    @Override
-    public boolean addBookToList(Book book) {
-        return false;
-    }
-
-    @Override
-    public List<Book> listBooksByUserId(int id) {
-        return null;
-    }
-
-    @Override
-    public boolean deleteBookFromListByIsbn(String isbn) {
-        return false;
-    }
+//    @Override
+//    public boolean deleteBookFromListByIsbn(String isbn) { // a user shouldn't be deleting from main db. I think this may belong in the BookUserDAO?
+//        return false;
+//    }
 
     @Override
     public List<User> getUsers() {

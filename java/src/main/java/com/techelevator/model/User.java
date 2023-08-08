@@ -9,7 +9,9 @@ public class User {
 
    private String firstName;
    private String lastName;
-   private int id;
+   private int userId;
+   private int familyId;
+   private boolean isChild;
    private String username;
    @JsonIgnore
    private String password;
@@ -22,7 +24,7 @@ public class User {
    public User(int id, String username, String password, String authorities, String firstName, String lastName) {
       this.firstName = firstName;
       this.lastName = lastName;
-      this.id = id;
+      this.userId = id;
       this.username = username;
       this.password = password;
       if (authorities != null) this.setAuthorities(authorities);
@@ -30,11 +32,11 @@ public class User {
    }
 
    public int getId() {
-      return id;
+      return userId;
    }
 
    public void setId(int id) {
-      this.id = id;
+      this.userId = id;
    }
 
    public String getUsername() {
@@ -86,7 +88,7 @@ public class User {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
       User user = (User) o;
-      return id == user.id &&
+      return userId == user.userId &&
               activated == user.activated &&
               Objects.equals(username, user.username) &&
               Objects.equals(password, user.password) &&
@@ -95,13 +97,13 @@ public class User {
 
    @Override
    public int hashCode() {
-      return Objects.hash(id, username, password, activated, authorities);
+      return Objects.hash(userId, username, password, activated, authorities);
    }
 
    @Override
    public String toString() {
       return "User{" +
-              "id=" + id +
+              "id=" + userId +
               ", username='" + username + '\'' +
               ", activated=" + activated +
               ", authorities=" + authorities +
