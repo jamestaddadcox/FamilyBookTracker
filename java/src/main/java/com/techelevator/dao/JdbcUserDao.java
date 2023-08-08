@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.techelevator.model.Book;
 import com.techelevator.security.exception.DaoException;
 import com.techelevator.security.model.RegisterUserDto;
 import com.techelevator.model.User;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JdbcUserDao implements UserDao {
 
+    private List<Book> bookList;
     private final JdbcTemplate jdbcTemplate;
 
     public JdbcUserDao(JdbcTemplate jdbcTemplate) {
@@ -37,6 +39,16 @@ public class JdbcUserDao implements UserDao {
         }
         return user;
     }
+
+//    @Override
+//    public boolean addBookToList(Book book) {     // Same as create book from BookDAO ? Do we want the user to add a book to their own list or the main database?
+//        return false;                             // addBook might belong in the BookUserDAO
+//    }
+
+//    @Override
+//    public boolean deleteBookFromListByIsbn(String isbn) { // a user shouldn't be deleting from main db. I think this may belong in the BookUserDAO?
+//        return false;
+//    }
 
     @Override
     public List<User> getUsers() {

@@ -8,7 +8,6 @@ public class Prize {
     private String name;
     private String description;
     private boolean milestone;
-
     private String userGroup;
     private Date startDate;
     private Date endDate;
