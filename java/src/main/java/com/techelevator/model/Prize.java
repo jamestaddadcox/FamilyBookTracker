@@ -8,12 +8,23 @@ public class Prize {
     private String name;
     private String description;
     private boolean milestone;
+<<<<<<< HEAD
     // limit to Adult, Children, Both:
     private int userGroup;
     private Date startDate;
     private Date endDate;
 
     public Prize(int prizeId, int familyId, String name, String description, int userGroup, Date startDate) {
+=======
+    private String userGroup;
+    private Date startDate;
+    private Date endDate;
+    public Prize() {
+
+    }
+
+    public Prize(int prizeId, int familyId, String name, String description, String userGroup, Date startDate) {
+>>>>>>> main
         this.prizeId = prizeId;
         this.familyId = familyId;
         this.name = name;
@@ -63,11 +74,19 @@ public class Prize {
         this.milestone = milestone;
     }
 
+<<<<<<< HEAD
     public int getUserGroup() {
         return userGroup;
     }
 
     public void setUserGroup(int userGroup) {
+=======
+    public String getUserGroup() {
+        return userGroup;
+    }
+
+    public void setUserGroup(String userGroup) {
+>>>>>>> main
         this.userGroup = userGroup;
     }
 

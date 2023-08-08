@@ -17,10 +17,21 @@ public class BookUser {
         this.notes = notes;
     }
 
+<<<<<<< HEAD
+=======
+    public BookUser() {};
+
+>>>>>>> main
     public int getUserId() {
         return userId;
     }
 
+<<<<<<< HEAD
+=======
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+>>>>>>> main
 
     public String getIsbn() {
         return isbn;

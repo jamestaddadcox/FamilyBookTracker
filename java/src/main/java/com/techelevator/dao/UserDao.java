@@ -20,4 +20,9 @@ public interface UserDao {
 
     User createUser(RegisterUserDto user); // /user POST
     User createChildUser(RegisterUserDto childUser); // /user POST
+<<<<<<< HEAD
+=======
+
+    boolean deactivateFamilyMember(User user); // /family/user/
+>>>>>>> main
 }
