@@ -1,4 +1,7 @@
 <template>
+<body>
+  
+
   <div id="app">
     <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
@@ -12,14 +15,21 @@
 
     
   </div>
+  </body>
 </template>
 
 <script>
-
 
 export default {
   name: "App",
   
 };
 </script>
+
+<style scoped>
+body {
+  background-color: cyan;
+}
+</style>
+
 

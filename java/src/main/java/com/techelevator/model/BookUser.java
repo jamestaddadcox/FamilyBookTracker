@@ -23,9 +23,12 @@ public class BookUser {
         return userId;
     }
 
+<<<<<<< HEAD
+=======
     public void setUserId(int userId) {
         this.userId = userId;
     }
+>>>>>>> main
 
     public String getIsbn() {
         return isbn;
