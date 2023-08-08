@@ -17,11 +17,8 @@ public class BookUser {
         this.notes = notes;
     }
 
-<<<<<<< HEAD
-=======
     public BookUser() {};
 
->>>>>>> main
     public int getUserId() {
         return userId;
     }

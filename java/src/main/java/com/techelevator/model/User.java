@@ -7,18 +7,12 @@ import java.util.*;
 
 public class User {
 
-<<<<<<< HEAD
-   private String firstName;
-   private String lastName;
-   private int id;
-=======
    private String avatarUrl;
    private String firstName;
    private String lastName;
    private int userId;
    private int familyId;
    private boolean isChild;
->>>>>>> main
    private String username;
    @JsonIgnore
    private String password;
@@ -28,18 +22,11 @@ public class User {
 
    public User() { }
 
-<<<<<<< HEAD
-   public User(int id, String username, String password, String authorities, String firstName, String lastName) {
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.id = id;
-=======
    public User(String avatarUrl, int userId, String username, String password, String authorities, String firstName, String lastName, int familyId) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.userId = userId;
       this.familyId = familyId;
->>>>>>> main
       this.username = username;
       this.password = password;
       if (authorities != null) this.setAuthorities(authorities);

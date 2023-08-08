@@ -16,11 +16,8 @@ public class Book {
         this.format = format;
     }
 
-<<<<<<< HEAD
-=======
     public Book() {};
 
->>>>>>> main
     public String getIsbn() {
         return isbn;
     }

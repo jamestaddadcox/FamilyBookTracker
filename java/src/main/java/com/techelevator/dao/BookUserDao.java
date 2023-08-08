@@ -6,12 +6,6 @@ import java.util.List;
 
 public interface BookUserDao {
     BookUser getBookUserInfoByUserIdAndIsbn(int userId, String isbn); // /stats/user/{user_id}/book/{isbn}
-<<<<<<< HEAD
-    boolean updateBookUserInfo(BookUser bookUser); // /stats/user/{id} PUT
-    List<BookUser> getAllBookUserInfoByUserId(int userId); // /stats/user/{user_id}
-    List<BookUser> getAllBookUserInfoByFamilyId(int familyId); // /stats/family/{family_id}
-}
-=======
     BookUser updateBookUserInfo(BookUser bookUser); // /stats/user/{id} PUT
     List<BookUser> getAllBookUserInfoByUserId(int userId); // /stats/user/{user_id}
     List<BookUser> getAllBookUserInfoByFamilyId(int familyId); // /stats/family/{family_id}
@@ -21,4 +15,3 @@ public interface BookUserDao {
 
 }
 
->>>>>>> main

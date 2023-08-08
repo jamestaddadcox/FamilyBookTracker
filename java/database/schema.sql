@@ -17,10 +17,7 @@ CREATE TABLE users (
 	password_hash varchar(200) NOT NULL,
 	activated boolean NOT NULL,
 	role varchar(50) NOT NULL,
-<<<<<<< HEAD
-=======
 	is_child boolean NOT NULL,
->>>>>>> main
 	CONSTRAINT pk_user PRIMARY KEY (user_id),
 	CONSTRAINT fk_family_id FOREIGN KEY (family_id) REFERENCES family(family_id)
 );
@@ -31,11 +28,7 @@ CREATE TABLE book (
 	author varchar(50) NOT NULL,
 	book_description varchar(2000) NOT NULL,
 	format varchar(10) CHECK (format IN ('paper','digital','audio','other')),
-<<<<<<< HEAD
-	CONSTRAINT pk_book_id PRIMARY KEY (isbn),
-=======
 	CONSTRAINT pk_isbn PRIMARY KEY (isbn)
->>>>>>> main
 );
 
 CREATE TABLE book_user (
@@ -55,13 +48,8 @@ CREATE TABLE prize (
 	prize_name varchar(50) NOT NULL,
 	prize_description varchar(100) NOT NULL,
 	milestone boolean NOT NULL,
-<<<<<<< HEAD
-	max_prizes int NOT NULL,
-	start_date date NOT NULL,
-=======
 	start_date date NOT NULL,
 	user_group varchar(10) CHECK (user_group IN ('adult','child', 'both')),
->>>>>>> main
 	end_date date NOT NULL,
 	CONSTRAINT pk_prize_id PRIMARY KEY (prize_id),
 	CONSTRAINT fk_family_id FOREIGN KEY (family_id) REFERENCES family(family_id)
@@ -74,8 +62,6 @@ CREATE TABLE prize_winner (
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-<<<<<<< HEAD
-=======
 INSERT INTO family (family_name) VALUES
     ('Smith Family'),
     ('Johnson Family'),
@@ -134,6 +120,5 @@ INSERT INTO prize (family_id, prize_name, prize_description, milestone, start_da
     (4, 'Prize 8', 'Description for Prize 8', true, '2023-08-01', 'child', '2023-08-31'),
     (5, 'Prize 9', 'Description for Prize 9', false, '2023-08-01', 'both', '2023-08-31');
 
->>>>>>> main
 commit;
 
