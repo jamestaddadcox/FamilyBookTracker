@@ -8,10 +8,12 @@ public class Prize {
     private String name;
     private String description;
     private boolean milestone;
-    // limit to Adult, Children, Both:
     private String userGroup;
     private Date startDate;
     private Date endDate;
+    public Prize() {
+
+    }
 
     public Prize(int prizeId, int familyId, String name, String description, String userGroup, Date startDate) {
         this.prizeId = prizeId;

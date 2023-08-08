@@ -7,6 +7,7 @@ import java.util.*;
 
 public class User {
 
+   private String avatarUrl;
    private String firstName;
    private String lastName;
    private int userId;
@@ -21,21 +22,24 @@ public class User {
 
    public User() { }
 
-   public User(int id, String username, String password, String authorities, String firstName, String lastName) {
+   public User(String avatarUrl, int userId, String username, String password, String authorities, String firstName, String lastName, int familyId) {
       this.firstName = firstName;
       this.lastName = lastName;
-      this.userId = id;
+      this.userId = userId;
+      this.familyId = familyId;
       this.username = username;
       this.password = password;
       if (authorities != null) this.setAuthorities(authorities);
       this.activated = true;
+      this.isChild = false;
+      this.avatarUrl = avatarUrl;
    }
 
-   public int getId() {
+   public int getUserId() {
       return userId;
    }
 
-   public void setId(int id) {
+   public void setUserId(int id) {
       this.userId = id;
    }
 
@@ -81,6 +85,38 @@ public class User {
          String authority = role.contains("ROLE_") ? role : "ROLE_" + role;
          this.authorities.add(new Authority(authority));
       }
+   }
+
+   public String getFirstName() {
+      return firstName;
+   }
+
+   public void setFirstName(String firstName) {
+      this.firstName = firstName;
+   }
+
+   public String getLastName() {
+      return lastName;
+   }
+
+   public void setLastName(String lastName) {
+      this.lastName = lastName;
+   }
+
+   public int getFamilyId() {
+      return familyId;
+   }
+
+   public void setFamilyId(int familyId) {
+      this.familyId = familyId;
+   }
+
+   public boolean isChild() {
+      return isChild;
+   }
+
+   public void setChild(boolean child) {
+      isChild = child;
    }
 
    @Override

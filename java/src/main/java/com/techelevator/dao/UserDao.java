@@ -8,12 +8,6 @@ import java.util.List;
 
 public interface UserDao {
 
-//    boolean addBookToList(Book book); // Post: /user/{id}/list
-
-//    List<Book> listBooksByUserId(int id); // /user/{id}/list -> Same as List<BookUser> getAllBookUserInfoByUserId
-
-//    boolean deleteBookFromListByIsbn(String isbn); // /user/{id}/list/{isbn}
-
     List<User> getUsers(); // /user
 
     User getUserById(int id); // /user/{id}
@@ -22,4 +16,6 @@ public interface UserDao {
 
     User createUser(RegisterUserDto user); // /user POST
     User createChildUser(RegisterUserDto childUser); // /user POST
+
+    boolean deactivateFamilyMember(User user); // /family/user/
 }
