@@ -17,10 +17,15 @@ public class BookUser {
         this.notes = notes;
     }
 
+    public BookUser() {};
+
     public int getUserId() {
         return userId;
     }
 
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getIsbn() {
         return isbn;
