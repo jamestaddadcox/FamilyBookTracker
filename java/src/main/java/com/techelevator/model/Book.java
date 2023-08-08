@@ -16,6 +16,8 @@ public class Book {
         this.format = format;
     }
 
+    public Book() {};
+
     public String getIsbn() {
         return isbn;
     }
