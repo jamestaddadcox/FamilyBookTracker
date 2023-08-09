@@ -30,7 +30,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public User getUserById(int userId) {
         User user = null;
-        String sql = "SELECT user_id, family_id, username, first_name, last_name, password_hash, role, activated, is_child FROM users WHERE user_id = ?";
+        String sql = "SELECT user_id, family_id, username, first_name, last_name, password_hash, role, activated, is_child, avatar_url FROM users WHERE user_id = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             if (results.next()) {
@@ -44,7 +44,7 @@ public class JdbcUserDao implements UserDao {
 
     public User getUserByFamilyId(int familyId) {
         User user = null;
-        String sql = "SELECT user_id, family_id, username, first_name, last_name, password_hash, role, activated, is_child FROM users WHERE user_id = ?";
+        String sql = "SELECT user_id, family_id, username, first_name, last_name, password_hash, role, activated, is_child, avatar_url FROM users WHERE user_id = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, familyId);
             if (results.next()) {
@@ -57,20 +57,10 @@ public class JdbcUserDao implements UserDao {
     }
 
 
-//    @Override
-//    public boolean addBookToList(Book book) {     // Same as create book from BookDAO ? Do we want the user to add a book to their own list or the main database?
-//        return false;                             // addBook might belong in the BookUserDAO
-//    }
-
-//    @Override
-//    public boolean deleteBookFromListByIsbn(String isbn) { // a user shouldn't be deleting from main db. I think this may belong in the BookUserDAO?
-//        return false;
-//    }
-
     @Override
     public List<User> getUsers() {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT user_id, family_id, username, first_name, last_name, password_hash, role, activated, is_child FROM users";
+        String sql = "SELECT user_id, family_id, username, first_name, last_name, password_hash, role, activated, is_child, avatar_url FROM users";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while (results.next()) {
@@ -87,7 +77,7 @@ public class JdbcUserDao implements UserDao {
     public User getUserByUsername(String username) {
         if (username == null) throw new IllegalArgumentException("Username cannot be null");
         User user = null;
-        String sql = "SELECT user_id, family_id, username, first_name, last_name, password_hash, role, activated, is_child FROM users WHERE username = ?;";
+        String sql = "SELECT user_id, family_id, username, first_name, last_name, password_hash, role, activated, is_child, avatar_url FROM users WHERE username = ?;";
         try {
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);
             if (rowSet.next()) {
@@ -111,12 +101,15 @@ public class JdbcUserDao implements UserDao {
 
     private User createUserWithRole(RegisterUserDto newUser, String role) {
         User createdUser = null;
-        String insertUserSql = "INSERT INTO users (user_id, family_id, username, first_name, last_name, password_hash, role, activated, is_child) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING user_id";
+        String insertUserSql = "INSERT INTO users (family_id, username, first_name, last_name, password_hash, role, activated, is_child, avatar_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING user_id";
         String passwordHash = new BCryptPasswordEncoder().encode(newUser.getPassword());
         String formattedRole = role.startsWith("ROLE_") ? role : "ROLE_" + role;
 
         try {
-            int newUserId = jdbcTemplate.queryForObject(insertUserSql, int.class, newUser.getUsername(), passwordHash, formattedRole);
+            int newUserId = jdbcTemplate.queryForObject(insertUserSql, int.class,
+                    newUser.getFamilyId(), newUser.getUsername(), newUser.getFirstName(), newUser.getLastName(),
+                    passwordHash, formattedRole, true, false, newUser.getAvatarUrl());
+
             createdUser = getUserById(newUserId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
@@ -126,6 +119,7 @@ public class JdbcUserDao implements UserDao {
 
         return createdUser;
     }
+
 
 
     @Override
@@ -165,6 +159,7 @@ public class JdbcUserDao implements UserDao {
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(Objects.requireNonNull(rs.getString("role")));
         user.setActivated(true);
+        user.setAvatarUrl(rs.getString("avatar_url"));
         return user;
     }
 }

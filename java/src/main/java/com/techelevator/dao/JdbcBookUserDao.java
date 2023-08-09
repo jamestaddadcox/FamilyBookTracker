@@ -40,11 +40,11 @@ public class JdbcBookUserDao implements BookUserDao {
     @Override
     public BookUser updateBookUserInfo(BookUser bookUser) {
         String sql = "UPDATE book_user " +
-                "SET isbn = ?, minutes_read = ?, read_aloud_reader = ?, read_aloud_listen = ?, notes = ? " +
+                "SET isbn = ?, minutes_read = ?, read_aloud_reader = ?, read_aloud_listen = ?, notes = ?, completed = ? " +
                 "WHERE user_id = ? AND isbn = ?;";
 
         try {
-            jdbcTemplate.update(sql, bookUser.getIsbn(), bookUser.getMinutesRead(), bookUser.isReadOutLoudReader(), bookUser.isReadOutLoudListener(), bookUser.getNotes(), bookUser.getUserId(), bookUser.getIsbn());
+            jdbcTemplate.update(sql, bookUser.getIsbn(), bookUser.getMinutesRead(), bookUser.isReadOutLoudReader(), bookUser.isReadOutLoudListener(), bookUser.getNotes(), bookUser.isCompleted(), bookUser.getUserId(), bookUser.getIsbn());
 
             return getBookUserInfoByUserIdAndIsbn(bookUser.getUserId(), bookUser.getIsbn());
         } catch (CannotGetJdbcConnectionException e) {
@@ -95,8 +95,8 @@ public class JdbcBookUserDao implements BookUserDao {
 
     @Override
     public BookUser addBookToUserList(BookUser bookUser) {
-        String sql = "INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_aloud_listen, notes) " +
-                "VALUES (?, ?, ?, ?, ?, ?) " +
+        String sql = "INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_aloud_listen, notes, completed) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?) " +
                 "ON CONFLICT (user_id, isbn) DO NOTHING";
 
         try {
@@ -109,7 +109,7 @@ public class JdbcBookUserDao implements BookUserDao {
                     bookUser.getNotes());
 
             if (rowsAffected == 0) {
-                throw new DaoException("Data Integrity Violation: Duplicate user_id and isbn");
+                throw new DaoException("Data Integrity Violation: Duplicate user_id and isbn DUMMY");
             }
 
             return bookUser;
@@ -144,6 +144,7 @@ public class JdbcBookUserDao implements BookUserDao {
         bookUser.setReadOutLoudListener(false); // need to check on these guys
         bookUser.setReadOutLoudReader(false);
         bookUser.setNotes(rs.getString("notes"));
+        bookUser.setCompleted(false);
 
         return bookUser;
     }
