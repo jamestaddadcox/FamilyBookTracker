@@ -8,17 +8,19 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+@Component
 public class JdbcFamilyDao implements FamilyDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcFamilyDao(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public JdbcFamilyDao(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
@@ -41,7 +43,7 @@ public class JdbcFamilyDao implements FamilyDao {
         Family newFamily = null;
         String insertFamilySql = "INSERT INTO family (family_name) values (?) RETURNING family_id";
         try {
-            int newFamilyId = jdbcTemplate.queryForObject(insertFamilySql, int.class, family.getFamilyId());
+            int newFamilyId = jdbcTemplate.queryForObject(insertFamilySql, int.class, family.getFamilyName());
             newFamily = getFamilyById(newFamilyId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
@@ -54,9 +56,9 @@ public class JdbcFamilyDao implements FamilyDao {
     @Override
     public List<User> getFamilyMembersByFamilyId(int id) {
         List<User> familyMembers = new ArrayList<>();
-        String sql = "SELECT user_id, family_id, username, first_name, last_name, password_hash, activated, role, is_child FROM user WHERE family_id = ?";
+        String sql = "SELECT user_id, family_id, username, first_name, last_name, password_hash, activated, role, is_child FROM users WHERE family_id = ?";
         try {
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
             while (results.next()) {
                 User familyMember = mapRowToUser(results);
                 familyMembers.add(familyMember);
@@ -67,18 +69,7 @@ public class JdbcFamilyDao implements FamilyDao {
         return familyMembers;
     }
 
-    @Override
-    public boolean deleteFamily(int id) {
-        String deleteFamilySql = "DELETE FROM family WHERE family_id = ?";
-        try {
-            int numberOfRows = jdbcTemplate.update(deleteFamilySql, id);
-            return numberOfRows > 0;
-        } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to server or database", e);
-        } catch (DataIntegrityViolationException e) {
-            throw new DaoException("Data integrity violation", e);
-        }
-    }
+
 
     private Family mapRowToFamily(SqlRowSet rs) {
         Family family = new Family();
@@ -100,4 +91,6 @@ public class JdbcFamilyDao implements FamilyDao {
         user.setChild(false);
         return user;
     }
+
+
 }
