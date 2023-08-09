@@ -6,16 +6,17 @@
 
 <script>
 import BookCard from "@/components/BookCard.vue";
-import BookService from "@/services/BookService";
+//import BookService from "@/services/BookService";
 export default {
+    name:'book-cover-list',
     components:{
         BookCard
     },
-    computed:{
-        usersBooks(id,isbn){
+    // computed:{
+    //     usersBooks(id,isbn){
 
-        }
-    }
+    //     }
+    //}
 }
 </script>
 
