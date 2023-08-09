@@ -1,35 +1,69 @@
 <template>
   <div class="welcome">
     <img class="logo" src="../assets/LargeWormWagon.png" alt="worm wagon">
-    <h2>A Family Book Logging App</h2>
-    <div id="button-box">
-    <button title="Click here to Log into your account" @click="goToLogIn">Login</button>
-    <button title="Parents can register here" @click="goToRegister">Register</button>
-    </div>
+
+        <h2>A Family Book Logging App</h2>
+        <div id="button-box">
+        <button @click="showLoginModal">sign in</button>
+        <button @click="showRegisterModal">sign up</button>  
+        </div>
+    
+<login-modal
+      v-show="isLoginModalVisible"
+      @close="closeLoginModal"
+    >
+</login-modal> 
+<registration-modal
+      v-show="isRegistrationModalVisible"
+      @close="closeRegistrationModal">
+</registration-modal>
+
     <img id="worm-on-book" class="worm-pic" src='@/assets/knockout2.png' alt="worm">
     <img id="book-pic" src="@/assets/books.png" alt="books">
-    <img  />
+
     
     <a href="#">FAQ</a>
   </div>
 </template>
 
 <script>
+import LoginModal from '../components/LoginModal.vue';
+import RegistrationModal from '../components/RegistrationModal.vue';
+
 export default {
-    data(){
-        return {
-        }
+    components: {
+        LoginModal,
+        RegistrationModal
+    },
+    data() {
+      return {
+        isLoginModalVisible: false,
+        isRegistrationModalVisible: false
+        };
     },
     computed:{
         
     },
     methods: {
-        goToLogIn(){
-            this.$router.push('/login');
+        showLoginModal(){
+            this.isLoginModalVisible = true;
         },
-        goToRegister(){
-            this.$router.push('/register');
+        showRegisterModal(){
+            this.isRegistrationModalVisible = true;
+        },
+        closeLoginModal() {
+        this.isLoginModalVisible = false;
+        },
+        closeRegistrationModal() {
+            this.isRegistrationModalVisible = false;
         }
+
+        // goToLogIn(){
+        //     this.$router.push('/login');
+        // },
+        // goToRegister(){
+        //     this.$router.push('/register');
+        // }
     },
     
     name: "welcome"
@@ -88,4 +122,84 @@ export default {
     85% { filter: hue-rotate(360deg); }
     100% { filter: hue-rotate(390deg); }
 }
+
+/* modal styling */
+
+    .modal-backdrop {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal {
+        background: #FFFFFF;
+        box-shadow: 2px 2px 20px 1px;
+        overflow-x: auto;
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+    }
+
+    .modal-header,
+    .modal-footer {
+        padding: 15px;
+        display: flex;
+    }
+
+    .modal-header {
+        position: relative;
+        border-bottom: 1px solid #eeeeee;
+        color: blue;
+        justify-content: space-between;
+    }
+
+    .modal-footer {
+        border-top: 1px solid #eeeeee;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    .modal-body {
+        position: relative;
+        padding: 20px 10px;
+    }
+
+    .btn-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: none;
+        font-size: 20px;
+        padding: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        color: cyan;
+        background: transparent;
+    }
+
+    .btn-green {
+        color: white;
+        background: cyan;
+        border: 1px solid #4AAE9B;
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    .modal-fade-enter,
+    .modal-fade-leave-to {
+        opacity: 0;
+    }
+
+    .modal-fade-enter-active,
+    .modal-fade-leave-active {
+        transition: opacity .5s ease;
+    }
+
+    /*end of modal styling section */
     </style>
