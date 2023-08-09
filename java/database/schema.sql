@@ -73,6 +73,7 @@ INSERT INTO family (family_name) VALUES
     ('Wilson Family'),
     ('Moore Family'),
     ('Taylor Family');
+
 INSERT INTO users (family_id, username, first_name, last_name, password_hash, activated, role, is_child) VALUES
     (1, 'john.smith', 'John', 'Smith', 'password123', true, 'user', false),
     (1, 'jane.smith', 'Jane', 'Smith', 'password123', true, 'user', false),
