@@ -65,7 +65,12 @@ export default {
   },
   methods: {
     close() {
+      this.clearForm();
       this.$emit("close");
+    },
+    clearForm() {
+        this.user.username = "";
+        this.user.password = "";
     },
     login() {
       authService

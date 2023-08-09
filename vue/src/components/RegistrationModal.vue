@@ -103,37 +103,63 @@ export default {
   },
   methods: {
     close() {
+      this.clearForm();
       this.$emit("close");
+    },
+    clearForm() {
+        this.user.username = "";
+        this.user.firstName = "";
+        this.user.lastName = "";
+        this.user.familyName = "";
+        this.user.password = "";
+        this.user.confirmPassword = "";
+        this.user.role = "user";
     },
     register() {
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
-        this.registrationErrorMsg = "Password & Confirm Password do not match.";
+        this.registrationErrorMsg = 'Password & Confirm Password do not match.';
       } else {
         authService
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {
-              this.$router.push({
-                path: "/login",
-                query: { registration: "success" },
-              });
+              this.login()
             }
           })
           .catch((error) => {
             const response = error.response;
             this.registrationErrors = true;
             if (response.status === 400) {
-              this.registrationErrorMsg = "Bad Request: Validation Errors";
+              this.registrationErrorMsg = 'Bad Request: Validation Errors';
             }
           });
       }
     },
+    login() {
+      authService
+        .login(this.user)
+        .then(response => {
+          if (response.status == 200) {
+            this.$store.commit("SET_AUTH_TOKEN", response.data.token);
+            this.$store.commit("SET_USER", response.data.user);
+            this.$router.push("/");
+          }
+        })
+        .catch(error => {
+          const response = error.response;
+
+          if (response.status === 401) {
+            this.invalidCredentials = true;
+          }
+        });
+    }
+  },
     clearErrors() {
       this.registrationErrors = false;
       this.registrationErrorMsg = "There were problems registering this user.";
     },
-  },
+  
 };
 </script>
 
