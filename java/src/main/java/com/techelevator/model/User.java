@@ -43,6 +43,14 @@ public class User {
       this.userId = id;
    }
 
+   public String getAvatarUrl() {
+      return avatarUrl;
+   }
+
+   public void setAvatarUrl(String avatarUrl) {
+      this.avatarUrl = avatarUrl;
+   }
+
    public String getUsername() {
       return username;
    }
