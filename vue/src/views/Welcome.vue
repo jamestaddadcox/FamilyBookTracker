@@ -125,6 +125,10 @@ export default {
 
 /* modal styling */
 
+    .alertmsg {
+        background-color: crimson;
+    }
+
     .modal-backdrop {
         position: fixed;
         top: 0;

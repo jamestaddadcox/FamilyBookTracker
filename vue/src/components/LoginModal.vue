@@ -12,7 +12,7 @@
         <section class="modal-body">
           <slot name="body">
             <form @submit.prevent="login">
-              <div role="alert" v-if="invalidCredentials">
+              <div role="alert" class="alertmsg" v-if="invalidCredentials">
                 Invalid username and password!
               </div>
               <div role="alert" v-if="credentialsNotFound">

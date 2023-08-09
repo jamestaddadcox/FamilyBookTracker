@@ -7,10 +7,10 @@ import com.techelevator.model.User;
 import java.util.List;
 
 public interface UserDao {
-    String getFullNameById(int id);
-    boolean addBookToList(Book book); // Post: /user/{id}/list
-    List<Book> listBooksByUserId(int id); // /user/{id}/list
-    boolean deleteBookFromListByIsbn(String isbn); // /user/{id}/list/{isbn}
+    //String getFullNameById(int id);
+    // boolean addBookToList(Book book); // Post: /user/{id}/list
+    // List<Book> listBooksByUserId(int id); // /user/{id}/list
+    // boolean deleteBookFromListByIsbn(String isbn); // /user/{id}/list/{isbn}
 
     List<User> getUsers(); // /user
 
