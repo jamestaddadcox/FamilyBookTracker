@@ -39,6 +39,8 @@ CREATE TABLE book_user (
 	read_aloud_reader boolean NOT NULL,
 	read_aloud_listen boolean NOT NULL,
 	notes varchar(100),
+	completed boolean NOT NULL DEFAULT false,
+	pages_read int NOT NULL DEFAULT 0,
 	CONSTRAINT pk_book_user_table PRIMARY KEY (user_id, isbn),
 	CONSTRAINT fk_isbn FOREIGN KEY (isbn) REFERENCES book(isbn)
 );
@@ -97,19 +99,21 @@ INSERT INTO book (isbn, title, author, book_description, format) VALUES
     ('9787654321098', 'Sample Book 7', 'Author 7', 'Description 7', 'audio'),
     ('9784567890123', 'Sample Book 8', 'Author 8', 'Description 8', 'other'),
     ('9785678901234', 'Sample Book 9', 'Author 9', 'Description 9', 'paper'),
-    ('9786789012345', 'Sample Book 10', 'Author 10', 'Description 10', 'digital');
+    ('9786789012345', 'Sample Book 10', 'Author 10', 'Description 10', 'digital'),
+    ('11hhh111hh1', 'Sample Book 10', 'Author 10', 'Description 10', 'digital');
 
-INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_aloud_listen, notes) VALUES
-    (1, '9781234567890', 30, true, true, 'Read aloud'),
-    (1, '9780987654321', 45, false, true, 'Enjoyed it'),
-    (2, '9789876543210', 60, true, false, 'Read together'),
-    (2, '9780123456789', 15, true, true, 'Quick read'),
-    (3, '9785432109876', 90, false, false, 'Long book'),
-    (3, '9786789012340', 20, true, true, 'Liked the plot'),
-    (4, '9787654321098', 50, true, false, 'Interesting characters'),
-    (4, '9784567890123', 10, false, true, 'Didn''t finish'),
-    (5, '9785678901234', 75, true, true, 'Fascinating story'),
-    (5, '9786789012345', 30, false, false, 'Recommended by a friend');
+INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_aloud_listen, notes, completed, pages_read) VALUES
+    (1, '9781234567890', 30, true, true, 'Read aloud', false, 0),
+    (1, '9780987654321', 45, false, true, 'Enjoyed it', false, 3),
+    (2, '9789876543210', 60, true, false, 'Read together', false, 100),
+    (2, '9780123456789', 15, true, true, 'Quick read', false, 23),
+    (3, '9785432109876', 90, false, false, 'Long book', false, 445),
+    (3, '9786789012340', 20, true, true, 'Liked the plot', false, 1),
+    (4, '9787654321098', 50, true, false, 'Interesting characters', false, 324),
+    (4, '9784567890123', 10, false, true, 'Didn''t finish', false, 342),
+    (5, '9785678901234', 75, true, true, 'Fascinating story', false, 0),
+    (5, '9786789012345', 30, false, false, 'Recommended by a friend', false, 0);
+
 
 INSERT INTO prize (family_id, prize_name, prize_description, milestone, start_date, user_group, end_date) VALUES
     (1, 'Prize 1', 'Description for Prize 1', false, '2023-08-01', 'adult', '2023-08-31'),

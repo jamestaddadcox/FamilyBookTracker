@@ -4,6 +4,7 @@ import com.techelevator.model.BookUser;
 import com.techelevator.security.exception.DaoException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -40,11 +41,11 @@ public class JdbcBookUserDao implements BookUserDao {
     @Override
     public BookUser updateBookUserInfo(BookUser bookUser) {
         String sql = "UPDATE book_user " +
-                "SET isbn = ?, minutes_read = ?, read_aloud_reader = ?, read_aloud_listen = ?, notes = ?, completed = ? " +
+                "SET isbn = ?, minutes_read = ?, read_aloud_reader = ?, read_aloud_listen = ?, notes = ?, completed = ?, pages_read = ? " +
                 "WHERE user_id = ? AND isbn = ?;";
 
         try {
-            jdbcTemplate.update(sql, bookUser.getIsbn(), bookUser.getMinutesRead(), bookUser.isReadOutLoudReader(), bookUser.isReadOutLoudListener(), bookUser.getNotes(), bookUser.isCompleted(), bookUser.getUserId(), bookUser.getIsbn());
+            jdbcTemplate.update(sql, bookUser.getIsbn(), bookUser.getMinutesRead(), bookUser.isReadOutLoudReader(), bookUser.isReadOutLoudListener(), bookUser.getNotes(), bookUser.isCompleted(), bookUser.getUserId(), bookUser.getIsbn(), bookUser.getPagesRead());
 
             return getBookUserInfoByUserIdAndIsbn(bookUser.getUserId(), bookUser.getIsbn());
         } catch (CannotGetJdbcConnectionException e) {
@@ -93,32 +94,33 @@ public class JdbcBookUserDao implements BookUserDao {
         }
     }
 
+
     @Override
     public BookUser addBookToUserList(BookUser bookUser) {
-        String sql = "INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_aloud_listen, notes, completed) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?) " +
-                "ON CONFLICT (user_id, isbn) DO NOTHING";
+        String sql = "INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_aloud_listen, notes, completed, pages_read) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?) " +
+                "ON CONFLICT (user_id, isbn) DO NOTHING " +
+                "RETURNING user_id, isbn";
 
         try {
-            int rowsAffected = jdbcTemplate.update(sql,
+            BookUser newBookUser = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(BookUser.class),
                     bookUser.getUserId(),
                     bookUser.getIsbn(),
                     bookUser.getMinutesRead(),
                     bookUser.isReadOutLoudReader(),
                     bookUser.isReadOutLoudListener(),
-                    bookUser.getNotes());
-
-            if (rowsAffected == 0) {
-                throw new DaoException("Data Integrity Violation: Duplicate user_id and isbn DUMMY");
-            }
-
-            return bookUser;
+                    bookUser.getNotes(),
+                    bookUser.isCompleted(),
+                    bookUser.getPagesRead());
+            return newBookUser;
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
-            throw new DaoException("Data Integrity Violation", e);
+            throw new DaoException("Data integrity violation", e);
         }
     }
+
+
 
 
     @Override
@@ -145,6 +147,7 @@ public class JdbcBookUserDao implements BookUserDao {
         bookUser.setReadOutLoudReader(false);
         bookUser.setNotes(rs.getString("notes"));
         bookUser.setCompleted(false);
+        bookUser.setPagesRead(rs.getInt("pages_read"));
 
         return bookUser;
     }
