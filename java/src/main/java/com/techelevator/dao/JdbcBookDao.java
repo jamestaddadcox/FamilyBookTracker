@@ -37,16 +37,13 @@ public class JdbcBookDao implements BookDao {
 
     @Override
     public Book createBook(Book book) {
-        String sql = "INSERT INTO book (title, author, book_description, format)" +
-                     "VALUES (?, ?, ?, ?) " +
-                     "ON CONFLICT (isbn) DO NOTHING;";
+        String sql = "INSERT INTO book (isbn, title, author, book_description, format)" +
+                "VALUES (?, ?, ?, ?, ?) " +
+                "ON CONFLICT (isbn) DO NOTHING" +
+                "       RETURNING isbn;";
 
         try {
-            String bookISBN = jdbcTemplate.queryForObject(sql, String.class, book.getTitle(), book.getAuthor(), book.getDescription(), book.getFormat());
-
-            if (bookISBN == null) {
-                throw new DaoException("Could not save book");
-            }
+            String bookISBN = jdbcTemplate.queryForObject(sql, String.class, book.getIsbn(), book.getTitle(), book.getAuthor(), book.getDescription(), book.getFormat());
 
             return getBookByIsbn(bookISBN);
 
