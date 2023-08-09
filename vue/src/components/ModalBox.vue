@@ -60,6 +60,7 @@
       <template v-slot:footer>
       </template>
     </modal-box>
+    </div>
     -->
 
 </template>
@@ -109,6 +110,7 @@ export default {
         overflow-x: auto;
         display: flex;
         flex-direction: column;
+        border-radius: 5px;
     }
 
     .modal-header,
@@ -120,7 +122,7 @@ export default {
     .modal-header {
         position: relative;
         border-bottom: 1px solid #eeeeee;
-        color: #4AAE9B;
+        color: blue;
         justify-content: space-between;
     }
 
@@ -144,13 +146,13 @@ export default {
         padding: 10px;
         cursor: pointer;
         font-weight: bold;
-        color: #4AAE9B;
+        color: cyan;
         background: transparent;
     }
 
     .btn-green {
         color: white;
-        background: #4AAE9B;
+        background: cyan;
         border: 1px solid #4AAE9B;
         border-radius: 5px;
         padding: 5px;
