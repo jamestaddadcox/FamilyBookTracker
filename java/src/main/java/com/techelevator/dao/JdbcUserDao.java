@@ -23,8 +23,11 @@ public class JdbcUserDao implements UserDao {
     private List<Book> bookList;
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcUserDao(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+ //   public JdbcUserDao(DataSource dataSource) {  // originally this was (JdbcTemplate jdbcTemplate)
+    //       jdbcTemplate = new JdbcTemplate(dataSource);
+
+    public JdbcUserDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override

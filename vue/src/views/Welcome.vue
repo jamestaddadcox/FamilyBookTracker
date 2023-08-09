@@ -96,12 +96,17 @@ export default {
     button {
         margin: 7px;
     }
+
+    /* #book-pic {
+        z-index: -1;
+    } */
+
     #worm-on-book {
         width: 200px;
         flex-shrink: 1;
-        z-index: 1;
+        z-index: auto; 
         margin-bottom: -30px;
-        
+        z-index: 1;
     }
 
     img.logo:hover {
@@ -126,7 +131,7 @@ export default {
 /* modal styling */
 
     .alertmsg {
-        background-color: crimson;
+        background-color: red;
     }
 
     .modal-backdrop {
@@ -148,6 +153,7 @@ export default {
         display: flex;
         flex-direction: column;
         border-radius: 5px;
+        z-index: 5;
     }
 
     .modal-header,
@@ -172,6 +178,7 @@ export default {
     .modal-body {
         position: relative;
         padding: 20px 10px;
+        z-index: 5;
     }
 
     .btn-close {

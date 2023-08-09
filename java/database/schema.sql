@@ -18,7 +18,7 @@ CREATE TABLE users (
 	activated boolean NOT NULL,
 	role varchar(50) NOT NULL,
 	is_child boolean NOT NULL,
-	avatar_url varchar(200) NOT NULL,
+	avatar_url varchar(100),
 	CONSTRAINT pk_user PRIMARY KEY (user_id),
 	CONSTRAINT fk_family_id FOREIGN KEY (family_id) REFERENCES family(family_id)
 );
@@ -39,7 +39,6 @@ CREATE TABLE book_user (
 	read_aloud_reader boolean NOT NULL,
 	read_aloud_listen boolean NOT NULL,
 	notes varchar(100),
-	completed boolean NOT NULL DEFAULT false,
 	CONSTRAINT pk_book_user_table PRIMARY KEY (user_id, isbn),
 	CONSTRAINT fk_isbn FOREIGN KEY (isbn) REFERENCES book(isbn)
 );
@@ -75,17 +74,18 @@ INSERT INTO family (family_name) VALUES
     ('Wilson Family'),
     ('Moore Family'),
     ('Taylor Family');
-INSERT INTO users (family_id, username, first_name, last_name, password_hash, activated, role, is_child, avatar_url) VALUES
-    (1, 'john.smith', 'John', 'Smith', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (1, 'jane.smith', 'Jane', 'Smith', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (2, 'robert.johnson', 'Robert', 'Johnson', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (2, 'emily.johnson', 'Emily', 'Johnson', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (3, 'michael.williams', 'Michael', 'Williams', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (3, 'olivia.williams', 'Olivia', 'Williams', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (4, 'david.jones', 'David', 'Jones', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (4, 'sophia.jones', 'Sophia', 'Jones', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (5, 'william.brown', 'William', 'Brown', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (5, 'ava.brown', 'Ava', 'Brown', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx');
+
+INSERT INTO users (family_id, username, first_name, last_name, password_hash, activated, role, is_child) VALUES
+    (1, 'john.smith', 'John', 'Smith', 'password123', true, 'user', false),
+    (1, 'jane.smith', 'Jane', 'Smith', 'password123', true, 'user', false),
+    (2, 'robert.johnson', 'Robert', 'Johnson', 'password123', true, 'user', false),
+    (2, 'emily.johnson', 'Emily', 'Johnson', 'password123', true, 'user', false),
+    (3, 'michael.williams', 'Michael', 'Williams', 'password123', true, 'user', false),
+    (3, 'olivia.williams', 'Olivia', 'Williams', 'password123', true, 'user', false),
+    (4, 'david.jones', 'David', 'Jones', 'password123', true, 'user', false),
+    (4, 'sophia.jones', 'Sophia', 'Jones', 'password123', true, 'user', false),
+    (5, 'william.brown', 'William', 'Brown', 'password123', true, 'user', false),
+    (5, 'ava.brown', 'Ava', 'Brown', 'password123', true, 'user', false);
 
 INSERT INTO book (isbn, title, author, book_description, format) VALUES
     ('9781234567890', 'Sample Book 1', 'Author 1', 'Description 1', 'paper'),
@@ -99,7 +99,7 @@ INSERT INTO book (isbn, title, author, book_description, format) VALUES
     ('9785678901234', 'Sample Book 9', 'Author 9', 'Description 9', 'paper'),
     ('9786789012345', 'Sample Book 10', 'Author 10', 'Description 10', 'digital');
 
-INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_aloud_listen, notes, completed) VALUES
+INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_aloud_listen, notes) VALUES
     (1, '9781234567890', 30, true, true, 'Read aloud'),
     (1, '9780987654321', 45, false, true, 'Enjoyed it'),
     (2, '9789876543210', 60, true, false, 'Read together'),
@@ -123,4 +123,3 @@ INSERT INTO prize (family_id, prize_name, prize_description, milestone, start_da
     (5, 'Prize 9', 'Description for Prize 9', false, '2023-08-01', 'both', '2023-08-31');
 
 commit;
-
