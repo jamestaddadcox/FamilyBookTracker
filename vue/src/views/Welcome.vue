@@ -1,9 +1,13 @@
 <template>
   <div class="welcome">
     <img class="logo" src="../assets/LargeWormWagon.png" alt="worm wagon">
+
+        <h2>A Family Book Logging App</h2>
+        <div id="button-box">
         <button @click="showLoginModal">sign in</button>
         <button @click="showRegisterModal">sign up</button>  
-
+        </div>
+    
 <login-modal
       v-show="isLoginModalVisible"
       @close="closeLoginModal"
@@ -14,8 +18,9 @@
       @close="closeRegistrationModal">
 </registration-modal>
 
-    <img class="worm-pic" src='@/assets/knockout2.png' alt="worm">
-    <img  />
+    <img id="worm-on-book" class="worm-pic" src='@/assets/knockout2.png' alt="worm">
+    <img id="book-pic" src="@/assets/books.png" alt="books">
+
     
     <a href="#">FAQ</a>
   </div>
@@ -73,21 +78,38 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: relative; 
     }
     img.logo {
         width: 75%;
         padding: 75px;
         height: auto;
+        padding-bottom: 30px;
         
         
     }
-    .worm-pic{
+    #button-box{
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+    }
+    button {
+        margin: 7px;
+    }
+    #worm-on-book {
         width: 200px;
         flex-shrink: 1;
+        z-index: 1;
+        margin-bottom: -30px;
+        
     }
 
     img.logo:hover {
     animation: rainbow 7s linear infinite;
+    }
+
+    img.book-pic {
+        margin-top: -15%;
     }
 
     @keyframes rainbow {
@@ -98,7 +120,7 @@ export default {
     57% { filter: hue-rotate(240deg); }
     71% { filter: hue-rotate(300deg); }
     85% { filter: hue-rotate(360deg); }
-    100% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(390deg); }
 }
 
 /* modal styling */
