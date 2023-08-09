@@ -6,10 +6,11 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class JdbcPrizeDao implements PrizeDao {
 
     private final JdbcTemplate jdbcTemplate;
@@ -70,7 +71,8 @@ public class JdbcPrizeDao implements PrizeDao {
         String sql = "INSERT INTO prize (prize_id, family_id, prize_name, prize_description, milestone, start_date, user_group, end_date) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING prize_id";
         try {
-            int newPrizeId = jdbcTemplate.queryForObject(sql, int.class, prize.getPrizeId());
+            int newPrizeId = jdbcTemplate.queryForObject(sql, int.class, prize.getPrizeId(), prize.getFamilyId(), prize.getName(),
+                                prize.getDescription(), prize.isMilestone(), prize.getStartDate(), prize.getUserGroup(), prize.getEndDate());
             newPrize = getPrizeById(newPrizeId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);

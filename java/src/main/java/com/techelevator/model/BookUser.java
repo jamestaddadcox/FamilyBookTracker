@@ -7,14 +7,24 @@ public class BookUser {
     private boolean isReadOutLoudReader;
     private boolean isReadOutLoudListener;
     private String notes;
+    private boolean completed;
 
-    public BookUser(int userId, String isbn, int minutesRead, boolean isReadOutLoudReader, boolean isReadOutLoudListener, String notes) {
+    public BookUser(int userId, String isbn, int minutesRead, boolean isReadOutLoudReader, boolean isReadOutLoudListener, String notes, boolean completed) {
         this.userId = userId;
         this.isbn = isbn;
         this.minutesRead = minutesRead;
         this.isReadOutLoudReader = isReadOutLoudReader;
         this.isReadOutLoudListener = isReadOutLoudListener;
         this.notes = notes;
+        this.completed = completed;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
     public BookUser() {};
@@ -23,12 +33,10 @@ public class BookUser {
         return userId;
     }
 
-<<<<<<< HEAD
-=======
     public void setUserId(int userId) {
         this.userId = userId;
     }
->>>>>>> main
+
 
     public String getIsbn() {
         return isbn;

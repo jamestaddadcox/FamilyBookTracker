@@ -9,6 +9,10 @@ import javax.validation.constraints.NotEmpty;
  */
 public class RegisterUserDto {
 
+    private int familyId;
+    private String firstName;
+    private String lastName;
+    private String avatarUrl;
     @NotEmpty
     private String username;
     @NotEmpty
@@ -48,5 +52,37 @@ public class RegisterUserDto {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public int getFamilyId() {
+        return familyId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setFamilyId(int familyId) {
+        this.familyId = familyId;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }
