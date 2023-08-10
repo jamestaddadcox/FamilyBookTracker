@@ -68,10 +68,10 @@ public class JdbcPrizeDao implements PrizeDao {
     @Override
     public Prize createPrize(Prize prize) {
         Prize newPrize = null;
-        String sql = "INSERT INTO prize (prize_id, family_id, prize_name, prize_description, milestone, start_date, user_group, end_date) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING prize_id";
+        String sql = "INSERT INTO prize (family_id, prize_name, prize_description, milestone, start_date, user_group, end_date) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING prize_id";
         try {
-            int newPrizeId = jdbcTemplate.queryForObject(sql, int.class, prize.getPrizeId(), prize.getFamilyId(), prize.getName(),
+            int newPrizeId = jdbcTemplate.queryForObject(sql, int.class, prize.getFamilyId(), prize.getName(),
                                 prize.getDescription(), prize.isMilestone(), prize.getStartDate(), prize.getUserGroup(), prize.getEndDate());
             newPrize = getPrizeById(newPrizeId);
         } catch (CannotGetJdbcConnectionException e) {

@@ -10,7 +10,7 @@ CREATE TABLE family (
 
 CREATE TABLE users (
 	user_id SERIAL NOT NULL,
-	family_id int NOT NULL,
+	family_id int, --NOT NULL, --disabling until we figure out how this is assigned
 	username varchar(50) NOT NULL UNIQUE,
 	first_name varchar(50) NOT NULL,
 	last_name varchar(50) NOT NULL,
