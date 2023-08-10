@@ -10,7 +10,7 @@ CREATE TABLE family (
 
 CREATE TABLE users (
 	user_id SERIAL NOT NULL,
-	family_id int NOT NULL,
+	family_id int, --NOT NULL, --disabling until we figure out how this is assigned
 	username varchar(50) NOT NULL UNIQUE,
 	first_name varchar(50) NOT NULL,
 	last_name varchar(50) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE users (
 	activated boolean NOT NULL,
 	role varchar(50) NOT NULL,
 	is_child boolean NOT NULL,
-	avatar_url varchar(200) NOT NULL,
+	avatar_url varchar(100),
 	CONSTRAINT pk_user PRIMARY KEY (user_id),
 	CONSTRAINT fk_family_id FOREIGN KEY (family_id) REFERENCES family(family_id)
 );
@@ -76,17 +76,18 @@ INSERT INTO family (family_name) VALUES
     ('Wilson Family'),
     ('Moore Family'),
     ('Taylor Family');
-INSERT INTO users (family_id, username, first_name, last_name, password_hash, activated, role, is_child, avatar_url) VALUES
-    (1, 'john.smith', 'John', 'Smith', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (1, 'jane.smith', 'Jane', 'Smith', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (2, 'robert.johnson', 'Robert', 'Johnson', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (2, 'emily.johnson', 'Emily', 'Johnson', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (3, 'michael.williams', 'Michael', 'Williams', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (3, 'olivia.williams', 'Olivia', 'Williams', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (4, 'david.jones', 'David', 'Jones', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (4, 'sophia.jones', 'Sophia', 'Jones', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (5, 'william.brown', 'William', 'Brown', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx'),
-    (5, 'ava.brown', 'Ava', 'Brown', 'password123', true, 'user', false, 'https://api.multiavatar.com/Binx');
+
+INSERT INTO users (family_id, username, first_name, last_name, password_hash, activated, role, is_child) VALUES
+    (1, 'john.smith', 'John', 'Smith', 'password123', true, 'user', false),
+    (1, 'jane.smith', 'Jane', 'Smith', 'password123', true, 'user', false),
+    (2, 'robert.johnson', 'Robert', 'Johnson', 'password123', true, 'user', false),
+    (2, 'emily.johnson', 'Emily', 'Johnson', 'password123', true, 'user', false),
+    (3, 'michael.williams', 'Michael', 'Williams', 'password123', true, 'user', false),
+    (3, 'olivia.williams', 'Olivia', 'Williams', 'password123', true, 'user', false),
+    (4, 'david.jones', 'David', 'Jones', 'password123', true, 'user', false),
+    (4, 'sophia.jones', 'Sophia', 'Jones', 'password123', true, 'user', false),
+    (5, 'william.brown', 'William', 'Brown', 'password123', true, 'user', false),
+    (5, 'ava.brown', 'Ava', 'Brown', 'password123', true, 'user', false);
 
 INSERT INTO book (isbn, title, author, book_description, format) VALUES
     ('9781234567890', 'Sample Book 1', 'Author 1', 'Description 1', 'paper'),
@@ -126,4 +127,3 @@ INSERT INTO prize (family_id, prize_name, prize_description, milestone, start_da
     (5, 'Prize 9', 'Description for Prize 9', false, '2023-08-01', 'both', '2023-08-31');
 
 commit;
-
