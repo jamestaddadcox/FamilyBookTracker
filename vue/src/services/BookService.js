@@ -8,7 +8,7 @@ export default {
     },
 
     getBookUsersByUserId(id){
-        return axios.get(`/stats/user/${id}`);//list of bookuser(s) 
+        return axios.get(`/stats/user/${id}`);//list of bookuser(s) ??
     },
 
     getBookByIsbn(isbn){

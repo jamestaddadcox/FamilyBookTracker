@@ -43,7 +43,7 @@ public class JdbcFamilyDao implements FamilyDao {
         Family newFamily = null;
         String insertFamilySql = "INSERT INTO family (family_name) values (?) RETURNING family_id";
         try {
-            int newFamilyId = jdbcTemplate.queryForObject(insertFamilySql, int.class, newFamily.getFamilyName());
+            int newFamilyId = jdbcTemplate.queryForObject(insertFamilySql, int.class, familyName);
             newFamily = getFamilyById(newFamilyId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
