@@ -19,18 +19,7 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || 
-      {
-        userId: 1,
-        familyId: 1,
-        username: "john.smith",
-        firstName: "John",
-        lastName: "Smith",
-        password_Hash: "password123",
-        activated: true,
-        role: "user",
-        isChild: false,
-      },///delete this later eese
+    user: currentUser || {},
     modalFlag: false,
   },
   mutations: {

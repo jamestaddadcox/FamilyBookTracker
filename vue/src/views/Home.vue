@@ -1,22 +1,21 @@
 <template>
   <div class="home">
-    
     <header><page-header></page-header></header>
-    <div class="main-section">HARDCODEDTEST<book-cover-list></book-cover-list></div>
-    <sidebar-menu class="side-bar"></sidebar-menu>
+    <div class="main-section"><book-cover-list></book-cover-list></div>
+    <side-bar-menu class="side-bar"></side-bar-menu>
     <nav class="about-bar">about bar for now</nav>
     <!-- <p>You must be authenticated to see this</p> -->
   </div>
 </template>
 
 <script>
- import SidebarMenu from '../components/SideBarMenu.vue';
+ import SideBarMenu from '../components/SideBarMenu.vue';
  import PageHeader from '../components/PageHeader.vue';
  import BookCoverList from '../components/BookCoverList.vue';
 
 export default {
   components: {
-    SidebarMenu,
+    SideBarMenu,
     PageHeader,
     BookCoverList
   },
@@ -42,8 +41,6 @@ header {
 
 .main-section {
   grid-area: main;
-  background-color: palegreen;
-  height: 100%;
 }
 
 .side-bar {
@@ -52,8 +49,5 @@ header {
 
 .about-bar {
   grid-area: faq;
-  background-color: cornflowerblue;
 }
-
-
 </style>

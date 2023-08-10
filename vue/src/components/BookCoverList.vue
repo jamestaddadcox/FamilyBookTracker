@@ -1,47 +1,29 @@
 <template>
   <div class="book-section">
-    HARDCO
-    <book-card
-      v-for="bookuser in bookUsersByUserId(1)"
-      :key="bookuser.isbn" :bookuser="bookuser"
-    ></book-card>
+    <book-card v-for="book in usersBooks($store.state.user)" :key="book.isbn"></book-card>
   </div>
 </template>
 
 <script>
 import BookCard from "@/components/BookCard.vue";
-import BookService from "@/services/BookService";
+//import BookService from "@/services/BookService";
 export default {
-  data(){
-    return{
-      tempId: '',
-    };
-  },
-  name: "book-cover-list",
-  components: {
-    BookCard,
-  },
-  computed: {
-    usersBooksByFamilyId(id){
-      return BookService.getBookUsersByFamilyID(id);
+    name:'book-cover-list',
+    components:{
+        BookCard
     },
-    bookUsersByUserId(id){
-      return BookService.getBookUsersByUserId(id);
-    },
-  },
-  // methods: {
-  //   getBookByIsbn(isbn){
+    // computed:{
+    //     usersBooks(id,isbn){
 
-  //   }
-  // }
+    //     }
+    //}
 }
 </script>
 
 <style>
 .book-section {
-  display: flex;
-  justify-content: space-evenly;
-  flex: wrap;
-  
+    display: flex;
+    justify-content: space-evenly;
+    flex:wrap;
 }
 </style>
