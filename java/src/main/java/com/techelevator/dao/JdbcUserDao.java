@@ -76,7 +76,7 @@ public class JdbcUserDao implements UserDao {
         return users;
     }
 
-    @Override
+   @Override
     public User getUserByUsername(String username) {
         if (username == null) throw new IllegalArgumentException("Username cannot be null");
         User user = null;
@@ -128,10 +128,10 @@ public class JdbcUserDao implements UserDao {
 
 
     @Override
-    public boolean deactivateFamilyMember(User user) {
+    public boolean deactivateFamilyMember(int id) {
         String sql = "UPDATE users SET activated = false WHERE user_id = ?;";
         try {
-            int numRowsUpdated = jdbcTemplate.update(sql, user.getUserId());
+            int numRowsUpdated = jdbcTemplate.update(sql, id);
             return numRowsUpdated > 0;
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);

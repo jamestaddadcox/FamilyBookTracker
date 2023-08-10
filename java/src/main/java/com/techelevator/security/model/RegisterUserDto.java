@@ -9,10 +9,14 @@ import javax.validation.constraints.NotEmpty;
  */
 public class RegisterUserDto {
 
-    // private int familyId; // this either needs to be created at registration or elsewhere
+    private String familyName;
+    private int familyId; // this either needs to be created at registration or elsewhere
     private String firstName;
+
+
+
     private String lastName;
-    // private String avatarUrl; // this is probably not part of the dto
+    private String avatarUrl; // this is probably not part of the dto
     @NotEmpty
     private String username;
     @NotEmpty
@@ -54,9 +58,9 @@ public class RegisterUserDto {
         this.role = role;
     }
 
-//    public int getFamilyId() {
-//        return familyId;
-//    }
+   public int getFamilyId() {
+      return familyId;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -82,6 +86,16 @@ public class RegisterUserDto {
         this.lastName = lastName;
     }
 
+    public void setFamilyId(int familyId) {
+    }
+
+    public String getFamilyName() {
+        return familyName;
+    }
+
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
+    }
 //    public void setAvatarUrl(String avatarUrl) {
 //        this.avatarUrl = avatarUrl;
 //    }

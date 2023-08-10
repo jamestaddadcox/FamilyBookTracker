@@ -120,9 +120,6 @@ public class JdbcBookUserDao implements BookUserDao {
         }
     }
 
-
-
-
     @Override
     public boolean deleteBookByIsbn(BookUser bookUser) {
         String sql = "DELETE FROM book_user WHERE isbn = ? AND user_id = ?;";

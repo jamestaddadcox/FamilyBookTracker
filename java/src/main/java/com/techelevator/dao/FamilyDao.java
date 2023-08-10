@@ -8,7 +8,7 @@ import java.util.List;
 public interface FamilyDao {
     Family getFamilyById(int id); // /family/{id}
 
-    Family createFamily(Family family); // /family
+    Family createFamily(String familyName); // /family
 
     List<User> getFamilyMembersByFamilyId(int id); // /family/{family_id}/user GET
 }
