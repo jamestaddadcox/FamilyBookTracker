@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.FamilyDao;
 import com.techelevator.dao.UserDao;
+import com.techelevator.model.Family;
 import com.techelevator.model.User;
 import com.techelevator.security.model.RegisterUserDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,12 @@ import java.util.List;
 public class UserController {
 
     private final UserDao userDao;
+    private final FamilyDao familyDao;
 
     @Autowired
-    public UserController(UserDao userDao) {
+    public UserController(UserDao userDao, FamilyDao familyDao) {
         this.userDao = userDao;
+        this.familyDao = familyDao;
     }
 
     @RequestMapping(path = "/user/{id}", method = RequestMethod.GET)
@@ -41,11 +44,13 @@ public class UserController {
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User Not Found :(");
         } else {
-            User createdUser = userDao.createUser(user);
-            return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
 
+            User createdUser = userDao.createUser(user);
+
+            return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
         }
     }
+
 
     @RequestMapping(path = "/child-user", method = RequestMethod.POST)
     public ResponseEntity<User> createChildUser(@RequestBody RegisterUserDto childUser) {

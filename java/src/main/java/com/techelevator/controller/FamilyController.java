@@ -42,10 +42,11 @@ public class FamilyController {
 
 @RequestMapping(path = "/family", method = RequestMethod.POST)
     public ResponseEntity<Family> createFamily(@RequestBody Family family) {
+        User user = new User();
         if (family == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Family Not Found :(");
         } else {
-            Family createdFamily = familyDao.createFamily(family);
+            Family createdFamily = familyDao.createFamily(family.getFamilyName());
             return new ResponseEntity<>(createdFamily, HttpStatus.CREATED);
         }
 }
