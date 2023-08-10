@@ -17,8 +17,12 @@
         </li>
       </ul>
       <div class="logout-settings">
-        <a href="#">logout</a>
+        <div class="logout-btn"> <!--feel free to use something other than div & this class here, just wanted to separate these two links -->
+        <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">logout</router-link>
+        </div>
+        <div class="settings-btn">
         <a href="#">settings</a>
+        </div>
       </div>
     </menu>
   </div>

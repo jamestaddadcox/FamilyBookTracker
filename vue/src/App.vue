@@ -3,14 +3,15 @@
   
 
   <div id="app">
-    <div id="nav">
+    <!-- We're no longer using this nav: 
+      <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link
         v-bind:to="{ name: 'logout' }"
         v-if="$store.state.token != ''"
         >Logout</router-link
       >
-    </div>
+    </div>-->
     <router-view />
 
     
