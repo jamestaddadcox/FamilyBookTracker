@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.lang.module.ResolutionException;
 import java.util.List;
 
 @RestController
@@ -78,4 +79,13 @@ public class BookUserController {
             return new ResponseEntity<>(addedBookUser, HttpStatus.CREATED);
         }
     }
+
+    @RequestMapping(path = "/stats/user/{id}/book/{isbn}", method = RequestMethod.DELETE)
+    public boolean deleteBookByIsbn(@PathVariable Integer id, @PathVariable String isbn) {
+        BookUser bookUser = bookUserDao.getBookUserInfoByUserIdAndIsbn(id, isbn);
+        if(bookUser == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book that you entered does not exist :(");
+        } return bookUserDao.deleteBookByIsbn(bookUser);
+    }
+
 }
