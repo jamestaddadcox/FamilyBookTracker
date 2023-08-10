@@ -12,7 +12,7 @@
         <section class="modal-body">
           <slot name="body">
             <form @submit.prevent="register">
-              <div role="alert" v-if="registrationErrors">
+              <div role="alert" class="alertmsg" v-if="registrationErrors">
                 {{ registrationErrorMsg }}
               </div>
               <div>

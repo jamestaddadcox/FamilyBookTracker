@@ -22,15 +22,15 @@ public class User {
 
    public User() { }
 
-   public User(String avatarUrl, int userId, String username, String password, String authorities, String firstName, String lastName, int familyId) {
-      this.firstName = firstName;
-      this.lastName = lastName;
+   public User(int userId, String username, String password, String authorities, String firstName, String lastName, int familyId, String avatarUrl) {
       this.userId = userId;
-      this.familyId = familyId;
       this.username = username;
       this.password = password;
       if (authorities != null) this.setAuthorities(authorities);
       this.activated = true;
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.familyId = familyId;
       this.isChild = false;
       this.avatarUrl = avatarUrl;
    }

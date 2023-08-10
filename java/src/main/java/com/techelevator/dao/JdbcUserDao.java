@@ -23,8 +23,11 @@ public class JdbcUserDao implements UserDao {
     private List<Book> bookList;
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcUserDao(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+ //   public JdbcUserDao(DataSource dataSource) {  // originally this was (JdbcTemplate jdbcTemplate)
+    //       jdbcTemplate = new JdbcTemplate(dataSource);
+
+    public JdbcUserDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
@@ -101,14 +104,16 @@ public class JdbcUserDao implements UserDao {
 
     private User createUserWithRole(RegisterUserDto newUser, String role) {
         User createdUser = null;
-        String insertUserSql = "INSERT INTO users (family_id, username, first_name, last_name, password_hash, role, activated, is_child, avatar_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING user_id";
+//        String insertUserSql = "INSERT INTO users (family_id, username, first_name, last_name, password_hash, role, activated, is_child, avatar_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING user_id";
+        String insertUserSql = "INSERT INTO users (username, first_name, last_name, password_hash, role, activated, is_child) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING user_id";
+
         String passwordHash = new BCryptPasswordEncoder().encode(newUser.getPassword());
         String formattedRole = role.startsWith("ROLE_") ? role : "ROLE_" + role;
 
         try {
             int newUserId = jdbcTemplate.queryForObject(insertUserSql, int.class,
-                    newUser.getFamilyId(), newUser.getUsername(), newUser.getFirstName(), newUser.getLastName(),
-                    passwordHash, formattedRole, true, false, newUser.getAvatarUrl());
+                    /* newUser.getFamilyId(), */ newUser.getUsername(), newUser.getFirstName(), newUser.getLastName(),
+                  passwordHash, formattedRole, true, false/*, newUser.getAvatarUrl()*/);
 
             createdUser = getUserById(newUserId);
         } catch (CannotGetJdbcConnectionException e) {
