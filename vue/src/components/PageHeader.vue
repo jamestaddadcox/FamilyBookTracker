@@ -1,13 +1,17 @@
 <template>
   <div >
-    <h1>Hi <!--{{user.displayName}}--></h1>
+    <h1>Hi {{$store.state.user.firstName}}</h1>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'page-header'
+// import UserService from '../services/UserService';
 
+export default {
+  name: 'page-header',
+  computed: {
+
+  }
 }
 </script>
 

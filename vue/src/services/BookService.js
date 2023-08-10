@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+//REFERENCE: book_user has userid, isbn, mins read, +++
 
 export default {
 
@@ -7,7 +7,11 @@ export default {
         return axios.get('/book');
     },
 
-    getByIsbn(isbn) {
-        return axios.get(/stats/user/{user_id}/book/{isbn});
-    }
+    getBookUsersByUserId(id){
+        return axios.get(`/stats/user/${id}`);//list of bookuser(s) 
+    },
+
+    getBookByIsbn(isbn){
+        return axios.get(`/book/${isbn}`);
+    },
 }

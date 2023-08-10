@@ -103,7 +103,7 @@ export default {
         margin-bottom: -30px;
         
     }
-
+    
     img.logo:hover {
     animation: rainbow 7s linear infinite;
     }
