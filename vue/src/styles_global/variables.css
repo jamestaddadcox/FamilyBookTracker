@@ -1,0 +1,28 @@
+:root {
+
+    /* primary background color */
+    --primary-bg-color: cyan;
+
+    /* secondary background color */
+    --secondary-bg-color: limegreen;
+
+    /* primary text color */
+    --primary-text-color: purple;
+
+    /* secondary text color */
+    --secondary-text-color: hotpink;
+
+    /* heading font family (for h1, h2, etc) */
+    --heading-font-family: arial;
+
+    /* primary font family (for <p> and other inline text) */
+   --primary-font-family: arial;
+
+   /* indicating error messages and similar situations */
+   --alert-color: red;
+   
+}
+
+button {
+    cursor: pointer;
+}

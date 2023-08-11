@@ -1,6 +1,6 @@
 <template>
   <div >
-    <h1>Hi {{$store.state.user.firstName}}</h1>
+    <h1>Hi, {{$store.state.user.firstName}}!</h1>
   </div>
 </template>
 

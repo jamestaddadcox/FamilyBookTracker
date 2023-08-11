@@ -1,9 +1,12 @@
 <template>
   <div class="book-card">
     <span class="card">can you see this?</span>
-    <img class="cover" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + bookuser.isbn + '-L.jpg'" alt="book cover image">
+    <button>
+    <img class="cover" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + bookuser.isbn + '-M.jpg'" alt="book cover image">
+    </button>
     <h2 class="title" v-if="book.title">{{ book.title }}</h2>
     <div v-else>Loading...</div>
+    <button>Start Reading Clock</button>
   </div>
 </template>
 
@@ -33,10 +36,10 @@ export default {
 }
 </script>
 <style scoped>
-.card {
+/* .card {
     display: flex;
     flex-direction: column;
     border: 3px;
     border-color: aqua;
-}
+} */
 </style>
