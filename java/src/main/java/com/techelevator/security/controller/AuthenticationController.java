@@ -2,6 +2,8 @@ package com.techelevator.security.controller;
 
 import javax.validation.Valid;
 
+import com.techelevator.dao.FamilyDao;
+import com.techelevator.model.Family;
 import com.techelevator.security.exception.DaoException;
 import com.techelevator.security.model.LoginDto;
 import com.techelevator.security.model.LoginResponseDto;
@@ -28,11 +30,13 @@ public class AuthenticationController {
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private UserDao userDao;
+    private FamilyDao familyDao;
 
-    public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserDao userDao) {
+    public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserDao userDao, FamilyDao familyDao) {
         this.tokenProvider = tokenProvider;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userDao = userDao;
+        this.familyDao = familyDao;
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
@@ -61,7 +65,10 @@ public class AuthenticationController {
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public void register(@Valid @RequestBody RegisterUserDto newUser) {
         try {
+            Family family = familyDao.createFamily(newUser.getFamilyName());
             User user = userDao.createUser(newUser);
+            user.setFamilyId(family.getFamilyId());
+
             if (user == null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User registration failed.");
             }

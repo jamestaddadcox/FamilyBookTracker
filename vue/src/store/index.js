@@ -19,8 +19,11 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {firstName: 'gv'},
+    modalFlag: false,
+    bookUser: [{userId: 1, isbn: 9780194229647},{userId: 1, isbn: 9783423092449}]
   },
+
   mutations: {
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
@@ -37,6 +40,9 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
-    }
+    },
+    //CHANGE_MODAL_FLAG(state, modalFlag) {
+    //  this.modalFlag = !this.modalFlag;
+    //}
   }
 })

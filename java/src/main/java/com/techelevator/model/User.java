@@ -16,21 +16,21 @@ public class User {
    private String username;
    @JsonIgnore
    private String password;
-   @JsonIgnore
+
    private boolean activated;
    private Set<Authority> authorities = new HashSet<>();
 
    public User() { }
 
-   public User(String avatarUrl, int userId, String username, String password, String authorities, String firstName, String lastName, int familyId) {
-      this.firstName = firstName;
-      this.lastName = lastName;
+   public User(int userId, String username, String password, String authorities, String firstName, String lastName, int familyId, String avatarUrl) {
       this.userId = userId;
-      this.familyId = familyId;
       this.username = username;
       this.password = password;
       if (authorities != null) this.setAuthorities(authorities);
       this.activated = true;
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.familyId = familyId;
       this.isChild = false;
       this.avatarUrl = avatarUrl;
    }
@@ -41,6 +41,14 @@ public class User {
 
    public void setUserId(int id) {
       this.userId = id;
+   }
+
+   public String getAvatarUrl() {
+      return avatarUrl;
+   }
+
+   public void setAvatarUrl(String avatarUrl) {
+      this.avatarUrl = avatarUrl;
    }
 
    public String getUsername() {

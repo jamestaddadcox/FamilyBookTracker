@@ -4,6 +4,7 @@ import com.techelevator.model.BookUser;
 import com.techelevator.security.exception.DaoException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
-
 @Component
 public class JdbcBookUserDao implements BookUserDao {
 
@@ -41,10 +41,11 @@ public class JdbcBookUserDao implements BookUserDao {
     @Override
     public BookUser updateBookUserInfo(BookUser bookUser) {
         String sql = "UPDATE book_user " +
-                     "SET isbn = ?, minutes_read = ?, read_aloud_reader = ?, read_aloud_listen = ?, notes = ? " +
-                     "WHERE user_id = ?;";
+                "SET isbn = ?, minutes_read = ?, read_aloud_reader = ?, read_aloud_listen = ?, notes = ?, completed = ?, pages_read = ? " +
+                "WHERE user_id = ? AND isbn = ?;";
+
         try {
-            jdbcTemplate.update(sql, bookUser.getIsbn(), bookUser.getMinutesRead(), bookUser.isReadOutLoudReader(), bookUser.isReadOutLoudListener(), bookUser.getNotes());
+            jdbcTemplate.update(sql, bookUser.getIsbn(), bookUser.getMinutesRead(), bookUser.isReadOutLoudReader(), bookUser.isReadOutLoudListener(), bookUser.getNotes(), bookUser.isCompleted(), bookUser.getUserId(), bookUser.getIsbn(), bookUser.getPagesRead());
 
             return getBookUserInfoByUserIdAndIsbn(bookUser.getUserId(), bookUser.getIsbn());
         } catch (CannotGetJdbcConnectionException e) {
@@ -53,6 +54,7 @@ public class JdbcBookUserDao implements BookUserDao {
             throw new DaoException("Data integrity violation", e);
         }
     }
+
 
     @Override
     public List<BookUser> getAllBookUserInfoByUserId(int userId) {
@@ -92,29 +94,30 @@ public class JdbcBookUserDao implements BookUserDao {
         }
     }
 
+
     @Override
     public BookUser addBookToUserList(BookUser bookUser) {
-        String sql = "INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_aloud_listen, notes) " +
-                "VALUES (?, ?, ?, ?, ?, ?) " +
-                "ON CONFLICT (user_id, isbn) DO NOTHING";
+        String sql = "INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_aloud_listen, notes, completed, pages_read) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?) " +
+                "ON CONFLICT (user_id, isbn) DO NOTHING " +
+                "RETURNING user_id, isbn";
+
         try {
-            int numberOfRows = jdbcTemplate.update(sql,
+            BookUser newBookUser = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(BookUser.class),
                     bookUser.getUserId(),
                     bookUser.getIsbn(),
                     bookUser.getMinutesRead(),
                     bookUser.isReadOutLoudReader(),
                     bookUser.isReadOutLoudListener(),
-                    bookUser.getNotes()
-            );
-            if (numberOfRows == 0) {
-                return null;
-            }
+                    bookUser.getNotes(),
+                    bookUser.isCompleted(),
+                    bookUser.getPagesRead());
+            return newBookUser;
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
-            throw new DaoException("Data Integrity Violation", e);
+            throw new DaoException("Data integrity violation", e);
         }
-        return bookUser;
     }
 
     @Override
@@ -140,6 +143,8 @@ public class JdbcBookUserDao implements BookUserDao {
         bookUser.setReadOutLoudListener(false); // need to check on these guys
         bookUser.setReadOutLoudReader(false);
         bookUser.setNotes(rs.getString("notes"));
+        bookUser.setCompleted(false);
+        bookUser.setPagesRead(rs.getInt("pages_read"));
 
         return bookUser;
     }

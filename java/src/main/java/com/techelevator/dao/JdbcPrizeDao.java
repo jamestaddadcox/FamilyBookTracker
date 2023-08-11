@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
-
 @Component
 public class JdbcPrizeDao implements PrizeDao {
 
@@ -71,10 +70,11 @@ public class JdbcPrizeDao implements PrizeDao {
     @Override
     public Prize createPrize(Prize prize) {
         Prize newPrize = null;
-        String sql = "INSERT INTO prize (family_id, prize_name, prize_description, milestone, start_date, user_group, end_date) " + // SQL query is correct.
-                "VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING prize_id";                                                                  // can't figure out isMilestone => data integrity violation
+        String sql = "INSERT INTO prize (family_id, prize_name, prize_description, milestone, start_date, user_group, end_date) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING prize_id";
         try {
-            int newPrizeId = jdbcTemplate.queryForObject(sql, int.class, prize.getPrizeId(), prize.getFamilyId(), prize.getName(), prize.getDescription(), prize.isMilestone(), prize.getStartDate(), prize.getEndDate());
+            int newPrizeId = jdbcTemplate.queryForObject(sql, int.class, prize.getFamilyId(), prize.getName(),
+                                prize.getDescription(), prize.isMilestone(), prize.getStartDate(), prize.getUserGroup(), prize.getEndDate());
             newPrize = getPrizeById(newPrizeId);
 
         } catch (CannotGetJdbcConnectionException e) {

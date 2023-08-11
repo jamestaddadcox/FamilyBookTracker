@@ -12,10 +12,13 @@ public interface UserDao {
 
     User getUserById(int id); // /user/{id}
 
-    User getUserByUsername(String username); // /user/{username}
+   User getUserByUsername(String username); // /user/{username}
 
     User createUser(RegisterUserDto user); // /user POST
     User createChildUser(RegisterUserDto childUser); // /user POST
 
-    boolean deactivateFamilyMember(User user); // /family/user/
+    boolean deactivateFamilyMember(int id); // /user/{id}
+
+    boolean deactivateFamily(int id); // user/family/{id}
+    User getUserByFamilyId(int id);
 }
