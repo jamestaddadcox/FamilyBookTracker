@@ -7,6 +7,8 @@ import Logout from '../views/Logout.vue'
 import store from '../store/index'
 import Welcome from '../views/Welcome.vue'
 import Error404 from '../views/Error404.vue'
+import Family from '../views/Family.vue'
+import Prizes from '../views/Prizes.vue'
 
 Vue.use(Router)
 
@@ -67,9 +69,25 @@ const router = new Router({
     // },
     {
       path: '*',
-      compenent: Error404, // eventually we'll want this to be an error page
+      component: Error404, // eventually we'll want this to be an error page
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: '/family',
+      name: "family",
+      component: Family, // eventually we'll want this to be an error page
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/prizes',
+      name: "prizes",
+      component: Prizes, // eventually we'll want this to be an error page
+      meta: {
+        requiresAuth: true
       }
     },
   ]
