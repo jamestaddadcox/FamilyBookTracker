@@ -36,10 +36,15 @@ export default {
 
 <style>
 .sidebar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   background-color: coral;
   padding-right: 0;
   padding-top: 0;
-  padding-bottom: 0%;
+  padding-bottom: 0;
+  margin: 0;
+  
 }
 
 .sidebar ul {
@@ -80,7 +85,7 @@ export default {
   display: flex;
   padding-left: 25%;
   padding-right: 25%;
-  padding-top: 10px;
+  padding-top: 10%;
 }
 
 </style>
