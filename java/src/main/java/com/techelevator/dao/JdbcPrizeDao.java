@@ -124,7 +124,7 @@ public class JdbcPrizeDao implements PrizeDao {
         prize.setFamilyId(rs.getInt("family_id"));
         prize.setName(rs.getString("prize_name"));
         prize.setDescription(rs.getString("prize_description"));
-        prize.setMilestone(false);
+        prize.setMilestone(rs.getBoolean("milestone"));
         prize.setUserGroup(rs.getString("user_group"));
         prize.setStartDate(rs.getDate("start_date"));
         prize.setEndDate(rs.getDate("end_date"));

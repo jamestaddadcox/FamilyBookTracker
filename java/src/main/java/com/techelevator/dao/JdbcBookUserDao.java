@@ -140,10 +140,10 @@ public class JdbcBookUserDao implements BookUserDao {
         bookUser.setUserId(rs.getInt("user_id"));
         bookUser.setIsbn(rs.getString("isbn"));
         bookUser.setMinutesRead(rs.getInt("minutes_read"));
-        bookUser.setReadOutLoudListener(false); // need to check on these guys
-        bookUser.setReadOutLoudReader(false);
+        bookUser.setReadOutLoudListener(rs.getBoolean("read_aloud_reader")); // need to check on these guys
+        bookUser.setReadOutLoudReader(rs.getBoolean("read_aloud_listen"));
         bookUser.setNotes(rs.getString("notes"));
-        bookUser.setCompleted(false);
+        bookUser.setCompleted(rs.getBoolean("completed"));
         bookUser.setPagesRead(rs.getInt("pages_read"));
 
         return bookUser;
