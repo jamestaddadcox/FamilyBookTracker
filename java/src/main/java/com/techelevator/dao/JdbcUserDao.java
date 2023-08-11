@@ -159,11 +159,11 @@ public class JdbcUserDao implements UserDao {
         user.setFamilyId(rs.getInt("family_id"));
         user.setFirstName(rs.getString("first_name"));
         user.setLastName(rs.getString("last_name"));
-        user.setChild(false);
+        user.setChild(rs.getBoolean("is_child"));
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(Objects.requireNonNull(rs.getString("role")));
-        user.setActivated(true);
+        user.setActivated(rs.getBoolean("activated"));
         user.setAvatarUrl(rs.getString("avatar_url"));
         return user;
     }

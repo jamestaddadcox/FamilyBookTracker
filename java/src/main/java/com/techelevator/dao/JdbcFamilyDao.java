@@ -56,7 +56,7 @@ public class JdbcFamilyDao implements FamilyDao {
     @Override
     public List<User> getFamilyMembersByFamilyId(int id) {
         List<User> familyMembers = new ArrayList<>();
-        String sql = "SELECT user_id, family_id, username, first_name, last_name, password_hash, activated, role, is_child FROM users WHERE family_id = ?";
+        String sql = "SELECT * FROM users WHERE family_id = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
             while (results.next()) {
@@ -84,11 +84,12 @@ public class JdbcFamilyDao implements FamilyDao {
         user.setFamilyId(rs.getInt("family_id"));
         user.setFirstName(rs.getString("first_name"));
         user.setLastName(rs.getString("last_name"));
+        user.setChild(rs.getBoolean("is_child"));
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(Objects.requireNonNull(rs.getString("role")));
-        user.setActivated(true);
-        user.setChild(false);
+        user.setActivated(rs.getBoolean("activated"));
+        user.setAvatarUrl(rs.getString("avatar_url"));
         return user;
     }
 
