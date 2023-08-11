@@ -1,6 +1,6 @@
 <template>
   <div >
-    <h1>Hi {{$store.state.user.firstName}}</h1>
+    <h1>Hi, {{$store.state.user.firstName}}!</h1>
   </div>
 </template>
 
@@ -23,5 +23,6 @@ export default {
     justify-content: center;
     align-items: center;
     height: 100%;
+    max-height: 250px;
   }
 </style>

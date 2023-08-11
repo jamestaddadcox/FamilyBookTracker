@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import '../styles_global/variables.css'
 
 Vue.use(Vuex)
 
@@ -19,9 +20,11 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {},
+    user: currentUser || {firstName: 'Bookworm'},
     modalFlag: false,
+    bookUser: [{userId: 1, isbn: 9780194229647},{userId: 1, isbn: 9783423092449}]
   },
+
   mutations: {
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
