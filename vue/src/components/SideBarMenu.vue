@@ -1,37 +1,67 @@
 <template>
-  <div class="sidebar">
-    <div class="side-avatar"><img id="side-avatar" src="https://api.multiavatar.com/elise.png" alt="elise avatar"></div>
+  <div class="sidebar">    
+
+    //put image uploader here for now.
+  <div id="sidebar-avatar">
+    <file-upload></file-upload>
+  </div>
+
     <menu class="link-list">
-      <ul>
-        <li class="active-sidebar-menu">
-          <a href="#">Family</a>
+      <ul class="active-sidebar-menu">
+        <li v-if="!$route.path.endsWith('/family')">
+          <router-link
+            v-bind:to="{ name: 'family' }"
+            v-if="$store.state.token != ''"
+            >Family Page</router-link
+          >
+        </li>
+        <li v-if="!$route.path.endsWith('/prizes')">
+          <router-link
+            v-bind:to="{ name: 'prizes' }"
+            v-if="$store.state.token != ''"
+            >Prizes</router-link
+          >
+        </li>
+        <li v-if="!$route.path.endsWith('/')">
+          <router-link
+            v-bind:to="{ name: 'home' }"
+            v-if="$store.state.token != ''"
+            >Home</router-link
+          >
+        </li>
+        <li v-if="!$route.path.endsWith('/settings')">
+          <router-link
+            v-bind:to="{ name: 'settings' }"
+            v-if="$store.state.token != ''"
+            >Settings</router-link
+          >
         </li>
         <li>
-          <a href="#">Stats</a>
-        </li>
-        <li>
-          <a href="#">Add-Progress</a>
-        </li>
-        <li>
-          <a href="#">Home</a>
+          <router-link
+            v-bind:to="{ name: 'logout' }"
+            v-if="$store.state.token != ''"
+            >Log Out</router-link
+          >
         </li>
       </ul>
-      <div class="logout-settings">
-        <div class="logout-btn"> <!--feel free to use something other than div & this class here, just wanted to separate these two links -->
-        <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">logout</router-link>
-        </div>
-        <div class="settings-btn">
-        <a href="#">settings</a>
-        </div>
-      </div>
     </menu>
   </div>
 </template>
 
 <script>
+import FileUpload from "@/components/FileUpload.vue";
+
 export default {
-  name: "sidebar-menu"
-}
+  name: "sidebar-menu",
+  components: {
+    FileUpload,
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.user;
+    },
+  },
+};
 </script>
 
 <style>
@@ -44,7 +74,6 @@ export default {
   padding-top: 0;
   padding-bottom: 0;
   margin: 0;
-  
 }
 
 .sidebar ul {
@@ -54,10 +83,10 @@ export default {
 
 .sidebar ul li {
   padding: 13px 0;
-  background-color: rgba(255, 255, 0, 0.6); 
-  border-top-left-radius: 20px; 
-  border-bottom-left-radius: 20px; 
-  margin: 10px 0; 
+  background-color: rgba(255, 255, 0, 0.6);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  margin: 10px 0;
 }
 
 .sidebar ul li a {
@@ -65,9 +94,9 @@ export default {
   font-size: 1.2rem;
   color: black;
   width: 70%;
-  margin: 0 auto; 
+  margin: 0 auto;
   display: block;
-  border-radius: 20px 0 0 20px; 
+  border-radius: 20px 0 0 20px;
   padding: 10px 10px;
   position: sticky;
 }
@@ -76,16 +105,27 @@ export default {
   background-color: rgba(255, 255, 0, 0.777);
   border-radius: 20px 0 0 20px;
   margin-left: -10px;
-  
 }
 
-#side-avatar {
-  width: 45%;
+#avatar {
+  
+  
   justify-self: center;
   display: flex;
-  padding-left: 25%;
-  padding-right: 25%;
-  padding-top: 10%;
+  outline: solid 3px black;
+  border-radius: 50%;
+  height: 125px;
+  width: 125px;
 }
+#avatar:hover {
+  outline: solid 5px lime;
+  border-radius: 50%;
 
+}
+#sidebar-avatar {
+  padding-top: 10%;
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+}
 </style>

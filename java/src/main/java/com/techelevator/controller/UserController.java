@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -72,6 +75,20 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Family member not found.");
         }
     }
+//////WIP
+//    @RequestMapping(path = "/user/{id}/avatar", method = RequestMethod.PUT)
+//    public ResponseEntity<String> updateAvatar(@PathVariable int id, @RequestParam("file") MultipartFile file) {
+//        User user = userDao.getUserById(id);
+//        String originalAvatar = user.getAvatarUrl();
+//        if (user == null) {
+//            return ResponseEntity.notFound().build();
+//        }
+//            userDao.updateAvatar(user.getUserId(), file);////this has been wrapped to be a string.
+//            if (!user.getAvatarUrl().equals(originalAvatar)){
+//                return ResponseEntity.ok("Avatar updated successfully");}
+//            else {return ResponseEntity.badRequest().body("Avatar not updated");}
+//
+//    }
 
     @RequestMapping(path = "/user/family/{id}", method = RequestMethod.PUT)
     public boolean deactivatedFamily(@PathVariable int id) {
