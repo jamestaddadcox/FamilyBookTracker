@@ -1,22 +1,44 @@
 <template>
   <div class="book-section">
-    <button class="add card">FUTURE ADD BOOK BUTTON</button>
+    <button class="add card" id="add-book" @click="showAddBookModal">FUTURE ADD BOOK BUTTON</button>
     <book-card class="card" v-for="bookuser in $store.state.bookUser" :key="bookuser.isbn" :bookuser="bookuser"></book-card>
     <!-- <book-card v-for="bookuser in usersBooks($store.state.user.user_id)" :key="bookuser.isbn" :bookuser="bookuser"></book-card> -->
+    <add-book-modal
+     v-show="isAddBookModalVisible"
+      @close="closeAddBookModal"
+      > 
+    </add-book-modal>
   </div>
 </template>
 
 <script>
 import BookCard from "@/components/BookCard.vue";
 import BookService from "@/services/BookService";
+import AddBookModal from './AddBookModal.vue';
 export default {
     name:'book-cover-list',
     components:{
-         BookCard
+        BookCard,
+        AddBookModal,
+        
     },
+    data() {
+      return {
+        isAddBookModalVisible: false,
+      }
+    },
+    
     computed:{
       usersBooks(){
         return BookService.getBookUsersByUserId(1);} //HARDCODEDTEST
+    },
+    methods: {
+      showAddBookModal() {
+        this.isAddBookModalVisible = true;
+      },
+      closeAddBookModal() {
+        this.isAddBookModalVisible = false;
+      }
     }
 }
 </script>

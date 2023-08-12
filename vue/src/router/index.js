@@ -68,16 +68,9 @@ const router = new Router({
     //   }
     // },
     {
-      path: '*',
-      component: Error404, // eventually we'll want this to be an error page
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
       path: '/family',
       name: "family",
-      component: Family, // eventually we'll want this to be an error page
+      component: Family, 
       meta: {
         requiresAuth: true
       }
@@ -85,9 +78,16 @@ const router = new Router({
     {
       path: '/prizes',
       name: "prizes",
-      component: Prizes, // eventually we'll want this to be an error page
+      component: Prizes, 
       meta: {
         requiresAuth: true
+      }
+    },
+    {
+      path: '*', // this one needs to go last
+      component: Error404, 
+      meta: {
+        requiresAuth: false
       }
     },
   ]

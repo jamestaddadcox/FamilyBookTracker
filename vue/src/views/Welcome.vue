@@ -17,6 +17,11 @@
       v-show="isRegistrationModalVisible"
       @close="closeRegistrationModal">
 </registration-modal>
+<add-book-modal
+      v-show="isAddBookModalVisible"
+      @close="closeAddBookModal"
+      > 
+    </add-book-modal>
 
     <img id="worm-on-book" class="worm-pic" src='@/assets/knockout2.png' alt="worm">
     <img id="book-pic" src="@/assets/books.png" alt="books">
@@ -27,18 +32,21 @@
 </template>
 
 <script>
+import AddBookModal from '../components/AddBookModal.vue';
 import LoginModal from '../components/LoginModal.vue';
 import RegistrationModal from '../components/RegistrationModal.vue';
 
 export default {
     components: {
         LoginModal,
-        RegistrationModal
+        RegistrationModal,
+        AddBookModal
     },
     data() {
       return {
         isLoginModalVisible: false,
-        isRegistrationModalVisible: false
+        isRegistrationModalVisible: false,
+        isAddBookModalVisible: false,
         };
     },
     computed:{
@@ -52,10 +60,16 @@ export default {
             this.isRegistrationModalVisible = true;
         },
         closeLoginModal() {
-        this.isLoginModalVisible = false;
+            this.isLoginModalVisible = false;
         },
         closeRegistrationModal() {
             this.isRegistrationModalVisible = false;
+        },
+        showAddBookModal() {
+            this.isAddBookModalVisible = true;
+        },
+        closeAddBookModal() {
+            this.isAddBookModalVisible = false;
         }
 
         // goToLogIn(){
@@ -144,6 +158,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        z-index: 60;
     }
 
     .modal {
@@ -153,7 +168,7 @@ export default {
         display: flex;
         flex-direction: column;
         border-radius: 5px;
-        z-index: 5;
+        z-index: 70;
     }
 
     .modal-header,
@@ -178,7 +193,6 @@ export default {
     .modal-body {
         position: relative;
         padding: 20px 10px;
-        z-index: 5;
     }
 
     .btn-close {

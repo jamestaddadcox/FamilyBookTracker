@@ -4,7 +4,7 @@
     <menu class="link-list">
       <ul>
         <li class="active-sidebar-menu">
-          <a href="#">Family</a>
+          <router-link v-bind:to="{ name: 'family' }">Family</router-link>
         </li>
         <li>
           <a href="#">Stats</a>
@@ -13,7 +13,7 @@
           <a href="#">Add-Progress</a>
         </li>
         <li>
-          <a href="#">Home</a>
+          <router-link v-bind:to="{ name: 'home' }">Home</router-link>
         </li>
       </ul>
       <div class="logout-settings">
