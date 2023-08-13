@@ -5,6 +5,7 @@
     </template>
 
     <template v-slot:content>
+      <image-uploader></image-uploader>
       <book-cover-list></book-cover-list>
     </template>
 
@@ -23,13 +24,15 @@ import PageHeader from '../components/PageHeader.vue';
 import BookCoverList from '../components/BookCoverList.vue';
 
 
+
 export default {
   name: "home-view",
   components: {
     PageLayout,
     SideBarMenu,
     PageHeader,
-    BookCoverList
+    BookCoverList,
+    
   },
 };
 </script>
