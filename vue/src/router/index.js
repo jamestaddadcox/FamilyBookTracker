@@ -68,16 +68,9 @@ const router = new Router({
     //   }
     // },
     {
-      path: '*',
-      component: Error404, // eventually we'll want this to be an error page
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
       path: '/family',
       name: "family",
-      component: Family, // eventually we'll want this to be an error page
+      component: Family, 
       meta: {
         requiresAuth: true
       }
@@ -85,9 +78,16 @@ const router = new Router({
     {
       path: '/prizes',
       name: "prizes",
-      component: Prizes, // eventually we'll want this to be an error page
+      component: Prizes, 
       meta: {
         requiresAuth: true
+      }
+    },
+    {
+      path: '*', // this one needs to go last
+      component: Error404, 
+      meta: {
+        requiresAuth: false
       }
     },
   ]
@@ -100,7 +100,7 @@ router.beforeEach((to, from, next) => {
   // If it does and they are not logged in, send the user to "/welcome"
   if (requiresAuth && store.state.token === '') {
     return next("/welcome");
-  } else if (to.name === 'Welcome' && store.state.token !== '') { // unsure why this isn't working yet
+  } else if (to.name === 'welcome' && store.state.token !== '') { // unsure why this isn't working yet
     return next('/');
   } 
     // Else let them go to their next destination
