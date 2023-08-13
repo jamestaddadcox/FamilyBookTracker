@@ -27,14 +27,14 @@ CREATE TABLE book (
 	isbn varchar(15) NOT NULL UNIQUE,
 	title varchar(50) NOT NULL,
 	author varchar(50) NOT NULL,
-	book_description varchar(2000) NOT NULL,
-	format varchar(10) CHECK (format IN ('paper','digital','audio','other')),
+	book_description varchar(2000),
+	format varchar(10) CHECK (format IN ('paper','digital','audio','other', null)),
 	CONSTRAINT pk_isbn PRIMARY KEY (isbn)
 );
 
 CREATE TABLE book_user (
 	user_id int NOT NULL REFERENCES users(user_id),
-	isbn varchar(15) NOT NULL UNIQUE,
+	isbn varchar(15) NOT NULL REFERENCES book(isbn),
 	minutes_read int NOT NULL,
 	read_aloud_reader boolean NOT NULL,
 	read_aloud_listen boolean NOT NULL,

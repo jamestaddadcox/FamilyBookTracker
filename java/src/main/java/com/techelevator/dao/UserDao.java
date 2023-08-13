@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import com.techelevator.model.Book;
 import com.techelevator.security.model.RegisterUserDto;
 import com.techelevator.model.User;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,6 +19,8 @@ public interface UserDao {
     User createChildUser(RegisterUserDto childUser); // /user POST
 
     boolean deactivateFamilyMember(int id); // /user/{id}
+
+   // boolean updateAvatar(int id, MultipartFile image); // /user/{id}/avatar
 
     boolean deactivateFamily(int id); // user/family/{id}
     User getUserByFamilyId(int id);

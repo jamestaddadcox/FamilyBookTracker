@@ -7,6 +7,8 @@ import Logout from '../views/Logout.vue'
 import store from '../store/index'
 import Welcome from '../views/Welcome.vue'
 import Error404 from '../views/Error404.vue'
+import Family from '../views/Family.vue'
+import Prizes from '../views/Prizes.vue'
 
 Vue.use(Router)
 
@@ -66,8 +68,24 @@ const router = new Router({
     //   }
     // },
     {
-      path: '*',
-      compenent: Error404, // eventually we'll want this to be an error page
+      path: '/family',
+      name: "family",
+      component: Family, 
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/prizes',
+      name: "prizes",
+      component: Prizes, 
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '*', // this one needs to go last
+      component: Error404, 
       meta: {
         requiresAuth: false
       }
@@ -82,7 +100,7 @@ router.beforeEach((to, from, next) => {
   // If it does and they are not logged in, send the user to "/welcome"
   if (requiresAuth && store.state.token === '') {
     return next("/welcome");
-  } else if (to.name === 'Welcome' && store.state.token !== '') { // unsure why this isn't working yet
+  } else if (to.name === 'welcome' && store.state.token !== '') { // unsure why this isn't working yet
     return next('/');
   } 
     // Else let them go to their next destination

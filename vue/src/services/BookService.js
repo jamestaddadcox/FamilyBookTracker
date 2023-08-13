@@ -3,9 +3,9 @@ import axios from 'axios';
 
 export default {
 
-    getAll() {
-        return axios.get('/book');
-    },
+    // getAll() {
+    //     return axios.get('/book');
+    // },
 
     getBookUsersByUserId(id){
         return axios.get(`/stats/user/${id}`);//list of bookuser(s) ??
@@ -14,4 +14,8 @@ export default {
     getBookByIsbn(isbn){
         return axios.get(`/book/${isbn}`);
     },
+
+    addBook(book) {
+        return axios.post('/book', book);
+    }
 }

@@ -19,6 +19,7 @@
 
 
 <script>
+import AddBookModal from '../components/AddBookModal.vue';
 import LoginModal from '../components/LoginModal.vue';
 import RegistrationModal from '../components/RegistrationModal.vue';
 

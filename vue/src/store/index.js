@@ -22,7 +22,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {firstName: 'Bookworm'},
     modalFlag: false,
-    bookUser: [{userId: 1, isbn: 9780194229647},{userId: 1, isbn: 9783423092449}]
+    // bookUser: [{userId: 1, isbn: 9780194229647},{userId: 1, isbn: 9783423092449}]
   },
 
   mutations: {
