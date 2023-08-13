@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.DataSource;
 
@@ -139,6 +140,19 @@ public class JdbcUserDao implements UserDao {
             throw new DaoException("Data integrity violation", e);
         }
 }
+
+//    @Override
+//    public boolean updateAvatar(int id, MultipartFile image) {
+//        String sql = "UPDATE users SET avatar_url = ? WHERE user_id = ?;";
+//        try {
+//            int numRowsUpdated = jdbcTemplate.update(sql, image, id);
+//            return numRowsUpdated > 0;
+//        } catch (CannotGetJdbcConnectionException e) {
+//            throw new DaoException("Unable to connect to server or database", e);
+//        } catch (DataIntegrityViolationException e) {
+//            throw new DaoException("Data integrity violation", e);
+//        }
+//    }
 
     public boolean deactivateFamily(int familyId) {
         String sql = "UPDATE users SET activated = false WHERE family_id = ?";

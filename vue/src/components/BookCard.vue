@@ -4,8 +4,8 @@
     <button>
     <img class="cover" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + bookuser.isbn + '-M.jpg'" alt="book cover image">
     </button>
-    <h2 class="title" v-if="book.title">{{ book.title }}</h2>
-    <div v-else>Loading...</div>
+    <!-- <h2 class="title" v-if="book.title">{{ book.title }}</h2>
+    <div v-else>Loading...</div> -->
     <button>Start Reading Clock</button>
   </div>
 </template>
@@ -13,7 +13,7 @@
 <script>
 import BookService from "@/services/BookService";
 export default {
-    name: 'book-card',
+    name: 'BookCard',
     props: ['bookuser'],
     data() {
         return {
