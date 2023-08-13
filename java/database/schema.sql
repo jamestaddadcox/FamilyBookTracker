@@ -27,8 +27,8 @@ CREATE TABLE book (
 	isbn varchar(15) NOT NULL UNIQUE,
 	title varchar(50) NOT NULL,
 	author varchar(50) NOT NULL,
-	book_description varchar(2000) NOT NULL,
-	format varchar(10) CHECK (format IN ('paper','digital','audio','other')),
+	book_description varchar(2000),
+	format varchar(10) CHECK (format IN ('paper','digital','audio','other', null)),
 	CONSTRAINT pk_isbn PRIMARY KEY (isbn)
 );
 
