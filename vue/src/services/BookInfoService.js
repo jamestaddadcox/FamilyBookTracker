@@ -14,8 +14,8 @@ export default {
         return axiosInstance.get(`/isbn/${isbn}.json`);
 
     },
-    getAuthorByAuthorId(id) {
-        return axiosInstance.get(`/authors/${id}.json`);
+    getAuthorByAuthorKey(key) {
+        return axiosInstance.get(`${key}.json`);
     }
 
 }

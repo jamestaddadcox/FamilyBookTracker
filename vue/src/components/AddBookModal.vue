@@ -54,7 +54,7 @@ export default {
       return {
         book: {
           title: "",
-          authorId: "",
+          authorKey: "",
           author: "",
           isbn: "",
         },
@@ -75,8 +75,13 @@ export default {
       .then((result) => {
       console.log(result.data.title);
       this.book.title = result.data.title;
+      this.book.authorKey = result.data.authors[0].key;
       this.book.isbn = isbn;
-});
+      bookInfoService.getAuthorByAuthorKey(this.book.authorKey)
+      .then((authorResult) => {
+        this.book.author = authorResult.data.name;
+      })
+      });
     },
     },
 
