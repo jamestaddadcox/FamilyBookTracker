@@ -14,4 +14,8 @@ export default {
     getBookByIsbn(isbn){
         return axios.get(`/book/${isbn}`);
     },
+
+    addBook(book) {
+        return axios.post('/book', book);
+    }
 }
