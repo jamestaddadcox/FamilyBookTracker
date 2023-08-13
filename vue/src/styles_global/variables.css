@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Quicksand:wght@300&display=swap');
+
 :root {
 
     /* primary background color */
@@ -13,10 +15,10 @@
     --secondary-text-color: hotpink;
 
     /* heading font family (for h1, h2, etc) */
-    --heading-font-family: arial;
+    --heading-font-family: Cabin;
 
     /* primary font family (for <p> and other inline text) */
-   --primary-font-family: arial;
+   --primary-font-family: Cabin;
 
    /* indicating error messages and similar situations */
    --alert-color: red;

@@ -34,7 +34,7 @@ CREATE TABLE book (
 
 CREATE TABLE book_user (
 	user_id int NOT NULL REFERENCES users(user_id),
-	isbn varchar(15) NOT NULL UNIQUE,
+	isbn varchar(15) NOT NULL REFERENCES book(isbn),
 	minutes_read int NOT NULL,
 	read_aloud_reader boolean NOT NULL,
 	read_aloud_listen boolean NOT NULL,

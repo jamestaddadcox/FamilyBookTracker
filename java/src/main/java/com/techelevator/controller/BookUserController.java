@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.lang.module.ResolutionException;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class BookUserController {
 

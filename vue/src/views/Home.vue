@@ -6,6 +6,7 @@
     </template>
 
     <template v-slot:content>
+      <image-uploader></image-uploader>
       <book-cover-list></book-cover-list>
     </template>
 
@@ -32,6 +33,7 @@ import BookCoverList from '../components/BookCoverList.vue';
 
 
 
+
 export default {
   name: "home-view",
   components: {
@@ -39,21 +41,13 @@ export default {
     SideBarMenu,
     PageHeader,
     BookCoverList,
-    // AddBookModal
+    
   },
   data() {
       return {
-        isAddBookModalVisible: true,
       }
     },
-    methods: {
-      showAddBookModal() {
-            this.isAddBookModalVisible = true;
-        },
-      closeAddBookModal() {
-            this.isAddBookModalVisible = false;
-        }
-    }
+   
 };
 </script>
 <style scoped>

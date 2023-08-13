@@ -21,8 +21,8 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {firstName: 'Bookworm'},
-    modalFlag: true,
-    bookUser: [{userId: 1, isbn: 9780194229647},{userId: 1, isbn: 9783423092449}]
+    modalFlag: false,
+    // bookUser: [{userId: 1, isbn: 9780194229647},{userId: 1, isbn: 9783423092449}]
   },
 
   mutations: {
