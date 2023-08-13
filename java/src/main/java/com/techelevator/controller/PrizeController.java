@@ -7,10 +7,12 @@ import com.techelevator.model.Prize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import java.util.List;
+@PreAuthorize("isAuthenticated()")
 @RestController
 public class PrizeController {
 
@@ -33,10 +35,12 @@ public class PrizeController {
     public List<Prize> getPrizesByFamilyId(@PathVariable int familyId) {
         return prizeDao.getPrizesByFamilyId(familyId);
     }
+    @PreAuthorize("permitAll")
     @RequestMapping(path = "/prize/user/{userId}", method = RequestMethod.GET)
     public List<Prize> getPrizesByWinnerUserId(@PathVariable int userId) {
         return prizeDao.getPrizesByWinnerUserId(userId);
     }
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/prize", method = RequestMethod.POST)
     public ResponseEntity<Prize> createPrize(@RequestBody Prize prize) {
@@ -47,6 +51,20 @@ public class PrizeController {
             return new ResponseEntity<>(createdPrize, HttpStatus.CREATED);
         }
     }
+    @PreAuthorize("hasRole('ADMIN')")
+    @RequestMapping(path = "/prize/{id}", method = RequestMethod.PUT)
+    public boolean editPrize(@RequestBody Prize prize,@PathVariable Integer id) {
+        if (id == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID is required");
+        }
+        Prize existingPrize = prizeDao.getPrizeById(id);
+        if (existingPrize == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Prize information not found");
+        } else {
+            return prizeDao.editPrize(prize);
+        }
+    }
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/prize/{id}", method = RequestMethod.DELETE)
     public boolean deletePrizeById(@PathVariable Integer id) {

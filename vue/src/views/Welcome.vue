@@ -1,216 +1,159 @@
 <template>
   <div class="welcome">
-    <img class="logo" src="../assets/LargeWormWagon.png" alt="worm wagon">
-
-        <h2>A Family Book Logging App</h2>
-        <div id="button-box">
-        <button @click="showLoginModal">sign in</button>
-        <button @click="showRegisterModal">sign up</button>  
-        </div>
+    <h1 class="app-title">WORM WAGON</h1>
+    <h2>A FAMILY BOOK LOGGING APP</h2>
     
-<login-modal
-      v-show="isLoginModalVisible"
-      @close="closeLoginModal"
-    >
-</login-modal> 
-<registration-modal
-      v-show="isRegistrationModalVisible"
-      @close="closeRegistrationModal">
-</registration-modal>
+        <img src="@/assets/simple.gif" alt="Image" class="centered-image" />
 
-    <img id="worm-on-book" class="worm-pic" src='@/assets/knockout2.png' alt="worm">
-    <img id="book-pic" src="@/assets/books.png" alt="books">
+<div class="button-container">
+      <button class="btn left-btn" @click="showLoginModal">SIGN IN</button>
+      <button class="btn right-btn" @click="showRegisterModal">SIGN UP</button>
+    </div>
 
-    
-    <a href="#">FAQ</a>
+    <login-modal v-show="isLoginModalVisible" @close="closeLoginModal">
+    </login-modal>
+    <registration-modal v-show="isRegistrationModalVisible" @close="closeRegistrationModal">
+    </registration-modal>
   </div>
-</template>
+</template>    
+
 
 <script>
 import LoginModal from '../components/LoginModal.vue';
 import RegistrationModal from '../components/RegistrationModal.vue';
 
 export default {
-    components: {
-        LoginModal,
-        RegistrationModal
+  components: {
+    LoginModal,
+    RegistrationModal
+  },
+  data() {
+    return {
+      isLoginModalVisible: false,
+      isRegistrationModalVisible: false
+    };
+  },
+  methods: {
+    showLoginModal() {
+      this.isLoginModalVisible = true;
     },
-    data() {
-      return {
-        isLoginModalVisible: false,
-        isRegistrationModalVisible: false
-        };
+    showRegisterModal() {
+      this.isRegistrationModalVisible = true;
     },
-    computed:{
-        
+    closeLoginModal() {
+      this.isLoginModalVisible = false;
     },
-    methods: {
-        showLoginModal(){
-            this.isLoginModalVisible = true;
-        },
-        showRegisterModal(){
-            this.isRegistrationModalVisible = true;
-        },
-        closeLoginModal() {
-        this.isLoginModalVisible = false;
-        },
-        closeRegistrationModal() {
-            this.isRegistrationModalVisible = false;
-        }
-
-        // goToLogIn(){
-        //     this.$router.push('/login');
-        // },
-        // goToRegister(){
-        //     this.$router.push('/register');
-        // }
-    },
-    
-    name: "welcome"
-
+    closeRegistrationModal() {
+      this.isRegistrationModalVisible = false;
+    }
+  },
+  name: "WelcomePage"
 };
 </script>
+<style scoped>
 
 
 
-<style>
-    div.welcome{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative; 
-    }
-    img.logo {
-        width: 75%;
-        padding: 75px;
-        height: auto;
-        padding-bottom: 30px;
-        
-        
-    }
-    #button-box{
-        display: flex;
-        flex-direction: column;
-        margin: 20px;
-    }
-    button {
-        margin: 7px;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Belanosima:wght@700&family=Berkshire+Swash&family=Bungee&family=Cabin+Sketch&family=Calistoga&family=Caprasimo&family=Cherry+Bomb+One&family=Crete+Round&family=Dosis:wght@600;700&family=Fjalla+One&family=Fredericka+the+Great&family=Libre+Baskerville&family=Limelight&family=Monoton&family=Noto+Serif+Makasar&family=Playfair+Display:wght@500&family=Quicksand:wght@400;500;600;700&family=Rye&family=Sacramento&family=Shrikhand&family=Source+Sans+3:wght@300&family=Special+Elite&family=Staatliches&family=Ultra&family=Varela&display=swap');
 
-    /* #book-pic {
-        z-index: -1;
-    } */
-
-    #worm-on-book {
-        width: 200px;
-        flex-shrink: 1;
-        z-index: auto; 
-        margin-bottom: -30px;
-        z-index: 1;
-    }
-
-    img.logo:hover {
-    animation: rainbow 7s linear infinite;
-    }
-
-    img.book-pic {
-        margin-top: -15%;
-    }
-
-    @keyframes rainbow {
-    0% { filter: hue-rotate(0deg); }
-    14% { filter: hue-rotate(60deg);  }
-    28% { filter: hue-rotate(120deg); }
-    42% { filter: hue-rotate(180deg); }
-    57% { filter: hue-rotate(240deg); }
-    71% { filter: hue-rotate(300deg); }
-    85% { filter: hue-rotate(360deg); }
-    100% { filter: hue-rotate(390deg); }
+div.welcome {
+  background-color: #f3e3df;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  padding-top: 1vh; /* Adjust as needed for vertical spacing */
 }
 
-/* modal styling */
+.app-title {
+  font-family: "Limelight", cursive;
+  color: #545454;
+  font-size: 10vw;
+  text-align:center;
+  margin-bottom: 5px;
+  margin-top: 10px;
 
-    .alertmsg {
-        background-color: red;
-    }
+}
 
-    .modal-backdrop {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.3);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+h2 {
+  font-size: 2vw;
+  font-family: "Varela";
+  text-align: center;
+  color: #545454; 
+  margin-bottom: 2px;
+  margin-top: -20px; 
+}
 
-    .modal {
-        background: #FFFFFF;
-        box-shadow: 2px 2px 20px 1px;
-        overflow-x: auto;
-        display: flex;
-        flex-direction: column;
-        border-radius: 5px;
-        z-index: 5;
-    }
+.btn {
+  padding: 15px 30px;
+  font-family: "Dosis";
+  font-size: 25px;
+  color: #545454;
+  border: 4px solid #545454;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 7px;
+  background-color: #f3e3df;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
 
-    .modal-header,
-    .modal-footer {
-        padding: 15px;
-        display: flex;
-    }
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+}
 
-    .modal-header {
-        position: relative;
-        border-bottom: 1px solid #eeeeee;
-        color: blue;
-        justify-content: space-between;
-    }
+.left-btn {
+  background-color: #f3e3df;
+  color: #545454;
+  border-color: #545454;
+  border-radius: 30px 0 0 30px;
+}
 
-    .modal-footer {
-        border-top: 1px solid #eeeeee;
-        flex-direction: column;
-        justify-content: flex-end;
-    }
+.right-btn {
+  background-color: #f3e3df;
+  color: #545454;
+  border-color: #545454;
+  border-radius: 0 30px 30px 0;
+}
 
-    .modal-body {
-        position: relative;
-        padding: 20px 10px;
-        z-index: 5;
-    }
+.btn:hover {
+  background-color: #545454;
+  color: #f3e3df;
+  border-color: #f3e3df;
+}
 
-    .btn-close {
-        position: absolute;
-        top: 0;
-        right: 0;
-        border: none;
-        font-size: 20px;
-        padding: 10px;
-        cursor: pointer;
-        font-weight: bold;
-        color: cyan;
-        background: transparent;
-    }
+#button-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
-    .btn-green {
-        color: white;
-        background: cyan;
-        border: 1px solid #4AAE9B;
-        border-radius: 5px;
-        padding: 5px;
-    }
+button {
+  margin: 7px;
+}
 
-    .modal-fade-enter,
-    .modal-fade-leave-to {
-        opacity: 0;
-    }
+/* Your modal styles go here */
+.login-modal,
+.registration-modal {
+  position: fixed;
+  top: 50%; /* Adjust to desired vertical position */
+  left: 50%; /* Adjust to desired horizontal position */
+  transform: translate(-50%, -50%);
+  z-index: 10; /* Adjust as needed */
+  font-family: "Dosis:wght@600";
+}
 
-    .modal-fade-enter-active,
-    .modal-fade-leave-active {
-        transition: opacity .5s ease;
-    }
+.centered-image {
+  display: block;
+  margin: 20px auto;
+  max-width: 200vw;
+  margin-top: 1px;
+}
+</style>
 
-    /*end of modal styling section */
-    </style>

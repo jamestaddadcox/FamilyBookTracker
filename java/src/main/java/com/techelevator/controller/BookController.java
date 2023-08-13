@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@PreAuthorize("isAuthenticated()")
 public class BookController {
 
     private final BookDao bookDao;
