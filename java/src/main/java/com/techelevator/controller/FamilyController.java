@@ -27,7 +27,7 @@ public class FamilyController {
         this.userDao = userDao;
     }
 
-@RequestMapping(path = "/family/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/family/{id}", method = RequestMethod.GET)
     public Family getFamilyById(@PathVariable Integer id) {
     if (id == null) {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID is required >:(");
@@ -40,7 +40,8 @@ public class FamilyController {
         }
 }
 
-@RequestMapping(path = "/family", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ADMIN')")
+    @RequestMapping(path = "/family", method = RequestMethod.POST)
     public ResponseEntity<Family> createFamily(@RequestBody Family family) {
         User user = new User();
         if (family == null) {
@@ -50,8 +51,7 @@ public class FamilyController {
             return new ResponseEntity<>(createdFamily, HttpStatus.CREATED);
         }
 }
-
-@RequestMapping(path = "/family/{id}/user", method = RequestMethod.GET)
+    @RequestMapping(path = "/family/{id}/user", method = RequestMethod.GET)
     public List<User> getFamilyMembersByFamilyId(@PathVariable int id) {
         return familyDao.getFamilyMembersByFamilyId(id);
 }

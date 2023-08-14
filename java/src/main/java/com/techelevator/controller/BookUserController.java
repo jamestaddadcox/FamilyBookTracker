@@ -29,7 +29,6 @@ public class BookUserController {
         this.userDao = userDao;
         this.bookUserDao = bookUserDao;
     }
-
     @RequestMapping(path = "/stats/user/{id}/book/{isbn}", method = RequestMethod.GET)
     public BookUser getBookUserInfoByUserIdAndIsbn(@PathVariable Integer id, @PathVariable String isbn) {
         if (id == null) {
@@ -45,7 +44,6 @@ public class BookUserController {
             return bookUser;
         }
     }
-
     @RequestMapping(path = "/stats/user/{id}/book/{isbn}", method = RequestMethod.PUT)
     public BookUser updateBookUserInfo(@PathVariable Integer id, @PathVariable String isbn, @RequestBody BookUser bookUser) {
         if (id == null) {
@@ -66,6 +64,7 @@ public class BookUserController {
         return bookUserDao.getAllBookUserInfoByUserId(id);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "/stats/family/{id}", method = RequestMethod.GET)
     public List<BookUser> getAllBookUserInfoByFamilyId(@PathVariable Integer id) {
         return bookUserDao.getAllBookUserInfoByFamilyId(id);
@@ -80,7 +79,6 @@ public class BookUserController {
             return new ResponseEntity<>(addedBookUser, HttpStatus.CREATED);
         }
     }
-
     @RequestMapping(path = "/stats/user/{id}/book/{isbn}", method = RequestMethod.DELETE)
     public boolean deleteBookByIsbn(@PathVariable Integer id, @PathVariable String isbn) {
         BookUser bookUser = bookUserDao.getBookUserInfoByUserIdAndIsbn(id, isbn);
