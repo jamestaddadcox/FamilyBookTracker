@@ -236,6 +236,8 @@ right-btn {
         border: 1px solid #545454;
         border-radius: 5px;
         padding: 7px;
+        top: 20px;
+        position: relative;
     }
 
     .modal-fade-enter,
