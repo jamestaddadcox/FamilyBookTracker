@@ -42,7 +42,7 @@
             <select name="format" id="format-select" v-model="bookUser.format">
               <option value="paper">paper</option>
               <option value="digital">digital</option>
-              <option value="audiobook">audiobook</option>
+              <option value="audio">audiobook</option>
               <option value="readaloud-reader">read-aloud: reader</option>
               <option value="readaloud-listener">read-aloud: listener</option>
             </select>
