@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS family, users, book, book_user, prize, prize_winner;
 
 CREATE TABLE family (
 	family_id SERIAL NOT NULL,
+
 	family_name varchar(50) NOT NULL,
 	CONSTRAINT pk_family_id PRIMARY KEY (family_id)
 );
@@ -77,17 +78,17 @@ INSERT INTO family (family_name) VALUES
     ('Moore Family'),
     ('Taylor Family');
 
-INSERT INTO users (family_id, username, first_name, last_name, password_hash, activated, role, is_child) VALUES
-    (1, 'john.smith', 'John', 'Smith', 'password123', true, 'user', false),
-    (1, 'jane.smith', 'Jane', 'Smith', 'password123', true, 'user', false),
-    (2, 'robert.johnson', 'Robert', 'Johnson', 'password123', true, 'user', false),
-    (2, 'emily.johnson', 'Emily', 'Johnson', 'password123', true, 'user', false),
-    (3, 'michael.williams', 'Michael', 'Williams', 'password123', true, 'user', false),
-    (3, 'olivia.williams', 'Olivia', 'Williams', 'password123', true, 'user', false),
-    (4, 'david.jones', 'David', 'Jones', 'password123', true, 'user', false),
-    (4, 'sophia.jones', 'Sophia', 'Jones', 'password123', true, 'user', false),
-    (5, 'william.brown', 'William', 'Brown', 'password123', true, 'user', false),
-    (5, 'ava.brown', 'Ava', 'Brown', 'password123', true, 'user', false);
+INSERT INTO users (family_id, username, first_name, last_name, password_hash, activated, role, is_child, avatar_url) VALUES
+    (1, 'john.smith', 'John', 'Smith', 'password123', true, 'user', false, ''),
+    (1, 'jane.smith', 'Jane', 'Smith', 'password123', true, 'user', false, ''),
+    (2, 'robert.johnson', 'Robert', 'Johnson', 'password123', true, 'user', false,''),
+    (2, 'emily.johnson', 'Emily', 'Johnson', 'password123', true, 'user', false,''),
+    (3, 'michael.williams', 'Michael', 'Williams', 'password123', true, 'user', false,''),
+    (3, 'olivia.williams', 'Olivia', 'Williams', 'password123', true, 'user', false,''),
+    (4, 'david.jones', 'David', 'Jones', 'password123', true, 'user', false, ''),
+    (4, 'sophia.jones', 'Sophia', 'Jones', 'password123', true, 'user', false, ''),
+    (5, 'william.brown', 'William', 'Brown', 'password123', true, 'user', false, ''),
+    (5, 'ava.brown', 'Ava', 'Brown', 'password123', true, 'user', false, '');
 
 INSERT INTO book (isbn, title, author, book_description, format) VALUES
     ('9781234567890', 'Sample Book 1', 'Author 1', 'Description 1', 'paper'),
@@ -115,15 +116,7 @@ INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_alou
     (5, '9786789012345', 30, false, false, 'Recommended by a friend', false, 0);
 
 
-INSERT INTO prize (family_id, prize_name, prize_description, milestone, start_date, user_group, end_date) VALUES
-    (1, 'Prize 1', 'Description for Prize 1', false, '2023-08-01', 'adult', '2023-08-31'),
-    (1, 'Prize 2', 'Description for Prize 2', true, '2023-08-01', 'child', '2023-08-31'),
-    (2, 'Prize 3', 'Description for Prize 3', false, '2023-08-01', 'both', '2023-08-31'),
-    (2, 'Prize 4', 'Description for Prize 4', true, '2023-08-01', 'adult', '2023-08-31'),
-    (3, 'Prize 5', 'Description for Prize 5', false, '2023-08-01', 'child', '2023-08-31'),
-    (3, 'Prize 6', 'Description for Prize 6', true, '2023-08-01', 'both', '2023-08-31'),
-    (4, 'Prize 7', 'Description for Prize 7', false, '2023-08-01', 'adult', '2023-08-31'),
-    (4, 'Prize 8', 'Description for Prize 8', true, '2023-08-01', 'child', '2023-08-31'),
-    (5, 'Prize 9', 'Description for Prize 9', false, '2023-08-01', 'both', '2023-08-31');
+
+
 
 commit;

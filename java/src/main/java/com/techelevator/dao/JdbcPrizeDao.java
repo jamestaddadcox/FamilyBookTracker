@@ -16,8 +16,8 @@ public class JdbcPrizeDao implements PrizeDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcPrizeDao(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+    public JdbcPrizeDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
@@ -87,12 +87,12 @@ public class JdbcPrizeDao implements PrizeDao {
     }
 
     @Override
-    public int deletePrizeById(int prizeId) {
+    public boolean deletePrizeById(int prizeId) {
         String deletePrizeSql = "DELETE FROM prize WHERE prize_id = ?";
         try {
 
             int numberOfRows = jdbcTemplate.update(deletePrizeSql, prizeId);
-            return numberOfRows;
+            return numberOfRows > 0;
 
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
@@ -133,8 +133,8 @@ public class JdbcPrizeDao implements PrizeDao {
         prize.setDescription(rs.getString("prize_description"));
         prize.setMilestone(rs.getBoolean("milestone"));
         prize.setUserGroup(rs.getString("user_group"));
-        prize.setStartDate(rs.getDate("start_date"));
-        prize.setEndDate(rs.getDate("end_date"));
+        prize.setStartDate(rs.getString("start_date"));
+        prize.setEndDate(rs.getString("end_date"));
         return prize;
 
     }

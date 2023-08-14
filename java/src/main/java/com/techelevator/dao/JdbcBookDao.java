@@ -15,10 +15,9 @@ public class JdbcBookDao implements BookDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcBookDao(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+    public JdbcBookDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
-
     @Override
     public Book getBookByIsbn(String isbn) {
         Book theBook = null;

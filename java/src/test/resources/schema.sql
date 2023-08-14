@@ -65,3 +65,4 @@ CREATE TABLE prize_winner (
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
+END TRANSACTION;

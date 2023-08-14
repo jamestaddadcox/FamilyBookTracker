@@ -9,6 +9,6 @@ public interface PrizeDao {
     List<Prize> getPrizesByFamilyId(int familyId); // /prize/family/{id}
     List<Prize> getPrizesByWinnerUserId(int userId); // /prize/user/{id}
     Prize createPrize(Prize newPrize); // /prize POST
-    int deletePrizeById(int prizeId); // /prize/{id} DELETE
+    boolean deletePrizeById(int prizeId); // /prize/{id} DELETE
     boolean editPrize(Prize updatedPrize); // /prize/{id} PUT
 }
