@@ -90,10 +90,10 @@ INSERT INTO users (family_id, username, first_name, last_name, password_hash, ac
     (5, 'ava.brown', 'Ava', 'Brown', 'password123', true, 'admin', false);
 
 INSERT INTO book (isbn, title, author, book_description, format) VALUES
-    ('9781234567890', 'Sample Book 1', 'Author 1', 'Description 1', 'paper'),
-    ('9780987654321', 'Sample Book 2', 'Author 2', 'Description 2', 'digital'),
-    ('9789876543210', 'Sample Book 3', 'Author 3', 'Description 3', 'audio'),
-    ('9780123456789', 'Sample Book 4', 'Author 4', 'Description 4', 'other'),
+    ('9780064400558', 'Charlottes Web', 'Somebody', 'Description 1', 'paper'),
+    ('9780333791035', 'The Great Gatsby', 'F. Scott Fitzgerald', 'Description 2', 'digital'),
+    ('9780582030473', 'A Tale of Two Cities', 'Charles Dickens', 'Description 3', 'audio'),
+    ('978-0440413240', 'Holes', 'Louis Sachar', 'Description 4', 'other'),
     ('9785432109876', 'Sample Book 5', 'Author 5', 'Description 5', 'paper'),
     ('9786789012340', 'Sample Book 6', 'Author 6', 'Description 6', 'digital'),
     ('9787654321098', 'Sample Book 7', 'Author 7', 'Description 7', 'audio'),
@@ -103,10 +103,10 @@ INSERT INTO book (isbn, title, author, book_description, format) VALUES
     ('11hhh111hh1', 'Sample Book 10', 'Author 10', 'Description 10', 'digital');
 
 INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_aloud_listen, notes, completed, pages_read) VALUES
-    (1, '9781234567890', 30, true, true, 'Read aloud', false, 0),
-    (1, '9780987654321', 45, false, true, 'Enjoyed it', false, 3),
-    (2, '9789876543210', 60, true, false, 'Read together', false, 100),
-    (2, '9780123456789', 15, true, true, 'Quick read', false, 23),
+    (1, '978-0064400558', 30, true, true, 'Read aloud', false, 0),
+    (1, '9780333791035', 45, false, true, 'Enjoyed it', false, 3),
+    (1, '9780582030473', 60, true, false, 'Read together', false, 100),
+    (1, '978-0440413240', 15, true, true, 'Quick read', false, 23),
     (3, '9785432109876', 90, false, false, 'Long book', false, 445),
     (3, '9786789012340', 20, true, true, 'Liked the plot', false, 1),
     (4, '9787654321098', 50, true, false, 'Interesting characters', false, 324),

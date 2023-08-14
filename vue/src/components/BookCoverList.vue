@@ -43,7 +43,7 @@ export default {
   // },
    async created() {
     try {
-      this.bookUsers = await (await BookService.getBookUsersByUserId(1)).data; //HARDCODED
+      this.bookUsers = await (await BookService.getBookUsersByUserId(this.$store.state.user.userId)).data; //HARDCODED
       console.log(this.bookUsers);
     } catch (error) {
       console.error("Error fetching books:", error);
@@ -74,8 +74,6 @@ align-content: left;
   
 }
 .card {
-  display: flex;
-  flex-direction: column;
   background-color: rgb(200, 240, 227);
   border: 3px solid purple;
   border-radius: 10px;
@@ -87,7 +85,10 @@ align-content: left;
   margin-left: 20px;
   padding: auto;
   align-items: center;
-  
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px; 
 }
 </style>

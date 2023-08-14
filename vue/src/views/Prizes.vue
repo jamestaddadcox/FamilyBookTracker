@@ -5,7 +5,7 @@
     </template>
 
     <template v-slot:content>
-        <div>hi</div>
+        <div></div>
     </template>
 
     <template v-slot:sidebar>
