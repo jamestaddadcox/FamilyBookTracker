@@ -15,7 +15,7 @@
     --secondary-text-color: hotpink;
 
     /* heading font family (for h1, h2, etc) */
-    --heading-font-family: Cabin;
+    --heading-font-family: Arial;
 
     /* primary font family (for <p> and other inline text) */
    --primary-font-family: Cabin;
@@ -24,6 +24,7 @@
    --alert-color: red;
    
 }
+
 
 button {
     cursor: pointer;

@@ -1,13 +1,15 @@
 <template>
   <div>
-    <img
-      id="avatar"
-      v-if="currentUser.avatarUrl == null"
-      v-bind:src="
-        'https://api.multiavatar.com/' + currentUser.username + '.png'
-      "
-      alt="elise avatar"
-    />
+    <button class="route-user" id="avatar-home" @click="goHome" title="Go Home">
+      <img
+        id="avatar"
+        v-if="currentUser.avatarUrl == null"
+        v-bind:src="
+          'https://api.multiavatar.com/' + currentUser.username + '.png'
+        "
+        alt="avatar"
+      />
+    </button>
   </div>
 </template>
 
@@ -19,9 +21,13 @@ export default {
       return this.$store.state.user;
     },
   },
+  methods: {
+    goHome() {
+      this.$router.push("/");
+    },
+  },
 };
 </script>
     
 <style>
-
 </style>
