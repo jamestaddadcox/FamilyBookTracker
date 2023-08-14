@@ -39,7 +39,7 @@ CREATE TABLE book_user (
 	minutes_read int DEFAULT 0,
 	notes varchar(100),
 	completed boolean DEFAULT false,
-	format varchar(10) CHECK (format IN ('paper','digital','audio','other', null)),
+	format varchar(20) CHECK (format IN ('paper','digital','audio','readaloud-reader', 'readaloud-listener', null)),
 	pages_read int DEFAULT 0,
 	CONSTRAINT pk_book_user_table PRIMARY KEY (user_id, isbn),
 	CONSTRAINT fk_isbn FOREIGN KEY (isbn) REFERENCES book(isbn)
@@ -89,18 +89,18 @@ INSERT INTO users (family_id, username, first_name, last_name, password_hash, ac
     (5, 'william.brown', 'William', 'Brown', 'password123', true, 'admin', false),
     (5, 'ava.brown', 'Ava', 'Brown', 'password123', true, 'admin', false);
 
-INSERT INTO book (isbn, title, author, book_description, format) VALUES
-    ('9781234567890', 'Sample Book 1', 'Author 1', 'Description 1', 'paper'),
-    ('9780987654321', 'Sample Book 2', 'Author 2', 'Description 2', 'digital'),
-    ('9789876543210', 'Sample Book 3', 'Author 3', 'Description 3', 'audio'),
-    ('9780123456789', 'Sample Book 4', 'Author 4', 'Description 4', 'other'),
-    ('9785432109876', 'Sample Book 5', 'Author 5', 'Description 5', 'paper'),
-    ('9786789012340', 'Sample Book 6', 'Author 6', 'Description 6', 'digital'),
-    ('9787654321098', 'Sample Book 7', 'Author 7', 'Description 7', 'audio'),
-    ('9784567890123', 'Sample Book 8', 'Author 8', 'Description 8', 'other'),
-    ('9785678901234', 'Sample Book 9', 'Author 9', 'Description 9', 'paper'),
-    ('9786789012345', 'Sample Book 10', 'Author 10', 'Description 10', 'digital'),
-    ('11hhh111hh1', 'Sample Book 10', 'Author 10', 'Description 10', 'digital');
+INSERT INTO book (isbn, title, author, book_description) VALUES
+    ('9781234567890', 'Sample Book 1', 'Author 1', 'Description 1'),
+    ('9780987654321', 'Sample Book 2', 'Author 2', 'Description 2'),
+    ('9789876543210', 'Sample Book 3', 'Author 3', 'Description 3'),
+    ('9780123456789', 'Sample Book 4', 'Author 4', 'Description 4'),
+    ('9785432109876', 'Sample Book 5', 'Author 5', 'Description 5'),
+    ('9786789012340', 'Sample Book 6', 'Author 6', 'Description 6'),
+    ('9787654321098', 'Sample Book 7', 'Author 7', 'Description 7'),
+    ('9784567890123', 'Sample Book 8', 'Author 8', 'Description 8'),
+    ('9785678901234', 'Sample Book 9', 'Author 9', 'Description 9'),
+    ('9786789012345', 'Sample Book 10', 'Author 10', 'Description 10'),
+    ('11hhh111hh1', 'Sample Book 10', 'Author 10', 'Description 10');
 
 INSERT INTO book_user (user_id, isbn, minutes_read, notes, completed, pages_read) VALUES
     (1, '9781234567890', 30, 'Read aloud', false, 0),
