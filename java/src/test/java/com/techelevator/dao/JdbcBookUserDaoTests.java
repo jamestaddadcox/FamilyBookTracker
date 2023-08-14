@@ -11,9 +11,9 @@ import java.util.List;
 
 public class JdbcBookUserDaoTests extends BaseDaoTests{
 
-    protected static final BookUser BOOK_USER_1 = new BookUser(1, "9781234567890", 30, true, true, "Read aloud", false, 10);
-    protected static final BookUser BOOK_USER_2 = new BookUser(2, "9780987654321", 40, true, true, "Read aloud", false, 50);
-    protected static final BookUser BOOK_USER_3 = new BookUser(3, "9785432109876", 50, true, true, "Read aloud", false, 100);
+    protected static final BookUser BOOK_USER_1 = new BookUser(1, "978123456,7890", 30, "digital", "Read aloud", false, 10);
+    protected static final BookUser BOOK_USER_2 = new BookUser(2, "9780987654321", 40, "audio", "Read aloud", false, 50);
+    protected static final BookUser BOOK_USER_3 = new BookUser(3, "9785432109876", 50, "paper", "Read aloud", false, 100);
     private JdbcBookUserDao sut;
     private JdbcFamilyDao familyDao;
 
