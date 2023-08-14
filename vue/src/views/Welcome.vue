@@ -12,7 +12,7 @@
       <button class="btn right-btn" @click="showRegisterModal">SIGN UP</button>
     </div>
 
-    <div class="modal">
+    <div class="modal-test">
     <login-modal v-show="isLoginModalVisible" @close="closeLoginModal"></login-modal>
     <registration-modal v-show="isRegistrationModalVisible" @close="closeRegistrationModal"></registration-modal>
     </div>
@@ -66,7 +66,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Belanosima:wght@700&family=Berkshire+Swash&family=Bungee&family=Cabin+Sketch&family=Calistoga&family=Caprasimo&family=Cherry+Bomb+One&family=Crete+Round&family=Dosis:wght@600;700&family=Fjalla+One&family=Fredericka+the+Great&family=Libre+Baskerville&family=Limelight&family=Monoton&family=Noto+Serif+Makasar&family=Playfair+Display:wght@500&family=Quicksand:wght@400;500;600;700&family=Rye&family=Sacramento&family=Shrikhand&family=Source+Sans+3:wght@300&family=Special+Elite&family=Staatliches&family=Ultra&family=Varela&display=swap');
 
@@ -157,23 +157,12 @@ right-btn {
 .button {
   margin: 7px;
 }
+   
     .alertmsg {
         background-color: red;
     }
 
-        .modal {
-        font-family: "Dosis", san-serif;
-        background-color: #FFFFFF;
-        box-shadow: 2px 2px 20px 1px;
-        overflow-x: auto;
-        display: flex;
-        flex-direction: column;
-        border-radius: 5px;
-        z-index: 5;
-        
-    }
-
-.modal-backdrop {
+    .modal-backdrop {
         position: fixed;
         top: 0;
         bottom: 0;
@@ -184,6 +173,81 @@ right-btn {
         justify-content: center;
         align-items: center;
     }
+
+    .modal {
+        font-family: "Dosis", san-serif;
+        background: #FFFFFF;
+        box-shadow: 2px 2px 20px 1px;
+        overflow-x: auto;
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        z-index: 5;
+    }
+
+
+    .modal-header,
+    .modal-footer {
+        padding: 15px;
+        display: flex;
+        
+    }
+
+    .modal-header {
+        position: relative;
+        border-bottom: 1px solid #eeeeee;
+        color: #545454;
+        justify-content: space-between;
+        font-family: "Varela";
+        font-weight: bold;
+        
+    }
+
+    .modal-footer {
+        border-top: 1px solid #eeeeee;
+        flex-direction: column;
+        justify-content: flex-end;
+        font-family: "Varlea", san-serif;
+    }
+
+    .modal-body {
+        position: relative;
+        padding: 20px 10px;
+        z-index: 5;
+        font-family: "Varela ", san-serif;
+    }
+
+    .btn-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: none;
+        font-size: 20px;
+        padding: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        color: #ff0000;
+        background: transparent;
+    }
+
+    .btn-green {
+        color: white;
+        background: #545454;
+        border: 1px solid #545454;
+        border-radius: 5px;
+        padding: 7px;
+    }
+
+    .modal-fade-enter,
+    .modal-fade-leave-to {
+        opacity: 0;
+    }
+
+    .modal-fade-enter-active,
+    .modal-fade-leave-active {
+        transition: opacity .5s ease;
+    }
+
 
 .centered-image {
   display: block;

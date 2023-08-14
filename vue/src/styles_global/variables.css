@@ -1,5 +1,5 @@
 
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bungee&family=Caprasimo&family=Cherry+Bomb+One&family=Crete+Round&family=Fjalla+One&family=Libre+Baskerville&family=Noto+Serif+Makasar&family=Playfair+Display:wght@500&family=Quicksand:wght@400;500;600;700&family=Sacramento&family=Source+Sans+3:wght@300&family=Special+Elite&family=Staatliches&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Belanosima:wght@700&family=Berkshire+Swash&family=Bungee&family=Cabin+Sketch&family=Calistoga&family=Caprasimo&family=Cherry+Bomb+One&family=Crete+Round&family=Dosis:wght@600;700&family=Fjalla+One&family=Fredericka+the+Great&family=Libre+Baskerville&family=Limelight&family=Monoton&family=Noto+Serif+Makasar&family=Playfair+Display:wght@500&family=Quicksand:wght@400;500;600;700&family=Rye&family=Sacramento&family=Shrikhand&family=Source+Sans+3:wght@300&family=Special+Elite&family=Staatliches&family=Ultra&family=Varela&display=swap');
 
 :root {
    
@@ -18,10 +18,10 @@
     --secondary-text-color: hotpink;
 
     /* heading font family (for h1, h2, etc) */
-    --heading-font-family: "Quicksand";
+    --heading-font-family: "Limelight";
 
     /* primary font family (for <p> and other inline text) */
-   --primary-font-family: "Quicksand";
+   --primary-font-family: "Dosis";
 
    /* indicating error messages and similar situations */
    --alert-color: red;
