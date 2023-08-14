@@ -25,6 +25,10 @@
 
    /* indicating error messages and similar situations */
    --alert-color: red;
+
+   --modal-styling: {
+       
+   }
    
 }
 

@@ -1,25 +1,39 @@
 <template>
   <div class="welcome">
-    <h1 class="app-title">WORM WAGON</h1>
-    <h2>A FAMILY BOOK LOGGING APP</h2>
+    <div class="header">
+      <h1 class="app-title">WORM WAGON</h1>
+      <h2>A FAMILY BOOK LOGGING APP</h2>
+    </div>
     
-        <img src="@/assets/simple.gif" alt="Image" class="centered-image" />
+    <img src="@/assets/simple.gif" alt="Image" class="centered-image" />
 
-<div class="button-container">
+    <div class="button-container">
       <button class="btn left-btn" @click="showLoginModal">SIGN IN</button>
       <button class="btn right-btn" @click="showRegisterModal">SIGN UP</button>
     </div>
 
-    <login-modal v-show="isLoginModalVisible" @close="closeLoginModal">
-    </login-modal>
-    <registration-modal v-show="isRegistrationModalVisible" @close="closeRegistrationModal">
-    </registration-modal>
-  </div>
-</template>    
+    <div class="modal">
+    <login-modal v-show="isLoginModalVisible" @close="closeLoginModal"></login-modal>
+    <registration-modal v-show="isRegistrationModalVisible" @close="closeRegistrationModal"></registration-modal>
+    </div>
 
+    <footer class="footer">
+      <div class="logo-container">
+          <h3>GATE TECHNOLOGY</h3>
+        
+      </div>
+      <div class="footer-links">
+        <router-link to="/about">About</router-link>
+
+        <router-link to="/careers">Careers</router-link>
+
+        <router-link to="/contact">Contact Us</router-link>
+      </div>
+    </footer>
+  </div>
+</template>
 
 <script>
-import AddBookModal from '../components/AddBookModal.vue';
 import LoginModal from '../components/LoginModal.vue';
 import RegistrationModal from '../components/RegistrationModal.vue';
 
@@ -51,30 +65,32 @@ export default {
   name: "WelcomePage"
 };
 </script>
+
 <style scoped>
-
-
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Belanosima:wght@700&family=Berkshire+Swash&family=Bungee&family=Cabin+Sketch&family=Calistoga&family=Caprasimo&family=Cherry+Bomb+One&family=Crete+Round&family=Dosis:wght@600;700&family=Fjalla+One&family=Fredericka+the+Great&family=Libre+Baskerville&family=Limelight&family=Monoton&family=Noto+Serif+Makasar&family=Playfair+Display:wght@500&family=Quicksand:wght@400;500;600;700&family=Rye&family=Sacramento&family=Shrikhand&family=Source+Sans+3:wght@300&family=Special+Elite&family=Staatliches&family=Ultra&family=Varela&display=swap');
 
-div.welcome {
+.welcome {
   background-color: #f3e3df;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   height: 100vh;
-  padding-top: 1vh; /* Adjust as needed for vertical spacing */
+  padding-top: 1vh;
+}
+
+.header {
+  margin-top: 10px;
 }
 
 .app-title {
   font-family: "Limelight", cursive;
   color: #545454;
   font-size: 10vw;
-  text-align:center;
+  text-align: center;
   margin-bottom: 5px;
   margin-top: 10px;
-
 }
 
 h2 {
@@ -84,6 +100,10 @@ h2 {
   color: #545454; 
   margin-bottom: 2px;
   margin-top: -20px; 
+}
+
+h3 {
+    font-family: 'Lucida Sans';
 }
 
 .btn {
@@ -100,22 +120,21 @@ h2 {
 }
 
 .button-container {
-  display: flex;
+   display: flex;
   justify-content: space-between;
   position: absolute;
   bottom: 20px;
   left: 20px;
   right: 20px;
 }
-
-.left-btn {
+left-btn {
   background-color: #f3e3df;
   color: #545454;
   border-color: #545454;
   border-radius: 30px 0 0 30px;
 }
 
-.right-btn {
+right-btn {
   background-color: #f3e3df;
   color: #545454;
   border-color: #545454;
@@ -135,26 +154,55 @@ h2 {
   margin-bottom: 20px;
 }
 
-button {
+.button {
   margin: 7px;
 }
+    .alertmsg {
+        background-color: red;
+    }
 
-/* Your modal styles go here */
-.login-modal,
-.registration-modal {
-  position: fixed;
-  top: 50%; /* Adjust to desired vertical position */
-  left: 50%; /* Adjust to desired horizontal position */
-  transform: translate(-50%, -50%);
-  z-index: 10; /* Adjust as needed */
-  font-family: "Dosis:wght@600";
-}
+        .modal {
+        font-family: "Dosis", san-serif;
+        background-color: #FFFFFF;
+        box-shadow: 2px 2px 20px 1px;
+        overflow-x: auto;
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        z-index: 5;
+        
+    }
+
+.modal-backdrop {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
 .centered-image {
   display: block;
   margin: 20px auto;
-  max-width: 200vw;
-  margin-top: 1px;
+  max-width: 60vw;
 }
-</style>
 
+.footer {
+  background-color: #f3e3df;
+  color: #545454;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-image {
+    max-width: 10vw;
+}
+
+
+</style>

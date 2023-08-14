@@ -16,8 +16,9 @@ export default {
 <style>
 body {
   background-color: #f3e3df;
-  cursor: url(https://cur.cursors-4u.net/nature/nat-10/nat994.cur), auto !important;
+  cursor: url('@/assets/lammy.gif'), auto;
 }
+
 
 html,
 body,
