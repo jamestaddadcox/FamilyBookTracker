@@ -89,32 +89,30 @@ INSERT INTO users (family_id, username, first_name, last_name, password_hash, ac
     (5, 'william.brown', 'William', 'Brown', 'password123', true, 'admin', false),
     (5, 'ava.brown', 'Ava', 'Brown', 'password123', true, 'admin', false);
 
-INSERT INTO book (isbn, title, author, book_description) VALUES
-    ('9781234567890', 'Sample Book 1', 'Author 1', 'Description 1'),
-    ('9780987654321', 'Sample Book 2', 'Author 2', 'Description 2'),
-    ('9789876543210', 'Sample Book 3', 'Author 3', 'Description 3'),
-    ('9780123456789', 'Sample Book 4', 'Author 4', 'Description 4'),
-    ('9785432109876', 'Sample Book 5', 'Author 5', 'Description 5'),
-    ('9786789012340', 'Sample Book 6', 'Author 6', 'Description 6'),
-    ('9787654321098', 'Sample Book 7', 'Author 7', 'Description 7'),
-    ('9784567890123', 'Sample Book 8', 'Author 8', 'Description 8'),
-    ('9785678901234', 'Sample Book 9', 'Author 9', 'Description 9'),
-    ('9786789012345', 'Sample Book 10', 'Author 10', 'Description 10'),
-    ('11hhh111hh1', 'Sample Book 10', 'Author 10', 'Description 10');
+INSERT INTO book (isbn, title, author, book_description, format) VALUES
+    ('978-0064400558', 'Charlottes Web', 'Somebody', 'Description 1', 'paper'),
+    ('9780333791035', 'The Great Gatsby', 'F. Scott Fitzgerald', 'Description 2', 'digital'),
+    ('9780582030473', 'A Tale of Two Cities', 'Charles Dickens', 'Description 3', 'audio'),
+    ('978-0440413240', 'Holes', 'Author 4', 'Description 4', 'other'),
+    ('9785432109876', 'Sample Book 5', 'Author 5', 'Description 5', 'paper'),
+    ('9786789012340', 'Sample Book 6', 'Author 6', 'Description 6', 'digital'),
+    ('9787654321098', 'Sample Book 7', 'Author 7', 'Description 7', 'audio'),
+    ('9784567890123', 'Sample Book 8', 'Author 8', 'Description 8', 'other'),
+    ('9785678901234', 'Sample Book 9', 'Author 9', 'Description 9', 'paper'),
+    ('9786789012345', 'Sample Book 10', 'Author 10', 'Description 10', 'digital'),
+    ('11hhh111hh1', 'Sample Book 10', 'Author 10', 'Description 10', 'digital');
 
-INSERT INTO book_user (user_id, isbn, minutes_read, notes, completed, pages_read) VALUES
-    (1, '9781234567890', 30, 'Read aloud', false, 0),
-    (1, '9780987654321', 45, 'Enjoyed it', false, 3),
-    (2, '9789876543210', 60, 'Read together', false, 100),
-    (2, '9780123456789', 15,'Quick read', false, 23),
-    (3, '9785432109876', 90, 'Long book', false, 445),
-    (3, '9786789012340', 20,'Liked the plot', false, 1),
-    (4, '9787654321098', 50, 'Interesting characters', false, 324),
-    (4, '9784567890123', 10, 'Didn''t finish', false, 342),
-    (5, '9785678901234', 75,'Fascinating story', false, 0),
-    (5, '9786789012345', 30, 'Recommended by a friend', false, 0);
-
-
+INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_aloud_listen, notes, completed, pages_read) VALUES
+    (1, '978-0064400558', 30, true, true, 'Read aloud', false, 0),
+    (1, '9780333791035', 45, false, true, 'Enjoyed it', false, 3),
+    (1, '9780582030473', 60, true, false, 'Read together', false, 100),
+    (1, '978-0440413240', 15, true, true, 'Quick read', false, 23),
+    (3, '9785432109876', 90, false, false, 'Long book', false, 445),
+    (3, '9786789012340', 20, true, true, 'Liked the plot', false, 1),
+    (4, '9787654321098', 50, true, false, 'Interesting characters', false, 324),
+    (4, '9784567890123', 10, false, true, 'Didn''t finish', false, 342),
+    (5, '9785678901234', 75, true, true, 'Fascinating story', false, 0),
+    (5, '9786789012345', 30, false, false, 'Recommended by a friend', false, 0);
 
 
 
