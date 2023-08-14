@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style>
-body {
+/* body {
   background-color: rgb(34, 193, 255);
   
 }
@@ -63,7 +63,7 @@ body{
     background-position: 1000px 200px, 1200px 300px, 1100px 250px;
   }
 
-}
+} */
 
 </style>
 
