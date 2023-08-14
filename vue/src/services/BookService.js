@@ -17,5 +17,9 @@ export default {
 
     addBook(book) {
         return axios.post('/book', book);
+    },
+
+    addBookForCurrentUser(bookUser) {
+        return axios.post('/stats', bookUser);
     }
 }

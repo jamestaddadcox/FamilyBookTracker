@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 @Component
@@ -22,15 +23,16 @@ public class JdbcPrizeDao implements PrizeDao {
     @Override
     public Prize getPrizeById(int prizeId) {
         Prize prize = null;
-        String sql = "SELECT prize_id, family_id, prize_name, prize_description, milestone, start_date, user_group, end_date FROM prize WHERE prize_id = ?";
+        String sql = "SELECT prize_id, family_id, prize_name, prize_description, milestone, start_date, user_group, end_date FROM prize WHERE prize_id = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, prizeId);
-            if(results.next()) {
+            if (results.next()) {
                 prize = mapRowToPrize(results);
             }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
-        } return prize;
+        }
+        return prize;
     }
 
     @Override
@@ -52,8 +54,8 @@ public class JdbcPrizeDao implements PrizeDao {
     public List<Prize> getPrizesByWinnerUserId(int userId) {
         List<Prize> prizes = new ArrayList<>();
         String sql = "SELECT prize_id, family_id, prize_name, prize_description, milestone, start_date, user_group, end_date FROM prize " +
-                     "INNER JOIN prize_winner ON prize.prize_id = prize_winner.prize_id " +
-                     "WHERE prize_winner.user_id = ?";
+                     "JOIN prize_winner USING (prize_id) " +
+                     "WHERE user_id = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while (results.next()) {
@@ -74,19 +76,24 @@ public class JdbcPrizeDao implements PrizeDao {
             int newPrizeId = jdbcTemplate.queryForObject(sql, int.class, prize.getFamilyId(), prize.getName(),
                                 prize.getDescription(), prize.isMilestone(), prize.getStartDate(), prize.getUserGroup(), prize.getEndDate());
             newPrize = getPrizeById(newPrizeId);
+
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
             throw new DaoException("Data integrity violation", e);
-        } return newPrize;
+        }
+
+        return newPrize;
     }
 
     @Override
     public boolean deletePrizeById(int prizeId) {
         String deletePrizeSql = "DELETE FROM prize WHERE prize_id = ?";
         try {
+
             int numberOfRows = jdbcTemplate.update(deletePrizeSql, prizeId);
             return numberOfRows > 0;
+
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
@@ -126,8 +133,8 @@ public class JdbcPrizeDao implements PrizeDao {
         prize.setDescription(rs.getString("prize_description"));
         prize.setMilestone(rs.getBoolean("milestone"));
         prize.setUserGroup(rs.getString("user_group"));
-        prize.setStartDate(rs.getDate("start_date"));
-        prize.setEndDate(rs.getDate("end_date"));
+        prize.setStartDate(rs.getString("start_date"));
+        prize.setEndDate(rs.getString("end_date"));
         return prize;
 
     }

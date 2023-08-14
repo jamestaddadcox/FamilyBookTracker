@@ -8,17 +8,16 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-
-import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
+
 @Component
 public class JdbcBookUserDao implements BookUserDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcBookUserDao(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+    public JdbcBookUserDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
@@ -41,11 +40,11 @@ public class JdbcBookUserDao implements BookUserDao {
     @Override
     public BookUser updateBookUserInfo(BookUser bookUser) {
         String sql = "UPDATE book_user " +
-                "SET isbn = ?, minutes_read = ?, read_aloud_reader = ?, read_aloud_listen = ?, notes = ?, completed = ?, pages_read = ? " +
+                "SET isbn = ?, minutes_read = ?, format = ?, notes = ?, completed = ?, pages_read = ? " +
                 "WHERE user_id = ? AND isbn = ?;";
 
         try {
-            jdbcTemplate.update(sql, bookUser.getIsbn(), bookUser.getMinutesRead(), bookUser.isReadOutLoudReader(), bookUser.isReadOutLoudListener(), bookUser.getNotes(), bookUser.isCompleted(), bookUser.getUserId(), bookUser.getIsbn(), bookUser.getPagesRead());
+            jdbcTemplate.update(sql, bookUser.getIsbn(), bookUser.getMinutesRead(), bookUser.getFormat(), bookUser.getNotes(), bookUser.isCompleted(), bookUser.getUserId(), bookUser.getIsbn(), bookUser.getPagesRead());
 
             return getBookUserInfoByUserIdAndIsbn(bookUser.getUserId(), bookUser.getIsbn());
         } catch (CannotGetJdbcConnectionException e) {
@@ -97,8 +96,8 @@ public class JdbcBookUserDao implements BookUserDao {
 
     @Override
     public BookUser addBookToUserList(BookUser bookUser) {
-        String sql = "INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_aloud_listen, notes, completed, pages_read) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?) " +
+        String sql = "INSERT INTO book_user (user_id, isbn, minutes_read, format, notes, completed, pages_read) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?) " +
                 "ON CONFLICT (user_id, isbn) DO NOTHING " +
                 "RETURNING user_id, isbn";
 
@@ -107,8 +106,7 @@ public class JdbcBookUserDao implements BookUserDao {
                     bookUser.getUserId(),
                     bookUser.getIsbn(),
                     bookUser.getMinutesRead(),
-                    bookUser.isReadOutLoudReader(),
-                    bookUser.isReadOutLoudListener(),
+                    bookUser.getFormat(),
                     bookUser.getNotes(),
                     bookUser.isCompleted(),
                     bookUser.getPagesRead());
@@ -140,8 +138,7 @@ public class JdbcBookUserDao implements BookUserDao {
         bookUser.setUserId(rs.getInt("user_id"));
         bookUser.setIsbn(rs.getString("isbn"));
         bookUser.setMinutesRead(rs.getInt("minutes_read"));
-        bookUser.setReadOutLoudListener(rs.getBoolean("read_aloud_reader")); // need to check on these guys
-        bookUser.setReadOutLoudReader(rs.getBoolean("read_aloud_listen"));
+        bookUser.setFormat(rs.getString("format"));
         bookUser.setNotes(rs.getString("notes"));
         bookUser.setCompleted(rs.getBoolean("completed"));
         bookUser.setPagesRead(rs.getInt("pages_read"));

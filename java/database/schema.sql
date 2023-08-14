@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS family, users, book, book_user, prize, prize_winner;
 
 CREATE TABLE family (
 	family_id SERIAL NOT NULL,
+
 	family_name varchar(50) NOT NULL,
 	CONSTRAINT pk_family_id PRIMARY KEY (family_id)
 );
@@ -28,19 +29,18 @@ CREATE TABLE book (
 	title varchar(50) NOT NULL,
 	author varchar(50) NOT NULL,
 	book_description varchar(2000),
-	format varchar(10) CHECK (format IN ('paper','digital','audio','other', null)),
+	pages int DEFAULT 0,
 	CONSTRAINT pk_isbn PRIMARY KEY (isbn)
 );
 
 CREATE TABLE book_user (
 	user_id int NOT NULL REFERENCES users(user_id),
 	isbn varchar(15) NOT NULL REFERENCES book(isbn),
-	minutes_read int NOT NULL,
-	read_aloud_reader boolean NOT NULL,
-	read_aloud_listen boolean NOT NULL,
+	minutes_read int DEFAULT 0,
 	notes varchar(100),
-	completed boolean NOT NULL DEFAULT false,
-	pages_read int NOT NULL DEFAULT 0,
+	completed boolean DEFAULT false,
+	format varchar(20) CHECK (format IN ('paper','digital','audio','readaloud-reader', 'readaloud-listener', null)),
+	pages_read int DEFAULT 0,
 	CONSTRAINT pk_book_user_table PRIMARY KEY (user_id, isbn),
 	CONSTRAINT fk_isbn FOREIGN KEY (isbn) REFERENCES book(isbn)
 );
@@ -115,15 +115,5 @@ INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_alou
     (5, '9786789012345', 30, false, false, 'Recommended by a friend', false, 0);
 
 
-INSERT INTO prize (family_id, prize_name, prize_description, milestone, start_date, user_group, end_date) VALUES
-    (1, 'Prize 1', 'Description for Prize 1', false, '2023-08-01', 'adult', '2023-08-31'),
-    (1, 'Prize 2', 'Description for Prize 2', true, '2023-08-01', 'child', '2023-08-31'),
-    (2, 'Prize 3', 'Description for Prize 3', false, '2023-08-01', 'both', '2023-08-31'),
-    (2, 'Prize 4', 'Description for Prize 4', true, '2023-08-01', 'adult', '2023-08-31'),
-    (3, 'Prize 5', 'Description for Prize 5', false, '2023-08-01', 'child', '2023-08-31'),
-    (3, 'Prize 6', 'Description for Prize 6', true, '2023-08-01', 'both', '2023-08-31'),
-    (4, 'Prize 7', 'Description for Prize 7', false, '2023-08-01', 'adult', '2023-08-31'),
-    (4, 'Prize 8', 'Description for Prize 8', true, '2023-08-01', 'child', '2023-08-31'),
-    (5, 'Prize 9', 'Description for Prize 9', false, '2023-08-01', 'both', '2023-08-31');
 
 commit;
