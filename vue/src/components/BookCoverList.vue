@@ -33,17 +33,11 @@ export default {
       isAddBookModalVisible: false,
     };
   },
-  // async created() {
-  //   try {
-  //     this.bookUsers = await (await BookService.getBookUsersByUserId(this.$store.state.user.userId)).data; //Where userId comes into play.
-  //     console.log(this.bookUsers);
-  //   } catch (error) {
-  //     console.error("Error fetching books:", error);
-  //   }
-  // },
+  
+  
    async created() {
     try {
-      this.bookUsers = await (await BookService.getBookUsersByUserId(this.$store.state.user.userId)).data; //HARDCODED
+      this.bookUsers = await (await BookService.getBookUsersByUserId(1)).data; //HARDCODED
       console.log(this.bookUsers);
     } catch (error) {
       console.error("Error fetching books:", error);

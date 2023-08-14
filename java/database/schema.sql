@@ -90,10 +90,10 @@ INSERT INTO users (family_id, username, first_name, last_name, password_hash, ac
     (5, 'ava.brown', 'Ava', 'Brown', 'password123', true, 'admin', false);
 
 INSERT INTO book (isbn, title, author, book_description, format) VALUES
-    ('9780064400558', 'Charlottes Web', 'Somebody', 'Description 1', 'paper'),
+    ('978-0064400558', 'Charlottes Web', 'Somebody', 'Description 1', 'paper'),
     ('9780333791035', 'The Great Gatsby', 'F. Scott Fitzgerald', 'Description 2', 'digital'),
     ('9780582030473', 'A Tale of Two Cities', 'Charles Dickens', 'Description 3', 'audio'),
-    ('978-0440413240', 'Holes', 'Louis Sachar', 'Description 4', 'other'),
+    ('978-0440413240', 'Holes', 'Author 4', 'Description 4', 'other'),
     ('9785432109876', 'Sample Book 5', 'Author 5', 'Description 5', 'paper'),
     ('9786789012340', 'Sample Book 6', 'Author 6', 'Description 6', 'digital'),
     ('9787654321098', 'Sample Book 7', 'Author 7', 'Description 7', 'audio'),
