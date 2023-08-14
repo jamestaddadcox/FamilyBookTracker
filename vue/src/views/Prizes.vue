@@ -1,6 +1,6 @@
 <template>
   <page-layout>
-    <template v-slot:header>
+    <template v-slot:headerbar>
       <page-header></page-header>
     </template>
 

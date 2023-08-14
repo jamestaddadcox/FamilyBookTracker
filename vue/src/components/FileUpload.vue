@@ -1,15 +1,13 @@
 <template>
-  <div>
+  <div id="avatar-upload">
+    <button class="route-user" id="avatar-home" @click="goHome"><avatar title="Go Home"></avatar></button>
+    <button><img src="" alt=""></button>
     <input
-      style="display: none"
       type="file"
       @change="handleFileChange"
       ref="fileInput"
       accept="image/*"
     />
-    <span @click="openFileInput">
-      <avatar></avatar>
-    </span>
     <button @click="uploadFile" title="Upload">Upload</button>
   </div>
 </template>
@@ -29,6 +27,9 @@ export default {
     };
   },
   methods: {
+    goHome(){
+      this.$router.push('/');
+    },
     openFileInput() {
       this.$refs.fileInput.click();
     },
@@ -69,4 +70,18 @@ export default {
 </script>
 
 <style>
+#avatar-upload{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#avatar-home{
+  display: flex;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 19px bisque;
+}
 </style>

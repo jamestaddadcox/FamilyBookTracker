@@ -14,9 +14,9 @@ export default {
 </script>
 
 <style>
-body {
-  background-color: #f3e3df;
-  cursor: url('@/assets/lammy.gif'), auto;
+/* body {
+  background-color: rgb(34, 193, 255);
+  
 }
 
 
