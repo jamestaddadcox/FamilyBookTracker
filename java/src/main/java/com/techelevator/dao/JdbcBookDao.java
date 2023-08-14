@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
+
 @Component
 public class JdbcBookDao implements BookDao {
 
@@ -16,12 +18,11 @@ public class JdbcBookDao implements BookDao {
     public JdbcBookDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
     @Override
     public Book getBookByIsbn(String isbn) {
         Book theBook = null;
 
-        String sql = "SELECT isbn, title, author, book_description, format " +
+        String sql = "SELECT isbn, title, author, book_description, pages " +
                      "FROM book " +
                      "WHERE isbn = ?;";
         try {
@@ -37,13 +38,13 @@ public class JdbcBookDao implements BookDao {
 
     @Override
     public Book createBook(Book book) {
-        String sql = "INSERT INTO book (isbn, title, author, book_description, format)" +
+        String sql = "INSERT INTO book (isbn, title, author, book_description, pages)" +
                 "VALUES (?, ?, ?, ?, ?) " +
                 "ON CONFLICT (isbn) DO NOTHING" +
                 "       RETURNING isbn;";
 
         try {
-            String bookISBN = jdbcTemplate.queryForObject(sql, String.class, book.getIsbn(), book.getTitle(), book.getAuthor(), book.getDescription(), book.getFormat());
+            String bookISBN = jdbcTemplate.queryForObject(sql, String.class, book.getIsbn(), book.getTitle(), book.getAuthor(), book.getDescription(), book.getPages());
 
             return getBookByIsbn(bookISBN);
 
@@ -61,7 +62,7 @@ public class JdbcBookDao implements BookDao {
         book.setTitle(rs.getString("title"));
         book.setAuthor(rs.getString("author"));
         book.setDescription(rs.getString("book_description"));
-        book.setFormat(rs.getString("format"));
+        book.setPages(rs.getInt("pages"));
 
         return book;
     }
