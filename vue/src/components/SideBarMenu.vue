@@ -1,10 +1,21 @@
 <template>
   <div class="sidebar">    
 
-    //put image uploader here for now.
+    
   <div id="sidebar-avatar">
-    <file-upload></file-upload>
+    <h2>WORM WAGON</h2>
+    <!-- <file-upload></file-upload> -->
+        <avatar></avatar>
+        <span><button 
+        class="change-avatar"  @Click="showUpdateAvatarModal">&plus;</button></span>
+        
   </div>
+
+
+    <upload-avatar-modal v-show="isUpdateAvatarModalVisible"
+    @close="closeUpdateAvatarModal">
+    </upload-avatar-modal>
+
 
     <menu class="link-list">
       <ul class="active-sidebar-menu">
@@ -49,22 +60,47 @@
 </template>
 
 <script>
-import FileUpload from "@/components/FileUpload.vue";
+import Avatar from './Avatar.vue';
+// import FileUpload from "./FileUpload.vue";
+import UploadAvatarModal from './UploadAvatarModal.vue';
+
 
 export default {
+  data (){
+    return {
+      isUpdateAvatarModalVisible: false,
+    };
+  },
   name: "sidebar-menu",
   components: {
-    FileUpload,
+    // FileUpload,
+    UploadAvatarModal,
+    Avatar,
   },
   computed: {
     currentUser() {
       return this.$store.state.user;
     },
   },
+  methods: {
+    showUpdateAvatarModal() {
+      this.isUpdateAvatarModalVisible = true;
+    },
+    closeUpdateAvatarModal() {
+      this.isUpdateAvatarVisible = false;
+    },
+  },
 };
 </script>
 
 <style>
+menu{
+  margin-left: -15px;
+}
+ul{
+  display: flex;
+  flex-direction: column;
+}
 .sidebar {
   height: 100%;
   display: flex;
@@ -73,7 +109,9 @@ export default {
   padding-right: 0;
   padding-top: 0;
   padding-bottom: 0;
-  margin: 0;
+  margin-right: 0px;
+  position: sticky;
+  width: 100%;
 }
 
 .sidebar ul {
@@ -82,11 +120,14 @@ export default {
 }
 
 .sidebar ul li {
-  padding: 13px 0;
+  padding: 7px 0;
   background-color: rgba(255, 255, 0, 0.6);
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
   margin: 10px 0;
+  border: 3ch solid #5235359f;
+  border-width: 1px;
+  box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.2); 
 }
 
 .sidebar ul li a {
@@ -103,7 +144,7 @@ export default {
 
 .sidebar ul li:hover {
   background-color: rgba(255, 255, 0, 0.777);
-  border-radius: 20px 0 0 20px;
+  border-radius: 30px 0 0 30px;
   margin-left: -10px;
 }
 
@@ -125,7 +166,10 @@ export default {
 #sidebar-avatar {
   padding-top: 10%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   justify-self: center;
 }
+
 </style>

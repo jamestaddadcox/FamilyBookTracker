@@ -9,6 +9,7 @@ import Welcome from '../views/Welcome.vue'
 import Error404 from '../views/Error404.vue'
 import Family from '../views/Family.vue'
 import Prizes from '../views/Prizes.vue'
+import Settings from '../views/Settings.vue'
 
 Vue.use(Router)
 
@@ -25,6 +26,14 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: '/settings',
+      name: 'settings',
+      component: Settings,
+      meta: {
+        requiresAuth: true
+      }
+    },
     {
       path: '/welcome',
       name: 'welcome',

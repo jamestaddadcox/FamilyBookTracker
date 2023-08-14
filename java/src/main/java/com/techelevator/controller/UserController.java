@@ -8,6 +8,7 @@ import com.techelevator.security.model.RegisterUserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+@PreAuthorize("isAuthenticated()")
 @RestController
 public class UserController {
 
@@ -42,6 +44,7 @@ public class UserController {
         return userDao.getUserByUsername(username);
     }*/
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "/user", method = RequestMethod.POST)
     public ResponseEntity<User> createUser(@RequestBody RegisterUserDto user) {
         if (user == null) {
@@ -54,7 +57,7 @@ public class UserController {
         }
     }
 
-
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "/child-user", method = RequestMethod.POST)
     public ResponseEntity<User> createChildUser(@RequestBody RegisterUserDto childUser) {
         if (childUser == null) {
@@ -64,7 +67,7 @@ public class UserController {
             return new ResponseEntity<>(createdChildUser, HttpStatus.CREATED);
         }
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "/user/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> deactivateFamilyMember(@PathVariable int id) {
         boolean deactivated = userDao.deactivateFamilyMember(id);
@@ -100,7 +103,6 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Family not found.").hasBody();
         }
     }
-
     @RequestMapping(path = "/user/family/{id}", method = RequestMethod.GET)
     public User getUserByFamilyId(@PathVariable int id) {
         return userDao.getUserByFamilyId(id);

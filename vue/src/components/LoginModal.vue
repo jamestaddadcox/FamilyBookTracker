@@ -19,7 +19,7 @@
                 I'm sorry, we appear to be experiencing techincal difficulties...
               </div>
               <div>
-                <label for="username">username</label>
+                <label for="username">username: </label>
                 <input
                   type="text"
                   id="username"
@@ -29,7 +29,7 @@
                 />
               </div>
               <div>
-                <label for="password">password</label>
+                <label for="password">password:</label>
                 <input
                   type="password"
                   id="password"
@@ -37,7 +37,8 @@
                   required
                 />
               </div>
-              <button type="submit" class="btn-green">sign in!</button>
+              
+              <button type="submit" class="btn-green">SIGN IN!</button>
             </form>
           </slot>
         </section>

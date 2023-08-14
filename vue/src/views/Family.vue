@@ -1,11 +1,11 @@
 <template>
   <page-layout>
-    <template v-slot:header>
+    <template v-slot:headerbar>
       <page-header></page-header>
     </template>
 
     <template v-slot:content>
-        <div>hi</div>
+      <book-cover-list>8</book-cover-list>
     </template>
 
     <template v-slot:sidebar>
@@ -20,6 +20,7 @@
 import PageLayout from '../views/PageLayout.vue';
 import SideBarMenu from '../components/SideBarMenu.vue';
 import PageHeader from '../components/PageHeader.vue';
+import BookCoverList from '../components/BookCoverList.vue';
 
 
 export default {
@@ -28,6 +29,7 @@ export default {
     PageLayout,
     SideBarMenu,
     PageHeader,
+    BookCoverList,
   },
 };
 </script>

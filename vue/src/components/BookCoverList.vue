@@ -1,26 +1,26 @@
 <template>
   <div class="book-section">
-    <button class="add card" id="add-book" @click="showAddBookModal">FUTURE ADD BOOK BUTTON</button>
+    <span class="card"><button class="add" @click="showAddBookModal">
+      ADD A BOOK
+    </button>
+    </span>
+
     <book-card
       class="card"
       v-for="bookuser in bookUsers"
-      :key="bookuser.isbn"
+      :key="`${bookuser.isbn}-${bookuser.userId}`"
       :bookuser="bookuser"
     ></book-card>
 
-    <!-- <book-card v-for="bookuser in usersBooks($store.state.user.user_id)" :key="bookuser.isbn" :bookuser="bookuser"></book-card> -->
-    <add-book-modal
-     v-show="isAddBookModalVisible"
-      @close="closeAddBookModal"
-      > 
+    <add-book-modal v-show="isAddBookModalVisible" @close="closeAddBookModal">
     </add-book-modal>
   </div>
 </template>
 
 <script>
-import BookCard from "@/components/BookCard.vue";
-import BookService from "@/services/BookService";
-import AddBookModal from './AddBookModal.vue';
+import BookCard from "../components/BookCard.vue";
+import BookService from "../services/BookService";
+import AddBookModal from "./AddBookModal.vue";
 export default {
   name: "book-cover-list",
   components: {
@@ -33,22 +33,30 @@ export default {
       isAddBookModalVisible: false,
     };
   },
-  async created() {
+  // async created() {
+  //   try {
+  //     this.bookUsers = await (await BookService.getBookUsersByUserId(this.$store.state.user.userId)).data; //Where userId comes into play.
+  //     console.log(this.bookUsers);
+  //   } catch (error) {
+  //     console.error("Error fetching books:", error);
+  //   }
+  // },
+   async created() {
     try {
-      this.bookUsers = await BookService.getBookUsersByUserId(2); //HARDCODED
+      this.bookUsers = await (await BookService.getBookUsersByUserId(1)).data; //HARDCODED
       console.log(this.bookUsers);
     } catch (error) {
       console.error("Error fetching books:", error);
     }
   },
   methods: {
-      showAddBookModal() {
-        this.isAddBookModalVisible = true;
-      },
-      closeAddBookModal() {
-        this.isAddBookModalVisible = false;
-      }
-  }
+    showAddBookModal() {
+      this.isAddBookModalVisible = true;
+    },
+    closeAddBookModal() {
+      this.isAddBookModalVisible = false;
+    },
+  },
 };
 </script>
 
@@ -56,17 +64,30 @@ export default {
 .book-section {
   display: flex;
   justify-content: space-evenly;
-  flex: wrap;
-  background-color: pink;
+  flex-wrap: wrap;
+  
+height: 100%;
+padding: 0;
+padding-right: 20px;
+flex-grow: 1f;
+align-content: left;
+  
 }
 .card {
+  display: flex;
+  flex-direction: column;
   background-color: rgb(200, 240, 227);
   border: 3px solid purple;
   border-radius: 10px;
-  width: 250px;
-  height: 400px;
-  margin: 10px;
+  max-width: 235px;
+  min-width: 175px;
+  flex-grow: 1;
+  height: 350px;
+  margin-top: 25px;
+  margin-left: 20px;
+  padding: auto;
+  align-items: center;
+  
 
-  display: block;
 }
 </style>
