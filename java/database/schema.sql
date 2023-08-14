@@ -65,54 +65,54 @@ CREATE TABLE prize_winner (
 	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-INSERT INTO family (family_name) VALUES
-    ('Smith Family'),
-    ('Johnson Family'),
-    ('Williams Family'),
-    ('Jones Family'),
-    ('Brown Family'),
-    ('Davis Family'),
-    ('Miller Family'),
-    ('Wilson Family'),
-    ('Moore Family'),
-    ('Taylor Family');
+--INSERT INTO family (family_name) VALUES
+--    ('Smith Family'),
+--    ('Johnson Family'),
+--    ('Williams Family'),
+--    ('Jones Family'),
+--    ('Brown Family'),
+--    ('Davis Family'),
+--    ('Miller Family'),
+--    ('Wilson Family'),
+--    ('Moore Family'),
+--    ('Taylor Family');
 
-INSERT INTO users (family_id, username, first_name, last_name, password_hash, activated, role, is_child) VALUES
-    (1, 'john.smith', 'John', 'Smith', 'password123', true, 'admin', false),
-    (1, 'jane.smith', 'Jane', 'Smith', 'password123', true, 'admin', false),
-    (2, 'robert.johnson', 'Robert', 'Johnson', 'password123', true, 'admin', false),
-    (2, 'emily.johnson', 'Emily', 'Johnson', 'password123', true, 'admin', false),
-    (3, 'michael.williams', 'Michael', 'Williams', 'password123', true, 'admin', false),
-    (3, 'olivia.williams', 'Olivia', 'Williams', 'password123', true, 'admin', false),
-    (4, 'david.jones', 'David', 'Jones', 'password123', true, 'admin', false),
-    (4, 'sophia.jones', 'Sophia', 'Jones', 'password123', true, 'admin', false),
-    (5, 'william.brown', 'William', 'Brown', 'password123', true, 'admin', false),
-    (5, 'ava.brown', 'Ava', 'Brown', 'password123', true, 'admin', false);
+--INSERT INTO users (family_id, username, first_name, last_name, password_hash, activated, role, is_child) VALUES
+--    (1, 'john.smith', 'John', 'Smith', 'password123', true, 'admin', false),
+--    (1, 'jane.smith', 'Jane', 'Smith', 'password123', true, 'admin', false),
+--    (2, 'robert.johnson', 'Robert', 'Johnson', 'password123', true, 'admin', false),
+--    (2, 'emily.johnson', 'Emily', 'Johnson', 'password123', true, 'admin', false),
+--    (3, 'michael.williams', 'Michael', 'Williams', 'password123', true, 'admin', false),
+--    (3, 'olivia.williams', 'Olivia', 'Williams', 'password123', true, 'admin', false),
+--    (4, 'david.jones', 'David', 'Jones', 'password123', true, 'admin', false),
+--    (4, 'sophia.jones', 'Sophia', 'Jones', 'password123', true, 'admin', false),
+--    (5, 'william.brown', 'William', 'Brown', 'password123', true, 'admin', false),
+--    (5, 'ava.brown', 'Ava', 'Brown', 'password123', true, 'admin', false);
 
-INSERT INTO book (isbn, title, author, book_description, format) VALUES
-    ('978-0064400558', 'Charlottes Web', 'Somebody', 'Description 1', 'paper'),
-    ('9780333791035', 'The Great Gatsby', 'F. Scott Fitzgerald', 'Description 2', 'digital'),
-    ('9780582030473', 'A Tale of Two Cities', 'Charles Dickens', 'Description 3', 'audio'),
-    ('978-0440413240', 'Holes', 'Author 4', 'Description 4', 'other'),
-    ('9785432109876', 'Sample Book 5', 'Author 5', 'Description 5', 'paper'),
-    ('9786789012340', 'Sample Book 6', 'Author 6', 'Description 6', 'digital'),
-    ('9787654321098', 'Sample Book 7', 'Author 7', 'Description 7', 'audio'),
-    ('9784567890123', 'Sample Book 8', 'Author 8', 'Description 8', 'other'),
-    ('9785678901234', 'Sample Book 9', 'Author 9', 'Description 9', 'paper'),
-    ('9786789012345', 'Sample Book 10', 'Author 10', 'Description 10', 'digital'),
-    ('11hhh111hh1', 'Sample Book 10', 'Author 10', 'Description 10', 'digital');
+--INSERT INTO book (isbn, title, author, book_description) VALUES
+--    ('978-0064400558', 'Charlottes Web', 'Somebody', 'Description 1'),
+--    ('9780333791035', 'The Great Gatsby', 'F. Scott Fitzgerald', 'Description 2'),
+--    ('9780582030473', 'A Tale of Two Cities', 'Charles Dickens', 'Description 3'),
+--    ('978-0440413240', 'Holes', 'Author 4', 'Description 4'),
+--    ('9785432109876', 'Sample Book 5', 'Author 5', 'Description 5'),
+--    ('9786789012340', 'Sample Book 6', 'Author 6', 'Description 6'),
+--    ('9787654321098', 'Sample Book 7', 'Author 7', 'Description 7'),
+--    ('9784567890123', 'Sample Book 8', 'Author 8', 'Description 8'),
+--    ('9785678901234', 'Sample Book 9', 'Author 9', 'Description 9'),
+--    ('9786789012345', 'Sample Book 10', 'Author 10', 'Description 10'),
+--    ('11hhh111hh1', 'Sample Book 10', 'Author 10', 'Description 10');
 
-INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_aloud_listen, notes, completed, pages_read) VALUES
-    (1, '978-0064400558', 30, true, true, 'Read aloud', false, 0),
-    (1, '9780333791035', 45, false, true, 'Enjoyed it', false, 3),
-    (1, '9780582030473', 60, true, false, 'Read together', false, 100),
-    (1, '978-0440413240', 15, true, true, 'Quick read', false, 23),
-    (3, '9785432109876', 90, false, false, 'Long book', false, 445),
-    (3, '9786789012340', 20, true, true, 'Liked the plot', false, 1),
-    (4, '9787654321098', 50, true, false, 'Interesting characters', false, 324),
-    (4, '9784567890123', 10, false, true, 'Didn''t finish', false, 342),
-    (5, '9785678901234', 75, true, true, 'Fascinating story', false, 0),
-    (5, '9786789012345', 30, false, false, 'Recommended by a friend', false, 0);
+--INSERT INTO book_user (user_id, isbn, minutes_read, read_aloud_reader, read_aloud_listen, notes, completed, pages_read) VALUES
+--    (1, '978-0064400558', 30, true, true, 'Read aloud', false, 0),
+--    (1, '9780333791035', 45, false, true, 'Enjoyed it', false, 3),
+--    (1, '9780582030473', 60, true, false, 'Read together', false, 100),
+--    (1, '978-0440413240', 15, true, true, 'Quick read', false, 23),
+--    (3, '9785432109876', 90, false, false, 'Long book', false, 445),
+--    (3, '9786789012340', 20, true, true, 'Liked the plot', false, 1),
+--    (4, '9787654321098', 50, true, false, 'Interesting characters', false, 324),
+--    (4, '9784567890123', 10, false, true, 'Didn''t finish', false, 342),
+--    (5, '9785678901234', 75, true, true, 'Fascinating story', false, 0),
+--    (5, '9786789012345', 30, false, false, 'Recommended by a friend', false, 0);
 
 
 
