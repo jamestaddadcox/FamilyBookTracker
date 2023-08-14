@@ -13,9 +13,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.List;
 
 public class JdbcUserDaoTests extends BaseDaoTests {
-    protected static final User USER_1 = new User(1, "user1", "user1", "ROLE_USER", "firstname", "lastname", 1, "");
-    protected static final User USER_2 = new User(2, "user2", "user2", "ROLE_USER", "firstname", "lastname", 1, "");
-    private static final User USER_3 = new User(3, "user3", "user3", "ROLE_USER", "firstname", "lastname", 1, "");
+    protected static final User USER_1 = new User(1, "john.smith", "user1", "ROLE_ADMIN", "John", "Smith", 1, "");
+    protected static final User USER_2 = new User(3, "jane.smith", "user2", "ROLE_USER", "Jane", "Smith", 3, "");
+    private static final User USER_3 = new User(3, "robert.johnson", "user3", "ROLE_USER", "Robert", "Johnson", 2, "");
 
     private JdbcUserDao sut;
 
