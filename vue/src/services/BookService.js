@@ -21,5 +21,9 @@ export default {
 
     addBookForCurrentUser(bookUser) {
         return axios.post('/stats', bookUser);
+    },
+
+    getAllBookUserInfoByFamilyId(familyId) {
+        return axios.get(`/stats/family/${familyId}`);
     }
 }
