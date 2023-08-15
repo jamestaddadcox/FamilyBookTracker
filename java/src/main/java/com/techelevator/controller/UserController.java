@@ -46,12 +46,12 @@ public class UserController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "/user", method = RequestMethod.POST)
-    public ResponseEntity<User> createUser(@RequestBody RegisterUserDto user) {
+    public ResponseEntity<User> createUser(@RequestBody RegisterUserDto user, int familyId) {
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User Not Found :(");
         } else {
 
-            User createdUser = userDao.createUser(user);
+            User createdUser = userDao.createUser(user, familyId);
 
             return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
         }
@@ -59,11 +59,11 @@ public class UserController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "/child-user", method = RequestMethod.POST)
-    public ResponseEntity<User> createChildUser(@RequestBody RegisterUserDto childUser) {
+    public ResponseEntity<User> createChildUser(@RequestBody RegisterUserDto childUser, int familyId) {
         if (childUser == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User Not Found :(");
         } else {
-            User createdChildUser = userDao.createChildUser(childUser);
+            User createdChildUser = userDao.createChildUser(childUser, familyId);
             return new ResponseEntity<>(createdChildUser, HttpStatus.CREATED);
         }
     }

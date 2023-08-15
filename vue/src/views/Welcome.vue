@@ -172,6 +172,7 @@ right-btn {
         display: flex;
         justify-content: center;
         align-items: center;
+        z-index: 60;
     }
 
     .modal {
@@ -181,8 +182,9 @@ right-btn {
         overflow-x: auto;
         display: flex;
         flex-direction: column;
+        max-width: 45%;
         border-radius: 5px;
-        z-index: 5;
+        z-index: 75;
     }
 
 

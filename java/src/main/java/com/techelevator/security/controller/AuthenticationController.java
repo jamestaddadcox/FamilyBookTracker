@@ -66,8 +66,8 @@ public class AuthenticationController {
     public void register(@Valid @RequestBody RegisterUserDto newUser) {
         try {
             Family family = familyDao.createFamily(newUser.getFamilyName());
-            User user = userDao.createUser(newUser);
-            user.setFamilyId(family.getFamilyId());
+            User user = userDao.createUser(newUser, family.getFamilyId());
+//            user.setFamilyId(family.getFamilyId());
 
             if (user == null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User registration failed.");
@@ -75,6 +75,7 @@ public class AuthenticationController {
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "User registration failed.");
         }
+
     }
 }
 
