@@ -37,7 +37,7 @@ export default {
   
    async created() {
     try {
-      this.bookUsers = await (await BookService.getBookUsersByUserId(1)).data; //HARDCODED
+      this.bookUsers = await (await BookService.getBookUsersByUserId(this.$store.state.user.userId)).data; //HARDCODED
       console.log(this.bookUsers);
     } catch (error) {
       console.error("Error fetching books:", error);
