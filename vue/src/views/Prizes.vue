@@ -27,6 +27,8 @@ import SideBarMenu from '../components/SideBarMenu.vue';
 import PageHeader from '../components/PageHeader.vue';
 import PrizeList from '../components/PrizeList.vue';
 import PrizeService from '../services/PrizeService';
+import PrizeModal from '../components/PrizeModal.vue';
+
 
 export default {
   name: "prizes-view",

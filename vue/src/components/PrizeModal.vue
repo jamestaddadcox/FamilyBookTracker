@@ -1,12 +1,13 @@
 <template>
-<div>
-  <button @click="openModal">Add Prize</button>
-  
-  <div class="bg-modal" v-show="isModalOpen">
-      <div class="modal-content">
-        <h2>Add Prize</h2>
-        <div id="close" @click="closeModal">+</div>
+  <div>
+    <button @click="openModal">Add Prize</button>
 
+    <div class="bg-modal" v-show="isModalOpen">
+      <form @submit.prevent="addPrize">
+        <div class="modal-content">
+          <h2>Add Prize</h2>
+          <div id="close" @click="closeModal">+</div>
+          
         <div class="wrapper">
           <div class="radio-button">
             <div class="option">
@@ -22,11 +23,12 @@
               <label for="amount-of-time">Amount of Time</label> <br>
             </div>
           </div>
+        </div>
 
           <div class="input-prize">
             <div class="popup-book" v-if="selectedOption === 'books'">
               <label for="book-dropdown">Select Number of Books:</label>
-              <select name="dropdown" id="number-drop-down">
+              <select name="dropdown" id="book-dropdown" v-model="newPrize.goal">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -36,59 +38,124 @@
             </div>
 
             <div class="popup-pages" v-if="selectedOption === 'pages'">
-                <label for="number-of-pages">Number of Pages:</label>
-              <input type="text" name="number-of-pages-prize" id="number-of-pages">
+                <label for="number-of-pages-prize">Number of Pages:</label>
+                <input type="text" name="number-of-pages-prize" id="number-of-pages" maxlength="5" integer v-model="newPrize.goal">
             </div>
-            
+
+           <div class="popup-time" v-if="selectedOption === 'time'">
+                <label for="datetime">Time:</label> <br>
+                <input type="text" name="datetime" id="amount-of-time" placeholder="Minutes" integer v-model="newPrize.goal">
+            </div>
             <div class="prize">
               <label for="prize">Prize:</label>
-              <input type="text" name="prize" id="prize-input" required>
+              <input type="text" name="prize" id="prize-input" required v-model="newPrize.name">
             </div>
+
+            <div class="description-prize">
+                <label for="description">Description:</label>
+                <textarea name="description-text-area" id="prize-description" maxlength="200" v-model="newPrize.description"></textarea>
+            </div>
+
+            <div class="checkboxes">
+            <div class="adults">
+                <label for="adult-user">Adult:</label>
+                <input type="radio" name="user-group" id="adult-user" value="adult" v-model="selectedUserGroup">
+            </div>
+
+            <div class="children">
+                <label for="child-user">Child:</label>
+                <input type="radio" name="user-group" id="child-user" value="child" v-model="selectedUserGroup">
+            </div>
+
+            <div class="both">
+                <label for="both-user">Both:</label>
+                <input type="radio" name="user-group" id="both-user" value="both" v-model="selectedUserGroup">
+            </div>
+            </div>
+
             <div class="date-fields">
-              <div class="start-date-prize">
-                <label for="start-date">Start Date:</label>
-                <input type="date" name="start-date" id="start-date" required>
-              </div>
-              <div class="end-date-prize">
-                <label for="end-date">End Date:</label>
-                <input type="date" name="end-date" id="end-date" required>
-              </div>
+            <div class="start-date-prize">
+              <label for="start-date">Start Date:</label>
+              <input type="date" name="start-date" id="start-date" required v-model="newPrize.startDate">
+            </div>
+            <div class="end-date-prize">
+              <label for="end-date">End Date:</label>
+              <input type="date" name="end-date" id="end-date" required v-model="newPrize.endDate">
             </div>
           </div>
-        </div>
 
-        <button type="submit">Go!</button>
-            </div>
-      </div>
+          <button type="submit">Go!</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
+import PrizeService from '../services/PrizeService.js';
+
 export default {
-    data() {
-		return {
-			isModalOpen: false,
-            selectedOption: ''
-
-        }
-    },
-
+  name: "PrizeModal",
+  props:['prize'],
+  data() {
+    return {
+      isModalOpen: false,
+      selectedOption: '',
+      selectedUserGroup: '',
+      newPrize: {
+        "name": '',
+        "description": '',
+        "milestone": false,
+        "startDate": '',
+        "userGroup": '',
+        "endDate": '',
+        "goal": ''
+      }
+    };
+  },
+  watch: {
+    selectedUserGroup: 'updateUserGroup',
+  },
     methods: {
-
         openModal() {
-			this.isModalOpen = true;
-		},
+            this.isModalOpen = true;
+        },
 
         closeModal() {
             this.isModalOpen = false;
+            this.resetModal();
         },
-    }
-}
-   
+
+        resetModal() {
+            this.selectedOption = '';
+            this.newPrize.prize_name = '';
+            this.newPrize.prize_description = '';
+            this.newPrize.milestone = false;
+            this.newPrize.start_date = '';
+            this.newPrize.user_group = '';
+            this.newPrize.end_date = '';
+            this.newPrize.goal = '';
+        },
+
+        updateUserGroup() {
+           this.newPrize.userGroup = this.selectedUserGroup;
+        },
+
+        addPrize() {
+            PrizeService.addPrize(this.newPrize)
+            .then(() => {
+            this.closeModal();
+          })
+          .catch(error => {
+          console.error('Error adding prize:', error);
+        });
+      }   
+    },
+}  
 </script>
 
 <style scoped>
-
 .bg-modal {
   width: 100%;
   height: 100%;
@@ -96,7 +163,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,11 +173,14 @@ export default {
   width: 80%;
   max-width: 300px;
   background-color: white;
-  color: #545454;
   padding: 20px;
   border-radius: 4px;
   text-align: left;
   position: relative;
+}
+
+h2 {
+    margin-top: 0px;
 }
 
 .option-book {
@@ -118,22 +188,66 @@ export default {
 }
 
 .radio-button {
-  margin-bottom: 10px;
+  margin-bottom: 7px;
+  margin-top: 7px;
 }
 
 .radio-button label {
   margin-bottom: 5px;
 }
 
+.checkboxes {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+#adult-user,
+#child-user,
+#both-user 
+{
+    margin-right: 40px;
+}
+
+
+
+.popup-pages, 
+.popup-time, 
 .popup-book {
-  margin: auto; 
-  text-align: center; 
+    margin-bottom: 7px;
+}
+
+.popup-time input {
+    width: 218px;
+    margin-left: 2px;
+}
+
+.popup-pages input {
+    width: 95px;
+    margin-left: 2px;
 }
 
 .input-prize {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.description-prize {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+#prize-description {
+    width: 270px;
+    height: 50px;
+}
+
+.date-fields {
+    display: flex;
+    gap: 20px;
 }
 
 #end-date,
@@ -148,11 +262,15 @@ export default {
   width: 50px;
 }
 
+.input-prize {
+    padding-bottom: 10px;
+}
+
 #close {
   position: absolute;
   top: 0;
-  right: 0;
-  font-size: 35px;
+  right: 14px;
+  font-size: 38px;
   transform: rotate(45deg);
   cursor: pointer;
 }
@@ -168,3 +286,7 @@ export default {
   width: auto;
 }
 </style>
+
+
+
+
