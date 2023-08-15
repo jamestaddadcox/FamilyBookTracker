@@ -1,5 +1,8 @@
 package com.techelevator.model;
 
+import org.apache.tomcat.jni.Local;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Prize {
@@ -9,13 +12,14 @@ public class Prize {
     private String description;
     private boolean milestone;
     private String userGroup;
-    private String startDate;
-    private String endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private int goal;
     public Prize() {
 
     }
 
-    public Prize(int prizeId, int familyId, String name, String description, String userGroup, String startDate, String endDate) {
+    public Prize(int prizeId, int familyId, String name, String description, String userGroup, LocalDate startDate, LocalDate endDate, int goal) {
         this.prizeId = prizeId;
         this.familyId = familyId;
         this.name = name;
@@ -24,6 +28,7 @@ public class Prize {
         this.userGroup = userGroup;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.goal = goal;
     }
 
     public int getPrizeId() {
@@ -74,19 +79,27 @@ public class Prize {
         this.userGroup = userGroup;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public int getGoal(){
+        return goal;
+    }
+
+    public void setGoal(int goal){
+        this.goal = goal;
     }
 }

@@ -85,8 +85,8 @@ const router = new Router({
       }
     },
     {
-      path: '/prizes',
-      name: "prizes",
+      path: '/prize',
+      name: "prize",
       component: Prizes, 
       meta: {
         requiresAuth: true

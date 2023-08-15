@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 @CrossOrigin
 @RestController
+@PreAuthorize("isAuthenticated()")
 public class PrizeController {
 
     private final PrizeDao prizeDao;
