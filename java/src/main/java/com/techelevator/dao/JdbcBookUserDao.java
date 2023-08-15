@@ -97,7 +97,7 @@ public class JdbcBookUserDao implements BookUserDao {
     @Override
     public BookUser addBookToUserList(BookUser bookUser) {
         String sql = "INSERT INTO book_user (user_id, isbn, minutes_read, format, notes, completed, pages_read) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?) " +
                 "ON CONFLICT (user_id, isbn) DO NOTHING " +
                 "RETURNING user_id, isbn";
 

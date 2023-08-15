@@ -4,7 +4,6 @@ DROP TABLE IF EXISTS family, users, book, book_user, prize, prize_winner;
 
 CREATE TABLE family (
 	family_id SERIAL NOT NULL,
-
 	family_name varchar(50) NOT NULL,
 	CONSTRAINT pk_family_id PRIMARY KEY (family_id)
 );
@@ -54,6 +53,7 @@ CREATE TABLE prize (
 	start_date date NOT NULL,
 	user_group varchar(10) CHECK (user_group IN ('adult','child', 'both')),
 	end_date date NOT NULL,
+	goal int DEFAULT 0,
 	CONSTRAINT pk_prize_id PRIMARY KEY (prize_id),
 	CONSTRAINT fk_family_id FOREIGN KEY (family_id) REFERENCES family(family_id)
 );

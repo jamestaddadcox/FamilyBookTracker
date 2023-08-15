@@ -5,7 +5,7 @@
     </template>
 
     <template v-slot:content>
-        <div>hi</div>
+        <prize-modal></prize-modal>
     </template>
 
     <template v-slot:sidebar>
@@ -20,6 +20,7 @@
 import PageLayout from '../views/PageLayout.vue';
 import SideBarMenu from '../components/SideBarMenu.vue';
 import PageHeader from '../components/PageHeader.vue';
+import PrizeModal from '../components/PrizeModal.vue';
 
 
 export default {
@@ -28,6 +29,7 @@ export default {
     PageLayout,
     SideBarMenu,
     PageHeader,
+    PrizeModal
   },
 };
 </script>

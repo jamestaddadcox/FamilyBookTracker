@@ -23,7 +23,7 @@ public class JdbcPrizeDao implements PrizeDao {
     @Override
     public Prize getPrizeById(int prizeId) {
         Prize prize = null;
-        String sql = "SELECT prize_id, family_id, prize_name, prize_description, milestone, start_date, user_group, end_date FROM prize WHERE prize_id = ?;";
+        String sql = "SELECT prize_id, family_id, prize_name, prize_description, milestone, start_date, user_group, end_date, goal FROM prize WHERE prize_id = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, prizeId);
             if (results.next()) {
@@ -38,7 +38,7 @@ public class JdbcPrizeDao implements PrizeDao {
     @Override
     public List<Prize> getPrizesByFamilyId(int familyId) {
         List<Prize> prizes = new ArrayList<>();
-        String sql = "SELECT prize_id, family_id, prize_name, prize_description, milestone, start_date, user_group, end_date FROM prize WHERE family_id = ?";
+        String sql = "SELECT prize_id, family_id, prize_name, prize_description, milestone, start_date, user_group, end_date, goal FROM prize WHERE family_id = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, familyId);
             while (results.next()) {
@@ -53,7 +53,7 @@ public class JdbcPrizeDao implements PrizeDao {
     @Override
     public List<Prize> getPrizesByWinnerUserId(int userId) {
         List<Prize> prizes = new ArrayList<>();
-        String sql = "SELECT prize_id, family_id, prize_name, prize_description, milestone, start_date, user_group, end_date FROM prize " +
+        String sql = "SELECT prize_id, family_id, prize_name, prize_description, milestone, start_date, user_group, end_date, goal FROM prize " +
                      "JOIN prize_winner USING (prize_id) " +
                      "WHERE user_id = ?;";
         try {
@@ -70,17 +70,19 @@ public class JdbcPrizeDao implements PrizeDao {
     @Override
     public Prize createPrize(Prize prize) {
         Prize newPrize = null;
-        String sql = "INSERT INTO prize (family_id, prize_name, prize_description, milestone, start_date, user_group, end_date) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING prize_id";
+        String sql = "INSERT INTO prize (family_id, prize_name, prize_description, milestone, start_date, user_group, end_date, goal) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING prize_id";
         try {
             int newPrizeId = jdbcTemplate.queryForObject(sql, int.class, prize.getFamilyId(), prize.getName(),
-                                prize.getDescription(), prize.isMilestone(), prize.getStartDate(), prize.getUserGroup(), prize.getEndDate());
+                                prize.getDescription(), prize.isMilestone(), prize.getStartDate(), prize.getUserGroup(), prize.getEndDate(), prize.getGoal());
             newPrize = getPrizeById(newPrizeId);
 
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
             throw new DaoException("Data integrity violation", e);
+        } catch (Exception e) {
+            throw e;
         }
 
         return newPrize;
@@ -104,7 +106,7 @@ public class JdbcPrizeDao implements PrizeDao {
     @Override
     public boolean editPrize(Prize updatedPrize) {
         String sql = "UPDATE prize SET family_id = ?, prize_name = ?, prize_description = ?, milestone = ?, " +
-                     "user_group = ?, start_date = ?, end_date = ? WHERE prize_id ?";
+                     "user_group = ?, start_date = ?, end_date = ?, goal = ? WHERE prize_id ?";
 
         try {
             int numberOfRows = jdbcTemplate.update(sql,
@@ -115,7 +117,8 @@ public class JdbcPrizeDao implements PrizeDao {
                     updatedPrize.getStartDate(),
                     updatedPrize.getEndDate(),
                     updatedPrize.getPrizeId(),
-                    updatedPrize.getUserGroup()
+                    updatedPrize.getUserGroup(),
+                    updatedPrize.getGoal()
             );
             return numberOfRows > 0;
         } catch (CannotGetJdbcConnectionException e) {
@@ -133,8 +136,9 @@ public class JdbcPrizeDao implements PrizeDao {
         prize.setDescription(rs.getString("prize_description"));
         prize.setMilestone(rs.getBoolean("milestone"));
         prize.setUserGroup(rs.getString("user_group"));
-        prize.setStartDate(rs.getString("start_date"));
-        prize.setEndDate(rs.getString("end_date"));
+        prize.setStartDate(rs.getDate("start_date").toLocalDate());
+        prize.setEndDate(rs.getDate("end_date").toLocalDate());
+        prize.setGoal(rs.getInt("goal"));
         return prize;
 
     }
