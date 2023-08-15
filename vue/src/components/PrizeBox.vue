@@ -59,8 +59,9 @@ export default {
       }
   },
   methods: {
-    getProgressForPrize(prize) {
-      prize 
+    getProgressForPrize(prize) {  // prize is progress 
+      prize
+      return 50; 
     }
   },
   created() {
@@ -101,9 +102,9 @@ export default {
 .prize-box {
   display: flex;
   background-color: white;
-  border: 3px solid #545454;
+  border: 6px solid #545454;
   border-radius: 10px;
-  width: 74vw;
+  width: 70vw;
   flex-grow: 1;
   margin-top: 20px;
   padding: 20px;

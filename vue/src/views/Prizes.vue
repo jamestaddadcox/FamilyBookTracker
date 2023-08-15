@@ -74,4 +74,8 @@ export default {
     flex-wrap: wrap;
     justify-content: center;
   }
+
+headerbar {
+  background-color: #ff5757;
+}  
 </style>

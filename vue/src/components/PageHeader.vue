@@ -2,7 +2,7 @@
   <div >
     <h1 class="top-banner" v-if="thisRoute.endsWith('/')">Hi, {{$store.state.user.firstName}}!</h1>
     <h1 class="top-banner" v-if="thisRoute.endsWith('/family')">Group Id: {{$store.state.user.familyId}}</h1>
-    <h1 class="top-banner" v-if="thisRoute.endsWith('prizes')">Prizes and Rewards</h1>
+    <h1 class="top-banner" v-if="thisRoute.endsWith('prizes')">PRIZES</h1>
   </div>
 </template>
 
@@ -27,12 +27,14 @@ export default {
   
   h1 {
     font-size: 72px;
+    font-family: "Dosis";
+    text-align: center;
   }
 
   div {
     display: flex;
     flex-direction: column;
-    background-color: rgb(87, 149, 59);
+    background-color: #ff5757;
     justify-content: center;
     height: 100%;
     max-height: 250px;

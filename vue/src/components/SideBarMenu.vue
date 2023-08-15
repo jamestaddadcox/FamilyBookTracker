@@ -3,7 +3,7 @@
 
     
   <div id="sidebar-avatar">
-    <h2>WORM WAGON</h2>
+   
     <!-- <file-upload></file-upload> -->
         <avatar></avatar>
         <span><button 
@@ -23,7 +23,7 @@
           <router-link
             v-bind:to="{ name: 'family' }"
             v-if="$store.state.token != ''"
-            >Family Page</router-link
+            >Family</router-link
           >
         </li>
         <li v-if="!$route.path.endsWith('/prizes')">
@@ -97,6 +97,9 @@ export default {
 menu{
   margin-left: -15px;
 }
+
+
+
 ul{
   display: flex;
   flex-direction: column;
@@ -105,7 +108,7 @@ ul{
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: coral;
+  background-color: #ff66c4;
   padding-right: 0;
   padding-top: 0;
   padding-bottom: 0;
@@ -121,23 +124,25 @@ ul{
 
 .sidebar ul li {
   padding: 7px 0;
-  background-color: rgba(255, 255, 0, 0.6);
+  background-color: #ffc5e8;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   margin: 10px 0;
-  border: 3ch solid #5235359f;
-  border-width: 1px;
+  border: 5ch solid #545454;
+  border-width: 0px;
   box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.2); 
+  font-family: "Dosis";
+  
 }
 
 .sidebar ul li a {
   text-decoration: none;
-  font-size: 1.2rem;
-  color: black;
+  font-size: 4rem;
+  color: #545454;
   width: 70%;
   margin: 0 auto;
   display: block;
-  border-radius: 20px 0 0 20px;
+  border-radius: 40px 0 0 40px;
   padding: 10px 10px;
   position: sticky;
 }
@@ -150,7 +155,7 @@ ul{
 
 #avatar {
   
-  
+  margin-top: 5px;
   justify-self: center;
   display: flex;
   outline: solid 3px black;
@@ -170,6 +175,11 @@ ul{
   align-items: center;
   justify-content: center;
   justify-self: center;
+  font-family: "Limelight";
+}
+
+#sidebar-avatar h2 {
+  font-family: "Limelight";
 }
 
 </style>
