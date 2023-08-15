@@ -21,14 +21,17 @@ export default {
     "headerbar headerbar sidebar"
     "data data sidebar";
   min-height: 100vh;
+  background-color: #f3e3df;;
 }
 
 headerbar {
   grid-area: headerbar;
-  border: 3ch solid #5235359f; 
+  border: 3ch solid #545454; 
   border-width: 1px; 
   border-radius: 2px; 
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2); 
+  background-color: #545454;
+  color: #545454;
 }
 
 data {

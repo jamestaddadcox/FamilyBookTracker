@@ -17,7 +17,7 @@ export default {
 /* body {
   background-color: rgb(34, 193, 255);
   
-}
+
 
 
 html,
@@ -29,5 +29,5 @@ body,
   min-height: 500px;
   margin: 0;
   padding: 0;
-}
+*/
 </style>

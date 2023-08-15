@@ -95,7 +95,7 @@ public class JdbcPrizeDao implements PrizeDao {
     }
 
     @Override
-    public boolean editPrize(Prize updatedPrize) {
+    public boolean editPrize(Prize updatedPrize, int id) {
         String sql = "UPDATE prize SET family_id = ?, prize_name = ?, prize_description = ?, milestone = ?, " +
                      "user_group = ?, start_date = ?, end_date = ? WHERE prize_id ?";
 

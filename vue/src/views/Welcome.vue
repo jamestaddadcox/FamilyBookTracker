@@ -76,8 +76,8 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 100vh;
   padding-top: 1vh;
+  min-height: 100vh;
 }
 
 .header {
@@ -176,13 +176,16 @@ right-btn {
 
     .modal {
         font-family: "Dosis", san-serif;
-        background: #FFFFFF;
+        background: #f3e3df;
         box-shadow: 2px 2px 20px 1px;
         overflow-x: auto;
         display: flex;
         flex-direction: column;
+        
         border-radius: 5px;
         z-index: 5;
+        width: 20%; /* Adjust as needed */
+        max-height: 50vh; /* Adjust as needed */
     }
 
 
@@ -200,6 +203,7 @@ right-btn {
         justify-content: space-between;
         font-family: "Varela";
         font-weight: bold;
+        font-size: 20px;
         
     }
 
@@ -212,9 +216,28 @@ right-btn {
 
     .modal-body {
         position: relative;
-        padding: 20px 10px;
+        padding: 30px 50px;
         z-index: 5;
         font-family: "Varela ", san-serif;
+
+        
+    }
+
+    .username input,
+    .password input {
+         width: 80%; /* Adjust as needed */
+        padding: 10px; /* Adjust as needed */
+         font-size: 16px; /* Adjust as needed */
+         margin-bottom: 4px;
+}
+    
+    .password {
+        margin-top: 10px;
+    }
+
+    .username-password {
+        font-family: "Dosis";
+        font-size: 20px;
     }
 
     .btn-close {
