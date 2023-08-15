@@ -15,8 +15,8 @@ public interface UserDao {
 
    User getUserByUsername(String username); // /user/{username}
 
-    User createUser(RegisterUserDto user); // /user POST
-    User createChildUser(RegisterUserDto childUser); // /user POST
+    User createUser(RegisterUserDto user, int familyId); // /user POST
+    User createChildUser(RegisterUserDto childUser, int familyId); // /user POST
 
     boolean deactivateFamilyMember(int id); // /user/{id}
 

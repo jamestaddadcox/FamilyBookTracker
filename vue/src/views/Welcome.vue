@@ -172,6 +172,7 @@ right-btn {
         display: flex;
         justify-content: center;
         align-items: center;
+        z-index: 60;
     }
 
     .modal {

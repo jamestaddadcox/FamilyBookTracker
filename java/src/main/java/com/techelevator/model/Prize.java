@@ -9,13 +9,13 @@ public class Prize {
     private String description;
     private boolean milestone;
     private String userGroup;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     public Prize() {
 
     }
 
-    public Prize(int prizeId, int familyId, String name, String description, String userGroup, Date startDate) {
+    public Prize(int prizeId, int familyId, String name, String description, String userGroup, String startDate, String endDate) {
         this.prizeId = prizeId;
         this.familyId = familyId;
         this.name = name;
@@ -23,6 +23,7 @@ public class Prize {
         this.milestone = false;
         this.userGroup = userGroup;
         this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public int getPrizeId() {
@@ -73,19 +74,19 @@ public class Prize {
         this.userGroup = userGroup;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 }

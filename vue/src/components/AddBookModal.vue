@@ -31,7 +31,43 @@
             <div>author: {{book.author}}</div>
             <div>isbn: {{book.isbn}}</div>
             <div>{{book.description}}</div>
+            <button type="button" class="btn-green" v-show="!userDataFlag" @click="enterUserData">this looks right!</button>
+          </div>
+
+          <div id="enter-user-data" v-show="userDataFlag">
+            <div>
+            <label for="format">what format are you reading this book in?</label>
+            </div>
+            <div>
+            <select name="format" id="format-select" v-model="bookUser.format">
+              <option value="paper">paper</option>
+              <option value="digital">digital</option>
+              <option value="audio">audiobook</option>
+              <option value="readaloud-reader">read-aloud: reader</option>
+              <option value="readaloud-listener">read-aloud: listener</option>
+            </select>
+            </div>
+            <div>
+            <label for="completed">i have already finished this book</label>
+            <input type="checkbox" name="completed" id="completed" v-model="bookUser.completed">
+            </div>
+            <div>
+              <label for="pages-read"># of pages read:</label>
+              <input type="number" name="pages-read" id="pages-read" v-model="bookUser.pagesRead">
+            </div>
+            <div>
+              <label for="minutes-read">total reading time so far, in minutes:</label>
+              <input type="number" name="minutes-read" id="minutes-read" v-model="bookUser.minutesRead">
+            </div>
+            <div>
+              <label for="notes">notes:</label>
+            </div>
+            <div>
+              <textarea name="notes" id="notes" cols="30" rows="4" v-model="bookUser.notes"></textarea>
+            </div>
+
             <button type="button" class="btn-green" @click="addBook(book)">add book!</button>
+
           </div>
 
           <div id="enter-book-data" v-show="radioChoice === 'enter-data'">
@@ -66,12 +102,24 @@ export default {
           author: "",
           isbn: "",
           description: "",
+        },
+        bookUser: {
+          userId: "",
+          isbn: "",
+          minutesRead: "",
+          notes: "",
+          completed: false,
           format: "",
+          pagesRead: ""
+
         },
         authorKey: "",
         workKey: "",
         radioChoice: "",  // flags: isbn, enter-data, isbnDataReturned
+        userDataFlag: false
       };
+    },
+    computed: {
     },
     methods: {
       close() {
@@ -85,9 +133,21 @@ export default {
         this.book.author = "";
         this.book.isbn = "";
         this.book.description = "";
-        this.book.format = "";
         this.radioChoice = "";
+        this.bookUser.userId = "";
+        this.bookUser.isbn = "";
+        this.bookUser.minutesRead = "";
+        this.bookUser.notes = "";
+        this.bookUser.completed = "";
+        this.bookUser.format = "";
+        this.bookUser.pagesRead = "";
+        this.userDataFlag = false;
     },
+      enterUserData() {
+        this.userDataFlag = true;
+        this.bookUser.isbn = this.book.isbn;
+        this.bookUser.userId = this.$store.state.user.userId;
+      },
       isbnLookup(isbn) {
       bookInfoService.getBookInfoByIsbn(isbn)
       .then((result) => {
@@ -110,6 +170,7 @@ export default {
     },
     addBook(book) {
       bookService.addBook(book);
+      bookService.addBookForCurrentUser(this.bookUser);
       this.close();
     }
     },

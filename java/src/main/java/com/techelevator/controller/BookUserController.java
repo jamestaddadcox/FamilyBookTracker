@@ -64,7 +64,7 @@ public class BookUserController {
         return bookUserDao.getAllBookUserInfoByUserId(id);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole(')")
     @RequestMapping(path = "/stats/family/{id}", method = RequestMethod.GET)
     public List<BookUser> getAllBookUserInfoByFamilyId(@PathVariable Integer id) {
         return bookUserDao.getAllBookUserInfoByFamilyId(id);

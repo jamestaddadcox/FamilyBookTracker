@@ -19,8 +19,8 @@ public class JdbcFamilyDao implements FamilyDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcFamilyDao(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+    public JdbcFamilyDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
