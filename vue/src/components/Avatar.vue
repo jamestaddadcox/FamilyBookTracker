@@ -4,7 +4,7 @@
       <img
         id="avatar"
         v-if="currentUser.avatarUrl == null"
-        v-bind:src="
+        :src="
           'https://api.multiavatar.com/' + currentUser.username + '.png'
         "
         alt="avatar"

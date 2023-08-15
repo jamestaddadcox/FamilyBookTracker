@@ -71,7 +71,7 @@ export default {
       isUpdateAvatarModalVisible: false,
     };
   },
-  name: "sidebar-menu",
+  name: "side-bar-menu",
   components: {
     // FileUpload,
     UploadAvatarModal,
@@ -149,8 +149,7 @@ ul{
 }
 
 #avatar {
-  
-  
+
   justify-self: center;
   display: flex;
   outline: solid 3px black;

@@ -5,7 +5,7 @@
     </template>
 
     <template v-slot:content>
-      <family-book-cover-list></family-book-cover-list>
+      <family-book-display></family-book-display>
     </template>
 
     <template v-slot:sidebar>
@@ -21,7 +21,8 @@ import PageLayout from '../views/PageLayout.vue';
 import SideBarMenu from '../components/SideBarMenu.vue';
 import PageHeader from '../components/PageHeader.vue';
 //import BookCoverList from '../components/BookCoverList.vue';
-import FamilyBookCoverList from '../components/FamilyBookCoverList.vue';
+//import FamilyBookCoverList from '../components/FamilyBookCoverList.vue';
+import FamilyBookDisplay from '../components/FamilyBookDisplay.vue';
 
 
 export default {
@@ -31,7 +32,8 @@ export default {
     SideBarMenu,
     PageHeader,
     //BookCoverList,
-    FamilyBookCoverList,
+    //FamilyBookCoverList,
+    FamilyBookDisplay,
   },
 };
 </script>

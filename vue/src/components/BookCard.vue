@@ -48,7 +48,7 @@ export default {
       console.error("Error fetching book:", error);
     }
   },
-  methods: {
+  methods: { ///EDIT THIS TO HAVE Try
     getBookByIsbn(isbn) {
       return BookService.getBookByIsbn(isbn);
     },
