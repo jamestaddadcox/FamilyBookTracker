@@ -73,7 +73,7 @@ public class JdbcUserDaoTests extends BaseDaoTests {
         registerUserDto.setUsername(null);
         registerUserDto.setPassword(USER_3.getPassword());
         registerUserDto.setRole("ROLE_USER");
-        sut.createUser(registerUserDto);
+        sut.createUser(registerUserDto, 2);
     }
 
     @Test(expected = DaoException.class)
@@ -82,7 +82,7 @@ public class JdbcUserDaoTests extends BaseDaoTests {
         registerUserDto.setUsername(USER_1.getUsername());
         registerUserDto.setPassword(USER_3.getPassword());
         registerUserDto.setRole("ROLE_USER");
-        sut.createUser(registerUserDto);
+        sut.createUser(registerUserDto, 1);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -91,7 +91,7 @@ public class JdbcUserDaoTests extends BaseDaoTests {
         registerUserDto.setUsername(USER_3.getUsername());
         registerUserDto.setPassword(null);
         registerUserDto.setRole("ROLE_USER");
-        sut.createUser(registerUserDto);
+        sut.createUser(registerUserDto, 2);
     }
 
     @Test
@@ -100,7 +100,7 @@ public class JdbcUserDaoTests extends BaseDaoTests {
         user.setUsername("new");
         user.setPassword("user");
         user.setRole("ROLE_USER");
-        User createdUser = sut.createUser(user);
+        User createdUser = sut.createUser(user, 1);
 
         Assert.assertNotNull(createdUser);
 

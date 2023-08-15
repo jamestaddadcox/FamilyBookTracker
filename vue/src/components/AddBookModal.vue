@@ -141,6 +141,7 @@ export default {
         this.bookUser.completed = "";
         this.bookUser.format = "";
         this.bookUser.pagesRead = "";
+        this.userDataFlag = false;
     },
       enterUserData() {
         this.userDataFlag = true;
