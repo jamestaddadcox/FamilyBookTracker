@@ -22,7 +22,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {firstName: 'Bookworm'},
     modalFlag: false,
-    activeFamilyMemberId: 0,
+    activeFamilyMemberId: currentUser.username,
   },
 
   mutations: {
@@ -42,8 +42,8 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-    UPDATE_FAMILY_MEMBER_FILTER(state, userId){
-      state.activeFamilyMemberId = userId;
+    UPDATE_FAMILY_MEMBER_FILTER(state, username){
+      state.activeFamilyMemberId = username;
     }
     //CHANGE_MODAL_FLAG(state, modalFlag) {
     //  this.modalFlag = !this.modalFlag;

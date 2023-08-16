@@ -20,9 +20,10 @@
 import PageLayout from '../views/PageLayout.vue';
 import SideBarMenu from '../components/SideBarMenu.vue';
 import PageHeader from '../components/PageHeader.vue';
+import FamilyBookDisplay from '../components/FamilyBookDisplay.vue';
 //import BookCoverList from '../components/BookCoverList.vue';
 //import FamilyBookCoverList from '../components/FamilyBookCoverList.vue';
-import FamilyBookDisplay from '../components/FamilyBookDisplay.vue';
+
 
 
 export default {
@@ -31,9 +32,9 @@ export default {
     PageLayout,
     SideBarMenu,
     PageHeader,
+    FamilyBookDisplay,
     //BookCoverList,
     //FamilyBookCoverList,
-    FamilyBookDisplay,
   },
 };
 </script>

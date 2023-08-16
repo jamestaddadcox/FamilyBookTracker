@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="route-user" id="avatar-home" @click="goHome" title="Go Home">
+    <button class="route-user" id="avatar-home" @click="goHome, changeMemberFilter" title="Go Home">
       <img
         id="avatar"
         v-if="currentUser.avatarUrl == null"
@@ -25,9 +25,15 @@ export default {
     goHome() {
       this.$router.push("/");
     },
+   
   },
 };
 </script>
     
 <style>
+#avatar-home{
+  background: none;
+  border: none;
+  border-radius: 50%;
+}
 </style>
