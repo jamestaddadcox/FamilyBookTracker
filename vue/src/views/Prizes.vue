@@ -6,6 +6,7 @@
 
     <template v-slot:content>
         <prize-modal></prize-modal>
+        <edit-prize-modal></edit-prize-modal>
     </template>
 
     <template v-slot:sidebar>
@@ -21,7 +22,7 @@ import PageLayout from '../views/PageLayout.vue';
 import SideBarMenu from '../components/SideBarMenu.vue';
 import PageHeader from '../components/PageHeader.vue';
 import PrizeModal from '../components/PrizeModal.vue';
-
+import EditPrizeModal from '../components/EditPrizeModal.vue';
 
 export default {
   name: "prizes-view",
@@ -29,7 +30,8 @@ export default {
     PageLayout,
     SideBarMenu,
     PageHeader,
-    PrizeModal
+    PrizeModal,
+    EditPrizeModal
   },
 };
 </script>

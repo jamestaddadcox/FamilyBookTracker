@@ -26,9 +26,9 @@
             >Family Page</router-link
           >
         </li>
-        <li v-if="!$route.path.endsWith('/prizes')">
+        <li v-if="!$route.path.endsWith('/prize')">
           <router-link
-            v-bind:to="{ name: 'prizes' }"
+            v-bind:to="{ name: 'prize' }"
             v-if="$store.state.token != ''"
             >Prizes</router-link
           >

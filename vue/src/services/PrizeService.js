@@ -16,9 +16,11 @@ export default {
 
     addPrize(prize) {
         return axios.post('/prize', prize);
-    }
+    },
 
-    // edit prize
+    updatePrize(prize) {
+        return axios.put(`/prize/${prize.id}`, [prize]);
+    },
 
     // delete prize
 

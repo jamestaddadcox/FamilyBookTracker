@@ -1,11 +1,11 @@
 <template>
   <div>
-    <button @click="openModal">Add Prize</button>
+    <button @click="openModal">Edit Prize</button>
 
     <div class="bg-modal" v-show="isModalOpen">
-      <form @submit.prevent="addPrize">
+      <form @submit.prevent="editPrize">
         <div class="modal-content">
-          <h2>Add Prize</h2>
+          <h2>Edit Prize</h2>
           <div id="close" @click="closeModal">+</div>
           
         <div class="wrapper">
@@ -119,8 +119,23 @@ export default {
     selectedUserGroup: 'updateUserGroup',
   },
     methods: {
-        openModal() {
+        async openModal(prizeId) {
             this.isModalOpen = true;
+
+            const prizeData = await PrizeService.getPrizeById(prizeId);
+
+            this.selectedOption = prizeData.goal;
+            this.newPrize = { ...prizeData };
+            this.selectedUserGroup = prizeData.userGroup;
+        },
+
+        async editPrize() {
+            const updatedPrizeData = { ...this.newPrize };
+            
+            await PrizeService.updatePrize(this.newPrize.id, updatedPrizeData);
+            
+            this.resetModal();
+            this.closeModal();
         },
 
         closeModal() {
@@ -284,7 +299,3 @@ h2 {
   width: auto;
 }
 </style>
-
-
-
-
