@@ -1,8 +1,8 @@
 <template>
   <div class="page-layout">
-    <headerbar class="box"><slot name="headerbar"></slot></headerbar>
-    <data class="box"><slot name="content"></slot></data>
-    <sidebar class="box"><slot name="sidebar"></slot></sidebar>
+    <div class="box headerbar"><slot name="headerbar"></slot></div>
+    <div class="box content"><slot name="content"></slot></div>
+    <div class="box sidebar"><slot name="sidebar"></slot></div>
   </div>
 </template>
 
@@ -18,14 +18,14 @@ export default {
   grid-template-columns: 2fr 2fr 1fr;
   grid-template-rows: 200px 0.5fr;
   grid-template-areas:
-    "headerbar headerbar sidebar"
-    "data data sidebar";
+    "headerbar sidebar"
+    "data sidebar";
   min-height: 100vh;
   background-color: #f3e3df;;
   overflow: hidden;
 }
 
-headerbar {
+div.headerbar {
   grid-area: headerbar;
   
  
@@ -33,12 +33,12 @@ headerbar {
   color: #545454;
 }
 
-data {
+div.data {
   grid-area: data;
   
 }
 
-sidebar {
+div.sidebar {
   grid-area: sidebar;
   background-color: #af0000;
   padding: 0px;

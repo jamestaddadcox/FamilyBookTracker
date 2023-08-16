@@ -102,6 +102,7 @@ export default {
           author: "",
           isbn: "",
           description: "",
+          pages: "",
         },
         bookUser: {
           userId: "",
@@ -133,6 +134,7 @@ export default {
         this.book.author = "";
         this.book.isbn = "";
         this.book.description = "";
+        this.book.pages = "",
         this.radioChoice = "";
         this.bookUser.userId = "";
         this.bookUser.isbn = "";
@@ -152,8 +154,10 @@ export default {
       bookInfoService.getBookInfoByIsbn(isbn)
       .then((result) => {
       console.log(result.data.title);
-      this.radioChoice = "isbnDataReturned"
+      console.log(result.data.number_of_pages);
+      this.radioChoice = "isbnDataReturned";
       this.book.title = result.data.title;
+      this.book.pages = result.data.number_of_pages;
       this.authorKey = result.data.authors[0].key;
       this.workKey = result.data.works[0].key;
       this.book.isbn = isbn;

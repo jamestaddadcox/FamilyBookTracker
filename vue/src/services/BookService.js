@@ -25,5 +25,9 @@ export default {
 
     getAllBookUserInfoByFamilyId(familyId) {
         return axios.get(`/stats/family/${familyId}`);
+    },
+
+    updateBookUser(updatedBookUser, userId, isbn) {
+        return axios.put(`/stats/user/${userId}/book/${isbn}`, updatedBookUser);
     }
 }
