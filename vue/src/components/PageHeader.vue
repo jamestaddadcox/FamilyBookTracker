@@ -1,7 +1,7 @@
 <template>
   <div >
     <h1 class="top-banner" v-if="thisRoute.endsWith('/')">Hi, {{$store.state.user.firstName}}!</h1>
-    <h1 class="top-banner" v-if="thisRoute.endsWith('/family')">Group Id: {{$store.state.user.familyId}}</h1>
+    <h1 class="top-banner" v-if="thisRoute.endsWith('/family')">Group  {{$store.state.user.familyId}}</h1>
     <h1 class="top-banner" v-if="thisRoute.endsWith('prizes')">Prizes and Rewards</h1>
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
     thisRoute() {
       return this.$route.path;
     },
-
+    
   }
 }
 </script>

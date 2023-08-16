@@ -14,22 +14,9 @@ export default {
 </script>
 
 <style>
-/* body {
-  background-color: rgb(34, 193, 255);
-  
+button {
+  border-radius: 5px;
 }
-
-
-html,
-body,
-.container {
-  width: 100%;
-  height: 100%;
-  min-width: 500px;
-  min-height: 500px;
-  margin: 0;
-  padding: 0;
-}*/
 </style>
 
 

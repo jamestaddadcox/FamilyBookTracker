@@ -6,41 +6,41 @@
     <h2>WORM WAGON</h2>
     <!-- <file-upload></file-upload> -->
         <avatar></avatar>
-        <span><button 
-        class="change-avatar"  @Click="showUpdateAvatarModal">&plus;</button></span>
+        <!-- <span><button 
+        class="change-avatar"  @Click="showUpdateAvatarModal">&plus;</button></span> -->
         
   </div>
 
 
-    <upload-avatar-modal v-show="isUpdateAvatarModalVisible"
+    <!-- <upload-avatar-modal v-show="isUpdateAvatarModalVisible"
     @close="closeUpdateAvatarModal">
-    </upload-avatar-modal>
+    </upload-avatar-modal> -->
 
 
-    <menu class="link-list">
+    <!--<menu class="link-list">
       <ul class="active-sidebar-menu">
-        <li v-if="!$route.path.endsWith('/family')">
+        <li deactivate="!$route.path.endsWith('/family')">
           <router-link
             v-bind:to="{ name: 'family' }"
             v-if="$store.state.token != ''"
             >Family Page</router-link
           >
         </li>
-        <li v-if="!$route.path.endsWith('/prizes')">
+        <li deactivate="!$route.path.endsWith('/prizes')">
           <router-link
             v-bind:to="{ name: 'prizes' }"
             v-if="$store.state.token != ''"
             >Prizes</router-link
           >
         </li>
-        <li v-if="!$route.path.endsWith('/')">
+        <li deactivate="!$route.path.endsWith('/')">
           <router-link
             v-bind:to="{ name: 'home' }"
             v-if="$store.state.token != ''"
             >Home</router-link
           >
         </li>
-        <li v-if="!$route.path.endsWith('/settings')">
+        <li deactivate="!$route.path.endsWith('/settings')">
           <router-link
             v-bind:to="{ name: 'settings' }"
             v-if="$store.state.token != ''"
@@ -50,19 +50,55 @@
         <li>
           <router-link
             v-bind:to="{ name: 'logout' }"
-            v-if="$store.state.token != ''"
+            deactivate="$store.state.token != ''"
             >Log Out</router-link
           >
         </li>
       </ul>
+    </menu>-->
+        <menu class="link-list">
+      <ul class="active-sidebar-menu">
+        <li :class="{ active: $route.path.endsWith('/family') }">
+          <router-link
+            v-bind:to="{ name: 'family' }"
+            v-if="$store.state.token != ''"
+          >Family Page</router-link>
+        </li>
+        <li :class="{ active: $route.path.endsWith('/prizes') }">
+          <router-link
+            v-bind:to="{ name: 'prizes' }"
+            v-if="$store.state.token != ''"
+          >Prizes</router-link>
+        </li>
+        <li :class="{ active: $route.path.endsWith('/') }">
+          <router-link
+            v-bind:to="{ name: 'home' }"
+            v-if="$store.state.token != ''"
+          >Home</router-link>
+        </li>
+        <li :class="{ active: $route.path.endsWith('/settings') }">
+          <router-link
+            v-bind:to="{ name: 'settings' }"
+            v-if="$store.state.token != ''"
+          >Settings</router-link>
+        </li>
+        <li>
+          <router-link
+            v-bind:to="{ name: 'logout' }"
+            deactivate="$store.state.token != ''"
+          >Log Out</router-link>
+        </li>
+      </ul>
     </menu>
+
   </div>
 </template>
 
 <script>
 import Avatar from './Avatar.vue';
+
 // import FileUpload from "./FileUpload.vue";
-import UploadAvatarModal from './UploadAvatarModal.vue';
+// import UploadAvatarModal from './UploadAvatarModal.vue';
 
 
 export default {
@@ -71,11 +107,12 @@ export default {
       isUpdateAvatarModalVisible: false,
     };
   },
-  name: "sidebar-menu",
+  name: "side-bar-menu",
   components: {
     // FileUpload,
-    UploadAvatarModal,
+    // UploadAvatarModal,
     Avatar,
+  
   },
   computed: {
     currentUser() {
@@ -110,7 +147,7 @@ ul{
   padding-top: 0;
   padding-bottom: 0;
   margin-right: 0px;
-  position: sticky;
+  /* position: sticky; */
   width: 100%;
 }
 
@@ -121,13 +158,17 @@ ul{
 
 .sidebar ul li {
   padding: 7px 0;
-  background-color: rgba(255, 255, 0, 0.6);
+  background-color: rgba(13, 0, 255, 0.6);
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   margin: 10px 0;
   border: 3ch solid #5235359f;
   border-width: 1px;
   box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.2); 
+}
+
+menu.linked-list{
+  position: sticky;
 }
 
 .sidebar ul li a {
@@ -149,8 +190,7 @@ ul{
 }
 
 #avatar {
-  
-  
+
   justify-self: center;
   display: flex;
   outline: solid 3px black;
@@ -170,6 +210,12 @@ ul{
   align-items: center;
   justify-content: center;
   justify-self: center;
+}
+
+.active {
+  background-color: rgb(26, 121, 245);
+  border-radius: 30px 0 0 30px;
+
 }
 
 </style>

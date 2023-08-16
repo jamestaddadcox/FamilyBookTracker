@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+@CrossOrigin
 @PreAuthorize("isAuthenticated()")
 @RestController
 public class UserController {

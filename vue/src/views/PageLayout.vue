@@ -1,8 +1,8 @@
 <template>
   <div class="page-layout">
-    <headerbar class="box"><slot name="headerbar"></slot></headerbar>
-    <data class="box"><slot name="content"></slot></data>
-    <sidebar class="box"><slot name="sidebar"></slot></sidebar>
+    <div class="box headerbar"><slot name="headerbar"></slot></div>
+    <div class="box content"><slot name="content"></slot></div>
+    <div class="box sidebar"><slot name="sidebar"></slot></div>
   </div>
 </template>
 
@@ -15,15 +15,15 @@ export default {
 <style scoped>
 .page-layout {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-columns: 2fr 210px;
   grid-template-rows: 150px 1fr;
   grid-template-areas:
-    "headerbar headerbar sidebar"
-    "data data sidebar";
+    "headerbar sidebar"
+    "data sidebar";
   min-height: 100vh;
 }
 
-headerbar {
+div.headerbar {
   grid-area: headerbar;
   border: 3ch solid #5235359f; 
   border-width: 1px; 
@@ -31,11 +31,11 @@ headerbar {
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2); 
 }
 
-data {
+div.data {
   grid-area: data;
 }
 
-sidebar {
+div.sidebar {
   grid-area: sidebar;
   background-color: #f4f4f4;
   padding: 0px;
@@ -46,7 +46,8 @@ sidebar {
   border: 3ch solid #5235359f; /* Border color of the section */
   border-width: 1px; /* beveled effect */
   border-radius: 2px; /*rounded corners */
-  box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.2); 
+  box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: palevioletred; 
   
   
 }

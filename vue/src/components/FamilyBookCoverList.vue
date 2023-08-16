@@ -1,15 +1,16 @@
 <template>
   <div class="book-section">
-    <!-- <span class="card"><button class="add" @click="showAddBookModal">
-      ADD A BOOK
-    </button>
-    </span> -->
     <book-card
       class="card"
       v-for="bookuser in bookUsersInFamily"
       :key="`${bookuser.isbn}-${bookuser.userId}`"
       :bookuser="bookuser"
     ></book-card>
+    
+    <!-- <span class="card"><button class="add" @click="showAddBookModal">
+      ADD A BOOK
+    </button>
+    </span> -->
 
     <!-- <add-book-modal v-show="isAddBookModalVisible" @close="closeAddBookModal">
     </add-book-modal> -->
@@ -30,8 +31,8 @@ export default {
   data() {
     return {
         familymembers: [], //id's of all the users with the same family id.
-        bookUsersInFamily: [],
-    //   isAddBookModalVisible: false,
+        bookUsersInFamily: [], 
+        //   isAddBookModalVisible: false,
     };
   },
   
