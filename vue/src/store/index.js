@@ -22,8 +22,12 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || { firstName: 'Bookworm' },
     modalFlag: false,
+<<<<<<< HEAD
     familyId: currentUser ? currentUser.family_id : null, // Add familyId here
     // bookUser: [{userId: 1, isbn: 9780194229647},{userId: 1, isbn: 9783423092449}]
+=======
+    activeFamilyMemberId: currentUser.username,
+>>>>>>> 6a3caad177736e6662b477c1ab63206f576bdf08
   },
 
   mutations: {
@@ -45,7 +49,13 @@ export default new Vuex.Store({
       state.familyId = null; // Reset familyId on logout
       axios.defaults.headers.common = {};
     },
+<<<<<<< HEAD
 
+=======
+    UPDATE_FAMILY_MEMBER_FILTER(state, username){
+      state.activeFamilyMemberId = username;
+    }
+>>>>>>> 6a3caad177736e6662b477c1ab63206f576bdf08
     //CHANGE_MODAL_FLAG(state, modalFlag) {
     //  this.modalFlag = !this.modalFlag;
     //}

@@ -6,7 +6,7 @@ public class Book {
     private String title;
     private String author;
     private String description;
-    private String format;
+//    private String format;
     private int pages;
 
     public Book(String isbn, String title, String author, String description, String format, int pages) {
@@ -14,7 +14,7 @@ public class Book {
         this.title = title;
         this.author = author;
         this.description = description;
-        this.format = format;
+//        this.format = format;
         this.pages = pages;
     }
 
@@ -52,19 +52,19 @@ public class Book {
         this.description = description;
     }
 
-    public String getFormat() {
-        return format;
-    }
+//    public String getFormat() {
+//        return format;
+//    }
 
-    public void setFormat(String format) {
-        this.format = format;
-    }
+//    public void setFormat(String format) {
+//        this.format = format;
+//    }
 
     public int getPages() {
         return pages;
     }
 
     public void setPages(int pages) {
-        this.pages = this.pages;
+        this.pages = pages;
     }
 }

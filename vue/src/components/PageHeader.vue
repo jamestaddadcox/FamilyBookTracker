@@ -15,7 +15,7 @@ export default {
     thisRoute() {
       return this.$route.path;
     },
-
+    
   }
 }
 </script>
