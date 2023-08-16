@@ -120,7 +120,7 @@ h3 {
 }
 
 .button-container {
-   display: flex;
+  display: flex;
   justify-content: space-between;
   position: absolute;
   bottom: 20px;

@@ -50,7 +50,7 @@
               <textarea name="notes" id="notes" cols="30" rows="4" v-model="updatedBookUser.notes"></textarea>
             </div>
 
-            <button type="button" class="btn-green" @click="updateBookUser(updatedBookUser)">update book!</button>
+            <button type="button" class="btn-green" @click="updateBookUser">update book!</button>
 
           </div>
         
@@ -66,18 +66,21 @@
 import bookService from '../services/BookService.js';
 
 export default {
-    name: "AddBookModal",
-    props: ["book", "bookUser"],
+    name: "EditBookModal",
+    props: { 
+      book : Object,
+      bookuser : Object,
+    },
     data() {
       return {
           updatedBookUser: {
-            userId: this.bookUser.userId,
-            isbn: this.bookUser.isbn,
-            minutesRead: this.bookUser.minutesRead,
-            notes: this.bookUser.notes,
-            completed: this.bookUser.completed,
-            format: this.bookUser.format,
-            pagesRead: this.bookUser.pagesRead,
+            userId: this.bookuser.userId,
+            isbn: this.bookuser.isbn,
+            minutesRead: this.bookuser.minutesRead,
+            notes: this.bookuser.notes,
+            completed: this.bookuser.completed,
+            format: this.bookuser.format,
+            pagesRead: this.bookuser.pagesRead,
           },
         };
 
@@ -91,16 +94,16 @@ export default {
       this.$emit("close");
     },
       clearForm() {
-        this.updatedBookUser.userId = this.bookUser.userId;
-        this.updatedBookUser.isbn = this.bookUser.isbn;
-        this.updatedBookUser.minutesRead = this.bookUser.minutesRead;
-        this.updatedBookUser.notes = this.bookUser.notes;
-        this.updatedBookUser.completed = this.bookUser.completed;
-        this.updatedBookUser.format = this.bookUser.format;
-        this.updatedBookUser.pagesRead = this.bookUser.pagesRead;
+        this.updatedBookUser.userId = this.bookuser.userId;
+        this.updatedBookUser.isbn = this.bookuser.isbn;
+        this.updatedBookUser.minutesRead = this.bookuser.minutesRead;
+        this.updatedBookUser.notes = this.bookuser.notes;
+        this.updatedBookUser.completed = this.bookuser.completed;
+        this.updatedBookUser.format = this.bookuser.format;
+        this.updatedBookUser.pagesRead = this.bookuser.pagesRead;
     },
-    updateBookUser(updatedBookUser) {
-      bookService.updateBookUser(updatedBookUser);
+    updateBookUser() {
+      bookService.updateBookUser(this.updatedBookUser, this.bookuser.userId, this.bookuser.isbn);
       this.close();
     }
     },

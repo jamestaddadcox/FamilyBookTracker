@@ -1,7 +1,7 @@
 <template>
   <div class="book-card card">
     <div id="isbn-box" class="box"><h5 class="card-isbn">isbn: {{ book.isbn }}</h5></div>
-    <button id="cover-box" class="box" @click="showEditBookModal">
+    <button id="cover-box" class="box" @click="isEditBookModalVisible=true">
       <!-- <img class="blank-image" src="../assets/noImageFound.png"> -->
       <img
         class="cover-image"
@@ -25,9 +25,7 @@
         {{ bookuser.pagesRead }} of {{ book.pages }} pages
       </h5>
     </div>
-    <div id="timer-box" class="box">
-    <button class="timer">Start Reading Clock</button></div>
-    <edit-book-modal v-show="isEditBookModalVisible" @close="closeEditBookModal"></edit-book-modal>
+    <edit-book-modal v-show="isEditBookModalVisible" @close="closeEditBookModal" v-bind:book="book" v-bind:bookuser="bookuser"></edit-book-modal>
   </div>
 </template>
 
