@@ -96,13 +96,14 @@ public class JdbcBookUserDao implements BookUserDao {
 
     @Override
     public BookUser addBookToUserList(BookUser bookUser) {
+        BookUser newBookUser = null;
         String sql = "INSERT INTO book_user (user_id, isbn, minutes_read, format, notes, completed, pages_read) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?) " +
                 "ON CONFLICT (user_id, isbn) DO NOTHING " +
                 "RETURNING user_id, isbn";
 
         try {
-            BookUser newBookUser = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(BookUser.class),
+            newBookUser = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(BookUser.class),
                     bookUser.getUserId(),
                     bookUser.getIsbn(),
                     bookUser.getMinutesRead(),
@@ -110,12 +111,13 @@ public class JdbcBookUserDao implements BookUserDao {
                     bookUser.getNotes(),
                     bookUser.isCompleted(),
                     bookUser.getPagesRead());
-            return newBookUser;
+
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
             throw new DaoException("Data integrity violation", e);
         }
+        return newBookUser;
     }
 
     @Override

@@ -40,13 +40,12 @@ public class JdbcBookDao implements BookDao {
     public Book createBook(Book book) {
         String sql = "INSERT INTO book (isbn, title, author, book_description, pages)" +
                 "VALUES (?, ?, ?, ?, ?) " +
-                "ON CONFLICT (isbn) DO NOTHING" +
-                "       RETURNING isbn;";
+                "ON CONFLICT (isbn) DO NOTHING;";
 
         try {
-            String bookISBN = jdbcTemplate.queryForObject(sql, String.class, book.getIsbn(), book.getTitle(), book.getAuthor(), book.getDescription(), book.getPages());
+            jdbcTemplate.update(sql, book.getIsbn(), book.getTitle(), book.getAuthor(), book.getDescription(), book.getPages());
 
-            return getBookByIsbn(bookISBN);
+            return getBookByIsbn(book.getIsbn());
 
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);

@@ -66,7 +66,7 @@
               <textarea name="notes" id="notes" cols="30" rows="4" v-model="bookUser.notes"></textarea>
             </div>
 
-            <button type="button" class="btn-green" @click="addBook(book)">add book!</button>
+            <button type="button" class="btn-green" @click="addBook">add book!</button>
 
           </div>
 
@@ -172,12 +172,19 @@ export default {
       })
       });
     },
-    addBook(book) {
-      bookService.addBook(book);
-      bookService.addBookForCurrentUser(this.bookUser);
+    addBook() {
+  bookService.addBook(this.book)
+    .then(() => {
+      return bookService.addBookForCurrentUser(this.bookUser);
+    })
+    .then(() => {
       this.close();
-    }
-    },
+    })
+    .catch((error) => {
+      console.log("You got an error, bud. " + error);
+    });
+  }
+  },
 
 
 }
