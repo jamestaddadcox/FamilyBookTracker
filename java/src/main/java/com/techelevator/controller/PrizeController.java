@@ -62,7 +62,7 @@ public class PrizeController {
         if (existingPrize == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Prize information not found");
         } else {
-            return prizeDao.editPrize(prize);
+            return prizeDao.editPrize(prize, id);
         }
     }
     @PreAuthorize("hasRole('ADMIN')")

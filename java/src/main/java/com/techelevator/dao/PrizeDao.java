@@ -10,5 +10,5 @@ public interface PrizeDao {
     List<Prize> getPrizesByWinnerUserId(int userId); // /prize/user/{id}
     Prize createPrize(Prize newPrize); // /prize POST
     boolean deletePrizeById(int prizeId); // /prize/{id} DELETE
-    boolean editPrize(Prize updatedPrize); // /prize/{id} PUT
+    boolean editPrize(Prize updatedPrize, int prizeId); // /prize/{id} PUT
 }
