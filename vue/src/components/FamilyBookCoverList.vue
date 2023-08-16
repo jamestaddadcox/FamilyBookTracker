@@ -2,11 +2,11 @@
   <div class="book-section">
     <book-card
       class="card"
-      v-for="bookuser in bookUsersInFamily"
+      v-for="bookuser in filteredBookUsers"
       :key="`${bookuser.isbn}-${bookuser.userId}`"
       :bookuser="bookuser"
     ></book-card>
-    
+
     <!-- <span class="card"><button class="add" @click="showAddBookModal">
       ADD A BOOK
     </button>
@@ -30,43 +30,27 @@ export default {
   },
   data() {
     return {
-        familymembers: [], //id's of all the users with the same family id.
-        bookUsersInFamily: [], 
-        //   isAddBookModalVisible: false,
+      bookUsersInFamily: [],
+      //   isAddBookModalVisible: false,
     };
   },
-  
-  
-   async created() {
-    // try {
-    //     this.familymembers = await (await UserService.getListOfFamilyMembers(this.$store.state.user.familyId)).data;
-    //     console.log(this.familymembers);
-    // } catch (error) {
-    //     console.error("Error fetching books:", error);
-    // }
+  computed: {
+    filteredBookUsers() {
+      const activeFamilyMemberId = this.$store.state.activeFamilyMemberId;
 
-    try{
-        this.bookUsersInFamily = await (await BookService.getAllBookUserInfoByFamilyId(this.$store.state.user.familyId)).data;
-    } catch (error) {
-        console.error("Error fetching book-user stats", error);
-    }
+      return this.bookUsersInFamily.filter(familyBookUser => familyBookUser.userId == activeFamilyMemberId);
+    },
 
-    // try {
-    //   this.bookUsers = await (await BookService.getBookUsersByUserId(this.$store.state.user.userId)).data; //HARDCODED
-    //   console.log(this.bookUsers);
-    // } catch (error) {
-    //   console.error("Error fetching books:", error);
-    // }
+    currentUser() {
+      return this.$store.state.user;
+    },
   },
-  methods: {
-    // showAddBookModal() {
-    //   this.isAddBookModalVisible = true;
-    // },
-    // closeAddBookModal() {
-    //   this.isAddBookModalVisible = false;
-    // },
-  },
-};
+  async created() {
+    this.bookUsersInFamily = (await BookService.getAllBookUserInfoByFamilyId(this.currentUser.familyId)).data;
+  }
+  
+  }
+
 </script>
 
 <style scoped>
@@ -74,13 +58,12 @@ export default {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  
-height: 100%;
-padding: 0;
-padding-right: 20px;
-flex-grow: 1f;
-align-content: left;
-  
+
+  height: 100%;
+  padding: 0;
+  padding-right: 20px;
+  flex-grow: 1f;
+  align-content: left;
 }
 .card {
   background-color: rgb(200, 240, 227);
@@ -98,6 +81,6 @@ align-content: left;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  padding: 10px; 
+  padding: 10px;
 }
 </style>

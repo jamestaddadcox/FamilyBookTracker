@@ -44,7 +44,7 @@ export default {
   },
   async created() {
     try {
-      this.familyMembersIds = await UserService.getListOfFamilyMembers(1)
+      this.familyMembersIds = await UserService.getListOfFamilyMembers(this.$store)
        
       .data.then
         console.log(this.familyMembersIds);      
