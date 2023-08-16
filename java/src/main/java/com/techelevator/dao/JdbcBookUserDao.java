@@ -44,7 +44,7 @@ public class JdbcBookUserDao implements BookUserDao {
                 "WHERE user_id = ? AND isbn = ?;";
 
         try {
-            jdbcTemplate.update(sql, bookUser.getIsbn(), bookUser.getMinutesRead(), bookUser.getFormat(), bookUser.getNotes(), bookUser.isCompleted(), bookUser.getUserId(), bookUser.getIsbn(), bookUser.getPagesRead());
+            jdbcTemplate.update(sql, bookUser.getIsbn(), bookUser.getMinutesRead(), bookUser.getFormat(), bookUser.getNotes(), bookUser.isCompleted(), bookUser.getPagesRead(), bookUser.getUserId(), bookUser.getIsbn());
 
             return getBookUserInfoByUserIdAndIsbn(bookUser.getUserId(), bookUser.getIsbn());
         } catch (CannotGetJdbcConnectionException e) {

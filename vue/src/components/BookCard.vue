@@ -1,7 +1,7 @@
 <template>
   <div class="book-card card">
     <div id="isbn-box" class="box"><h5 class="card-isbn">isbn: {{ book.isbn }}</h5></div>
-    <button id="cover-box" class="box">
+    <button id="cover-box" class="box" @click="isEditBookModalVisible=true">
       <!-- <img class="blank-image" src="../assets/noImageFound.png"> -->
       <img
         class="cover-image"
@@ -25,19 +25,24 @@
         {{ bookuser.pagesRead }} of {{ book.pages }} pages
       </h5>
     </div>
-    <div id="timer-box" class="box">
-    <button class="timer">Start Reading Clock</button></div>
+    <edit-book-modal v-show="isEditBookModalVisible" @close="closeEditBookModal" v-bind:book="book" v-bind:bookuser="bookuser"></edit-book-modal>
   </div>
 </template>
 
 <script>
 import BookService from "../services/BookService";
+import EditBookModal from './EditBookModal.vue';
+
 export default {
+  components: {
+    EditBookModal,
+  },
   name: "BookCard",
   props: ["bookuser"],
   data() {
     return {
       book: {},
+      isEditBookModalVisible: false,
     };
   },
   async created() {
@@ -51,6 +56,12 @@ export default {
   methods: { ///EDIT THIS TO HAVE Try
     getBookByIsbn(isbn) {
       return BookService.getBookByIsbn(isbn);
+    },
+    showEditBookModal() {
+      this.isEditBookModalVisible = true;
+    },
+    closeEditBookModal() {
+      this.isEditBookModalVisible = false;
     },
   },
   computed: {
