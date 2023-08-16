@@ -11,51 +11,6 @@
         
   </div>
 
-
-    <!-- <upload-avatar-modal v-show="isUpdateAvatarModalVisible"
-    @close="closeUpdateAvatarModal">
-    </upload-avatar-modal> -->
-
-
-    <!--<menu class="link-list">
-      <ul class="active-sidebar-menu">
-        <li deactivate="!$route.path.endsWith('/family')">
-          <router-link
-            v-bind:to="{ name: 'family' }"
-            v-if="$store.state.token != ''"
-            >Family</router-link
-          >
-        </li>
-        <li v-if="!$route.path.endsWith('/prize')">
-          <router-link
-            v-bind:to="{ name: 'prize' }"
-            v-if="$store.state.token != ''"
-            >Prizes</router-link
-          >
-        </li>
-        <li deactivate="!$route.path.endsWith('/')">
-          <router-link
-            v-bind:to="{ name: 'home' }"
-            v-if="$store.state.token != ''"
-            >Home</router-link
-          >
-        </li>
-        <li deactivate="!$route.path.endsWith('/settings')">
-          <router-link
-            v-bind:to="{ name: 'settings' }"
-            v-if="$store.state.token != ''"
-            >Settings</router-link
-          >
-        </li>
-        <li>
-          <router-link
-            v-bind:to="{ name: 'logout' }"
-            deactivate="$store.state.token != ''"
-            >Log Out</router-link
-          >
-        </li>
-      </ul>
-    </menu>-->
         <menu class="link-list">
       <ul class="active-sidebar-menu">
         <li :class="{ active: $route.path.endsWith('/family') }">
@@ -64,9 +19,9 @@
             v-if="$store.state.token != ''"
           >Family Page</router-link>
         </li>
-        <li :class="{ active: $route.path.endsWith('/prizes') }">
+        <li :class="{ active: $route.path.endsWith('/prize') }">
           <router-link
-            v-bind:to="{ name: 'prizes' }"
+            v-bind:to="{ name: 'prize' }"
             v-if="$store.state.token != ''"
           >Prizes</router-link>
         </li>
@@ -149,11 +104,11 @@ ul{
   padding-top: 0;
   padding-bottom: 0;
   margin-right: 0px;
-<<<<<<< HEAD
+
   position:sticky;
-=======
+
   /* position: sticky; */
->>>>>>> 6a3caad177736e6662b477c1ab63206f576bdf08
+
   width: 100%;
 
 }
@@ -165,11 +120,10 @@ ul{
 
 .sidebar ul li {
   padding: 7px 0;
-<<<<<<< HEAD
+
   background-color: #ffc5e8;
-=======
+
   background-color: rgba(13, 0, 255, 0.6);
->>>>>>> 6a3caad177736e6662b477c1ab63206f576bdf08
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   margin: 10px 0;
@@ -203,12 +157,8 @@ menu.linked-list{
 }
 
 #avatar {
-<<<<<<< HEAD
-  
-  margin-top: 5px;
-=======
 
->>>>>>> 6a3caad177736e6662b477c1ab63206f576bdf08
+  margin-top: 5px;
   justify-self: center;
   display: flex;
   outline: solid 3px black;

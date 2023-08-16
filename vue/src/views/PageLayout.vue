@@ -46,7 +46,13 @@ div.sidebar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
+
+  border: 3ch solid #5235359f; /* Border color of the section */
+  border-width: 1px; /* beveled effect */
+  border-radius: 2px; /*rounded corners */
+  box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: palevioletred; 
+
   
   
 }
