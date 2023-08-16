@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="openModal">Add Prize</button>
+    <button class="add-prize" @click="openModal">Add Prize</button>
 
     <div class="bg-modal" v-show="isModalOpen">
       <form @submit.prevent="addPrize">
@@ -11,22 +11,22 @@
         <div class="wrapper">
           <div class="radio-button">
             <div class="option">
-              <input type="radio" name="count-option" id="number-of-books" v-model="selectedOption" value="books">
+              <input type="radio" name="count-option" id="number-of-books" v-model="newPrize.goalType" value="books">
               <label for="number-of-books">Number of Books Finished</label> <br>
             </div>
             <div class="option">
-              <input type="radio" name="count-option" id="number-of-pages" v-model="selectedOption" value="pages">
+              <input type="radio" name="count-option" id="number-of-pages" v-model="newPrize.goalType" value="pages">
               <label for="number-of-pages">Number of Pages Read</label> <br>
             </div>
             <div class="option">
-              <input type="radio" name="count-option" id="amount-of-time" v-model="selectedOption" value="time">
+              <input type="radio" name="count-option" id="amount-of-time" v-model="newPrize.goalType" value="time">
               <label for="amount-of-time">Amount of Time</label> <br>
             </div>
           </div>
         </div>
 
           <div class="input-prize">
-            <div class="popup-book" v-if="selectedOption === 'books'">
+            <div class="popup-book" v-if="newPrize.goalType === 'books'">
               <label for="book-dropdown">Select Number of Books:</label>
               <select name="dropdown" id="book-dropdown" v-model="newPrize.goal">
                 <option value="1">1</option>
@@ -37,12 +37,12 @@
               </select>
             </div>
 
-            <div class="popup-pages" v-if="selectedOption === 'pages'">
+            <div class="popup-pages" v-if="newPrize.goalType === 'pages'">
                 <label for="number-of-pages-prize">Number of Pages:</label>
                 <input type="text" name="number-of-pages-prize" id="number-of-pages" maxlength="5" integer v-model="newPrize.goal">
             </div>
 
-           <div class="popup-time" v-if="selectedOption === 'time'">
+           <div class="popup-time" v-if="newPrize.goalType === 'time'">
                 <label for="datetime">Time:</label> <br>
                 <input type="text" name="datetime" id="amount-of-time" placeholder="Minutes" integer v-model="newPrize.goal">
             </div>
@@ -110,12 +110,15 @@ export default {
         "startDate": '',
         "userGroup": '',
         "endDate": '',
-        "goal": ''
+        "goal": '',
+        "goalType": ''
+        
       }
     };
   },
   watch: {
     selectedUserGroup: 'updateUserGroup',
+    selectedOption: 'updatedSelectedOption'
   },
     methods: {
         openModal() {
@@ -142,17 +145,22 @@ export default {
            this.newPrize.userGroup = this.selectedUserGroup;
         },
 
+        updateSelectedOption() {
+          this.newPrize.goalType = this.selectedOption;
+        },
+
         addPrize() {
+          this.newPrize.familyId = this.$store.state.user.familyId;
             PrizeService.addPrize(this.newPrize)
-            .then(() => {
+            .then((response) => {
+              response.data;
+            this.resetModal();
             this.closeModal();
-          })
-          .catch(error => {
-          console.error('Error adding prize:', error);
-        });
+
+            })
       }   
     },
-}  
+  } 
 </script>
 
 <style scoped>
@@ -284,6 +292,23 @@ h2 {
 }
 .popup-book select {
   width: auto;
+}
+
+.add-prize {
+
+  background-color: #545454;
+  border: 3px solid #545454;
+  border-radius: 10px;
+  height: 100px;
+  margin-top: 46px;
+  margin-left: 62px;
+  padding: auto;
+  align-items: center;
+  width: 15vw;
+  margin-left: 1160px;
+  font-family: "Dosis";
+  color: white;
+  font-size: 50px;
 }
 </style>
 

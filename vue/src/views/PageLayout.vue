@@ -16,7 +16,7 @@ export default {
 .page-layout {
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
-  grid-template-rows: 150px 1fr;
+  grid-template-rows: 200px 1fr;
   grid-template-areas:
     "headerbar headerbar sidebar"
     "data data sidebar";

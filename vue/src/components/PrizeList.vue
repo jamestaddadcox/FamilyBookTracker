@@ -3,10 +3,11 @@
   
     <prize-box
     class="prize-box"
-    v-for="prize in prizes"
+    v-for="prize in sortedPrizes"
     :key="prize.prizeId"
     :prize="prize"
     @toggle-milestone="updateMilestone"
+    
     ></prize-box>
     
     
@@ -26,14 +27,14 @@ export default {
   },
   data() {
     return {
-      prizes: {},
+      prizes: [],
       isPrizeModalVisible: false,
     };
   },
   created() {
     try {
         PrizeService
-            .getPrizesByFamilyId(1)
+            .getPrizesByFamilyId(this.$store.state.user.familyId)
             .then((response) => { 
                 this.prizes = response.data
             }); // hardcode store.state.familyId
@@ -42,6 +43,7 @@ export default {
     }
   },
   methods: {
+   
     showPrizeModal() {
       this.isPrizeModalVisible = true;
     },
@@ -52,6 +54,12 @@ export default {
       this.prize.milestone = newMilestoneValue;
     }
   },
+  computed: {
+    sortedPrizes(){
+      let sortArray = this.prizes;
+      return sortArray.sort((a,b) => a.milestone - b.milestone);
+    }
+  }
 };
 </script>
 
@@ -65,9 +73,9 @@ export default {
 .prize-box {
 
   background-color: rgb(200, 240, 227);
-  border: 3px solid purple;
+  border: 3px solid #545454;
   border-radius: 10px;
-  height: 350px;
+  height: 200px;
   margin-top: 200px;
   margin-left: 20px;
   padding: auto;

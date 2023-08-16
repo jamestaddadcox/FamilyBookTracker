@@ -26,9 +26,9 @@
             >Family</router-link
           >
         </li>
-        <li v-if="!$route.path.endsWith('/prizes')">
+        <li v-if="!$route.path.endsWith('/prize')">
           <router-link
-            v-bind:to="{ name: 'prizes' }"
+            v-bind:to="{ name: 'prize' }"
             v-if="$store.state.token != ''"
             >Prizes</router-link
           >
@@ -105,7 +105,7 @@ ul{
   flex-direction: column;
 }
 .sidebar {
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: #ff66c4;
@@ -115,6 +115,8 @@ ul{
   margin-right: 0px;
   position: sticky;
   width: 100%;
+  
+
 }
 
 .sidebar ul {
@@ -137,12 +139,12 @@ ul{
 
 .sidebar ul li a {
   text-decoration: none;
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: #545454;
   width: 70%;
   margin: 0 auto;
   display: block;
-  border-radius: 40px 0 0 40px;
+  border-radius: 60px;
   padding: 10px 10px;
   position: sticky;
 }
