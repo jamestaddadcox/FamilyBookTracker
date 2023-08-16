@@ -103,9 +103,7 @@ headerbar {
 headerbar {
   background-color: #ff5757;
 }  
-.sidebar-wrapper {
-  overflow-y: auto;
-}
+
 
 
 

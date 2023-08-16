@@ -99,13 +99,12 @@ menu{
 }
 
 
-
 ul{
   display: flex;
   flex-direction: column;
 }
 .sidebar {
-  height: 100vh;
+  height: 110vh;
   display: flex;
   flex-direction: column;
   background-color: #ff66c4;
@@ -113,9 +112,8 @@ ul{
   padding-top: 0;
   padding-bottom: 0;
   margin-right: 0px;
-  position: sticky;
+  position:sticky;
   width: 100%;
-  
 
 }
 

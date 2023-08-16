@@ -14,6 +14,10 @@ export default {
 </script>
 
 <style>
+
+body {
+  overflow: hidden;
+}
 /* body {
   background-color: rgb(34, 193, 255);
   
