@@ -1,8 +1,8 @@
 <template>
   <div >
     <h1 class="top-banner" v-if="thisRoute.endsWith('/')">Hi, {{$store.state.user.firstName}}!</h1>
-    <h1 class="top-banner" v-if="thisRoute.endsWith('/family')">Group  {{$store.state.user.familyId}}</h1>
-    <h1 class="top-banner" v-if="thisRoute.endsWith('prizes')">Prizes and Rewards</h1>
+    <h1 class="top-banner" v-if="thisRoute.endsWith('/family')">Group Id: {{$store.state.user.familyId}}</h1>
+    <h1 class="top-banner" v-if="thisRoute.endsWith('prize')">PRIZES</h1>
   </div>
 </template>
 
@@ -26,16 +26,18 @@ export default {
   }
   
   h1 {
-    font-size: 72px;
+    font-size: 100px;
+    font-family: "Limelight";
+    text-align: center;
   }
 
   div {
     display: flex;
     flex-direction: column;
-    background-color: rgb(87, 149, 59);
+    background-color: #ff5757;
     justify-content: center;
-    height: 100%;
-    max-height: 250px;
+    height: 200px;
+    max-height: 300px;
     padding: 0px;
   }
 

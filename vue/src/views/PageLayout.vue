@@ -15,39 +15,44 @@ export default {
 <style scoped>
 .page-layout {
   display: grid;
-  grid-template-columns: 2fr 210px;
-  grid-template-rows: 150px 1fr;
+  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-rows: 200px 0.5fr;
   grid-template-areas:
     "headerbar sidebar"
     "data sidebar";
   min-height: 100vh;
+  background-color: #f3e3df;;
+  overflow: hidden;
 }
 
 div.headerbar {
   grid-area: headerbar;
-  border: 3ch solid #5235359f; 
-  border-width: 1px; 
-  border-radius: 2px; 
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2); 
+  
+ 
+  background-color: #ff5757;
+  color: #545454;
 }
 
 div.data {
   grid-area: data;
+  
 }
 
 div.sidebar {
   grid-area: sidebar;
-  background-color: #f4f4f4;
+  background-color: #af0000;
   padding: 0px;
-  border-left: 4px solid #4d2323b6;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   border: 3ch solid #5235359f; /* Border color of the section */
   border-width: 1px; /* beveled effect */
   border-radius: 2px; /*rounded corners */
   box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.2);
   background-color: palevioletred; 
+
   
   
 }

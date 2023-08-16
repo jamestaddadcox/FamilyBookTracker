@@ -3,7 +3,7 @@
 
     
   <div id="sidebar-avatar">
-    <h2>WORM WAGON</h2>
+   
     <!-- <file-upload></file-upload> -->
         <avatar></avatar>
         <!-- <span><button 
@@ -11,51 +11,6 @@
         
   </div>
 
-
-    <!-- <upload-avatar-modal v-show="isUpdateAvatarModalVisible"
-    @close="closeUpdateAvatarModal">
-    </upload-avatar-modal> -->
-
-
-    <!--<menu class="link-list">
-      <ul class="active-sidebar-menu">
-        <li deactivate="!$route.path.endsWith('/family')">
-          <router-link
-            v-bind:to="{ name: 'family' }"
-            v-if="$store.state.token != ''"
-            >Family Page</router-link
-          >
-        </li>
-        <li deactivate="!$route.path.endsWith('/prizes')">
-          <router-link
-            v-bind:to="{ name: 'prizes' }"
-            v-if="$store.state.token != ''"
-            >Prizes</router-link
-          >
-        </li>
-        <li deactivate="!$route.path.endsWith('/')">
-          <router-link
-            v-bind:to="{ name: 'home' }"
-            v-if="$store.state.token != ''"
-            >Home</router-link
-          >
-        </li>
-        <li deactivate="!$route.path.endsWith('/settings')">
-          <router-link
-            v-bind:to="{ name: 'settings' }"
-            v-if="$store.state.token != ''"
-            >Settings</router-link
-          >
-        </li>
-        <li>
-          <router-link
-            v-bind:to="{ name: 'logout' }"
-            deactivate="$store.state.token != ''"
-            >Log Out</router-link
-          >
-        </li>
-      </ul>
-    </menu>-->
         <menu class="link-list">
       <ul class="active-sidebar-menu">
         <li :class="{ active: $route.path.endsWith('/family') }">
@@ -64,9 +19,9 @@
             v-if="$store.state.token != ''"
           >Family Page</router-link>
         </li>
-        <li :class="{ active: $route.path.endsWith('/prizes') }">
+        <li :class="{ active: $route.path.endsWith('/prize') }">
           <router-link
-            v-bind:to="{ name: 'prizes' }"
+            v-bind:to="{ name: 'prize' }"
             v-if="$store.state.token != ''"
           >Prizes</router-link>
         </li>
@@ -134,21 +89,28 @@ export default {
 menu{
   margin-left: -15px;
 }
+
+
 ul{
   display: flex;
   flex-direction: column;
 }
 .sidebar {
-  height: 100%;
+  height: 110vh;
   display: flex;
   flex-direction: column;
-  background-color: coral;
+  background-color: #ff66c4;
   padding-right: 0;
   padding-top: 0;
   padding-bottom: 0;
   margin-right: 0px;
+
+  position:sticky;
+
   /* position: sticky; */
+
   width: 100%;
+
 }
 
 .sidebar ul {
@@ -158,13 +120,18 @@ ul{
 
 .sidebar ul li {
   padding: 7px 0;
+
+  background-color: #ffc5e8;
+
   background-color: rgba(13, 0, 255, 0.6);
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   margin: 10px 0;
-  border: 3ch solid #5235359f;
-  border-width: 1px;
+  border: 5ch solid #545454;
+  border-width: 0px;
   box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.2); 
+  font-family: "Dosis";
+  
 }
 
 menu.linked-list{
@@ -173,12 +140,12 @@ menu.linked-list{
 
 .sidebar ul li a {
   text-decoration: none;
-  font-size: 1.2rem;
-  color: black;
+  font-size: 3.5rem;
+  color: #545454;
   width: 70%;
   margin: 0 auto;
   display: block;
-  border-radius: 20px 0 0 20px;
+  border-radius: 60px;
   padding: 10px 10px;
   position: sticky;
 }
@@ -191,6 +158,7 @@ menu.linked-list{
 
 #avatar {
 
+  margin-top: 5px;
   justify-self: center;
   display: flex;
   outline: solid 3px black;
@@ -210,6 +178,11 @@ menu.linked-list{
   align-items: center;
   justify-content: center;
   justify-self: center;
+  font-family: "Limelight";
+}
+
+#sidebar-avatar h2 {
+  font-family: "Limelight";
 }
 
 .active {

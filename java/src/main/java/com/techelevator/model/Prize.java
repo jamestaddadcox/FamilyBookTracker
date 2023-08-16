@@ -15,11 +15,12 @@ public class Prize {
     private LocalDate startDate;
     private LocalDate endDate;
     private int goal;
+    private String goalType;
     public Prize() {
 
     }
 
-    public Prize(int prizeId, int familyId, String name, String description, String userGroup, LocalDate startDate, LocalDate endDate, int goal) {
+    public Prize(int prizeId, int familyId, String name, String description, String userGroup, LocalDate startDate, LocalDate endDate, int goal, String goalType) {
         this.prizeId = prizeId;
         this.familyId = familyId;
         this.name = name;
@@ -29,6 +30,15 @@ public class Prize {
         this.startDate = startDate;
         this.endDate = endDate;
         this.goal = goal;
+        this.goalType = goalType;
+    }
+
+    public String getGoalType() {
+        return goalType;
+    }
+
+    public void setGoalType(String goalType) {
+        this.goalType = goalType;
     }
 
     public int getPrizeId() {

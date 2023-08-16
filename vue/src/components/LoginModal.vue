@@ -18,8 +18,11 @@
               <div role="alert" v-if="credentialsNotFound">
                 I'm sorry, we appear to be experiencing techincal difficulties...
               </div>
-              <div>
-                <label for="username">username: </label>
+
+
+              <div class="username-password">
+              <div class="username">
+                <label for="username">Username: </label>
                 <input
                   type="text"
                   id="username"
@@ -28,8 +31,8 @@
                   autofocus
                 />
               </div>
-              <div>
-                <label for="password">password:</label>
+              <div class="password">
+                <label for="password">Password:</label>
                 <input
                   type="password"
                   id="password"
@@ -37,7 +40,8 @@
                   required
                 />
               </div>
-              
+              </div>
+
               <button type="submit" class="btn-green">SIGN IN!</button>
             </form>
           </slot>
