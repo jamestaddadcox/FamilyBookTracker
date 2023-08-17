@@ -15,7 +15,7 @@
 
  <template v-slot:sidebar>
       <div class="sidebar-wrapper">
-        <side-bar-menu></side-bar-menu>
+        <side-bar-menu class="sidebar"></side-bar-menu>
       </div>
     </template>
   </page-layout>
@@ -78,8 +78,8 @@ export default {
   }
 /* Style for the scrollable content */
 .scrollable-content {
-  height: calc(100vh - 150px); /* Adjust the height as needed */
-  overflow-y: auto;
+  height: calc(100vh - 200px); /* Adjust the height as needed */
+  overflow-y: scroll;
 }
 
 /* Style for the headerbar */
@@ -116,5 +116,18 @@ headerbar {
   position: -webkit-sticky;
 }
 
+.sidebar {
+  grid-area: sidebar;
+  padding: 0px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ff66c4;
+}
+
+.sidebar ul li {
+  background-color: red;
+}
 
 </style>

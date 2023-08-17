@@ -120,7 +120,6 @@ ul{
 
 .sidebar ul li {
   padding: 7px 0;
-  background-color: #ffc5e8;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
   margin: 10px 0;
@@ -147,7 +146,7 @@ menu.linked-list{
 }
 
 .sidebar ul li:hover {
-  background-color: rgba(255, 255, 0, 0.777);
+ 
   border-radius: 50px 0 0 50px;
   margin-left: -10px;
 }
@@ -181,10 +180,5 @@ menu.linked-list{
   font-family: "Limelight";
 }
 
-.active {
-  background-color: rgb(26, 121, 245);
-  border-radius: 30px 0 0 30px;
-
-}
 
 </style>
