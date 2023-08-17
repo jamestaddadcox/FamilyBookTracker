@@ -44,9 +44,9 @@ export default {
   },
   async created() {
     try {
-      this.familyMembersIds = await UserService.getListOfFamilyMembers(1)
-       
-      .data.then
+      this.familyMembersIds = await UserService.getListOfFamilyMembers(this.$store.state.user.familyId).then(response => {
+        this.familyMembers = response.data
+    });
         console.log(this.familyMembersIds);      
     } catch (error) {
       console.error("Error fetching family member ids");
