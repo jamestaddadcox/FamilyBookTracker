@@ -1,12 +1,12 @@
 <template>
   <div>
-    <button class="add-prize" @click="openModal">Add Prize</button>
+    <button @click="openModal">Edit Prize</button>
 
     <div class="bg-modal" v-show="isModalOpen">
-      <form @submit.prevent="addPrize">
+      <form @submit.prevent="editPrize">
         <div class="modal-content">
-          <h2>Add Prize</h2>
-          <div id="close" @click="closeModal">+</div>
+          <h2>Edit Prize</h2>
+                <div id="close" @click="closeModal">+</div>
           
         <div class="wrapper">
           <div class="radio-button">
@@ -95,9 +95,10 @@
 <script>
 import PrizeService from '../services/PrizeService.js';
 
+
 export default {
   name: "PrizeModal",
-  props:['prize'],
+  props:[],
   data() {
     return {
       isModalOpen: false,
@@ -111,18 +112,31 @@ export default {
         "userGroup": '',
         "endDate": '',
         "goal": '',
-        "goalType": ''
-        
+        "goalType": '' 
       }
     };
   },
   watch: {
     selectedUserGroup: 'updateUserGroup',
-    selectedOption: 'updatedSelectedOption'
   },
     methods: {
-        openModal() {
+        async openModal(prizeId) {
             this.isModalOpen = true;
+
+            const prizeData = await PrizeService.getPrizeById(prizeId);
+
+            this.selectedOption = prizeData.goal;
+            this.newPrize = { ...prizeData };
+            this.selectedUserGroup = prizeData.userGroup;
+        },
+
+        async editPrize() {
+            const updatedPrizeData = { ...this.newPrize };
+            
+            await PrizeService.updatePrize(this.newPrize.id, updatedPrizeData);
+            
+            this.resetModal();
+            this.closeModal();
         },
 
         closeModal() {
@@ -132,12 +146,12 @@ export default {
 
         resetModal() {
             this.selectedOption = '';
-            this.newPrize.prize_name = '';
-            this.newPrize.prize_description = '';
+            this.newPrize.name = '';
+            this.newPrize.description = '';
             this.newPrize.milestone = false;
-            this.newPrize.start_date = '';
-            this.newPrize.user_group = '';
-            this.newPrize.end_date = '';
+            this.newPrize.startDate = '';
+            this.newPrize.userGroup = '';
+            this.newPrize.endDate = '';
             this.newPrize.goal = '';
         },
 
@@ -152,15 +166,11 @@ export default {
         addPrize() {
           this.newPrize.familyId = this.$store.state.user.familyId;
             PrizeService.addPrize(this.newPrize)
-            .then((response) => {
-              response.data;
             this.resetModal();
             this.closeModal();
-
-            })
       }   
     },
-  } 
+  }  
 </script>
 
 <style scoped>
@@ -293,22 +303,4 @@ h2 {
 .popup-book select {
   width: auto;
 }
-
-.add-prize {
-
-  background-color: #2391f8;
-  border: 3px solid #2391f8;
-  border-radius: 10px;
-  height: 90px;
-  padding: auto;
-  align-items: center;
-  width: 12vw;
-  font-family: "Dosis";
-  color: white;
-  font-size: 50px;
-}
 </style>
-
-
-
-

@@ -1,5 +1,6 @@
 <template>
   <div>
+    xxxx
   <page-layout>
     <template v-slot:headerbar>
       <page-header></page-header>
@@ -51,5 +52,7 @@ export default {
 };
 </script>
 <style scoped>
-
+sidebar{
+  background-color: blue;
+}
 </style>

@@ -25,13 +25,7 @@ export default new Vuex.Store({
 
     familyId: currentUser ? currentUser.family_id : null, // Add familyId here
     // bookUser: [{userId: 1, isbn: 9780194229647},{userId: 1, isbn: 9783423092449}]
-    activeFamilyMemberId: currentUser.username,
-
-    familyId: currentUser ? currentUser.family_id : null, // Add familyId here
-    // bookUser: [{userId: 1, isbn: 9780194229647},{userId: 1, isbn: 9783423092449}]
-
-    activeFamilyMemberId: currentUser.username,
-
+    activeFamilyMemberId: currentUser ? currentUser.username : 0,
   },
 
   mutations: {

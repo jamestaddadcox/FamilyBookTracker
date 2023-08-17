@@ -1,7 +1,9 @@
 <template>
   <div class="page-layout">
     <div class="box headerbar"><slot name="headerbar"></slot></div>
+    <div class="scrollable-content">
     <div class="box content"><slot name="content"></slot></div>
+    </div>
     <div class="box sidebar"><slot name="sidebar"></slot></div>
   </div>
 </template>
@@ -15,7 +17,7 @@ export default {
 <style scoped>
 .page-layout {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-columns: 2fr 350px;
   grid-template-rows: 200px 0.5fr;
   grid-template-areas:
     "headerbar sidebar"
@@ -46,14 +48,12 @@ div.sidebar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  border: 3ch solid #5235359f; /* Border color of the section */
-  border-width: 1px; /* beveled effect */
-  border-radius: 2px; /*rounded corners */
-  box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.2);
-  background-color: palevioletred; 
-
-  
-  
+  background-color: #ff66c4;
 }
+.scrollable-content {
+  height: calc(100vh - 150px);
+  overflow-y: auto;
+}  
+  
+
 </style>

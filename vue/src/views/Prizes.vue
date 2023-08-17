@@ -1,10 +1,8 @@
-<template>
+<template class="prize-view">
   <page-layout>
     <template v-slot:headerbar>
       <page-header>
-        
       </page-header>
-      
     </template>
 
 
@@ -12,7 +10,6 @@
       <div class="scrollable-content">
         <prize-modal class="prize-modal"></prize-modal>
         <prize-list :familyId="userFamilyId"></prize-list>
-        
       </div>
     </template>
 
@@ -104,7 +101,20 @@ headerbar {
   background-color: #ff5757;
 }  
 
+.prize-view {
+  width: 100vw;
+  height: 100vh;
+  margin: auto auto;
+}
 
+.prize-modal {
+  margin-top: 46px;
+  padding: auto;
+  align-items: center;
+  width: 12vw;
+  margin-left: 65vw;
+  position: -webkit-sticky;
+}
 
 
 </style>
