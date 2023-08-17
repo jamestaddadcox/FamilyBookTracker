@@ -3,12 +3,19 @@
      :class="{chosen:$store.state.activeFamilyMemberId === whichMember }"
     :title="`Click to show this person's books`"
     @click="filterByMember(whichMemberId)"> -->
-    <div class="family-avatars">
-    <div class="member-avatar" v-for="username in familyUsernames" :key="username"><img id="avatar"
-       
-        :src="
-          'https://api.multiavatar.com/' + username + '.png'
-        " alt="" @click="changeMemberFilter(username)"/>
+     <div class="family-avatars">
+    <div
+      class="member-avatar"
+      v-for="member in familyMembers"
+      :key="member.userId"
+    >
+      <img
+        id="avatar"
+        :src="getMemberAvatar(member.userId)"
+        alt="user Avatar"
+        @click="handleMemberClick(member.userId)"
+      />
+      <p>{{getMemberUsername(member.userId)}}</p>
     </div>
     </div>
     <!-- </div> -->
@@ -24,27 +31,41 @@ export default {
     },
     data() {
         return {
-            familyUsernames: [],
+            familyMembers: [],
         }
     },
     methods: {
+        async handleMemberClick(memberId) {
+            const memberUsername = await this.getMemberUsername(memberId);
+            this.changeMemberFilter(memberUsername);
+            this.changeMemberFilterId(memberId);
+        },
         changeMemberFilter(memberUsername) {
             this.$store.commit('UPDATE_FAMILY_MEMBER_FILTER', memberUsername);
         },
+        changeMemberFilterId(memberId) {
+            this.$store.commit("UPDATE_FAMILY_MEMBER_FILTER_ID", memberId);
+        },
+        getMemberAvatar(id) {
+            const memberUsername = this.getMemberUsername(id);
+            return `https://api.multiavatar.com/${memberUsername}.png`;
+        },
+        getMemberUsername(id) {
+            return this.familyMembers.find(famMem => famMem.userId === id).username;
+        }
     },
     computed: {
         currentUser() {
             return this.$store.state.user;
         }
     },
-    created() {
-        userService.getListOfFamilyMembers(this.currentUser.familyId).then(response => {
-            this.familyUsernames = response.data.map(user => user.username);
-        });
-
-        // userService.getListOfFamilyMembers(this.currentUser.familyId).then(response => {
-        //     this.familyMemberId = $store.
-        // })
+    async created() {
+        try {
+            const familyMembersResponse = await userService.getListOfFamilyMembers(this.currentUser.familyId);
+            this.familyMembers = familyMembersResponse.data;
+        } catch (error) {
+            console.error("Error fetching family members", error);
+        }
     }
 
 }

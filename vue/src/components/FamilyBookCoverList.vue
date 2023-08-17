@@ -2,7 +2,7 @@
   <div class="book-section">
     <book-card
       class="card"
-      v-for="bookuser in bookUsersInFamily"
+      v-for="bookuser in filteredBookUsers"
       :key="`${bookuser.isbn}-${bookuser.userId}`"
       :bookuser="bookuser"
     ></book-card>
@@ -35,29 +35,21 @@ export default {
         //   isAddBookModalVisible: false,
     };
   },
-  
-  
-   async created() {
-    // try {
-    //     this.familymembers = await (await UserService.getListOfFamilyMembers(this.$store.state.user.familyId)).data;
-    //     console.log(this.familymembers);
-    // } catch (error) {
-    //     console.error("Error fetching books:", error);
-    // }
-
-    try{
-        this.bookUsersInFamily = await (await BookService.getAllBookUserInfoByFamilyId(this.$store.state.user.familyId)).data;
-    } catch (error) {
-        console.error("Error fetching book-user stats", error);
-    }
-
-    // try {
-    //   this.bookUsers = await (await BookService.getBookUsersByUserId(this.$store.state.user.userId)).data; //HARDCODED
-    //   console.log(this.bookUsers);
-    // } catch (error) {
-    //   console.error("Error fetching books:", error);
-    // }
+  computed: {
+    filteredBookUsers() {
+      const activeFamilyMemberId = this.$store.state.activeFamilyMemberId;
+       return this.bookUsersInFamily.filter(familyBookUser => familyBookUser.userId == activeFamilyMemberId);
+    },
+    currentUser() {
+      return this.$store.state.user;
+    },
   },
+  async created() {
+    this.bookUsersInFamily = (await BookService.getAllBookUserInfoByFamilyId(this.currentUser.familyId)).data;
+  }
+  
+  
+  ,
   methods: {
     // showAddBookModal() {
     //   this.isAddBookModalVisible = true;

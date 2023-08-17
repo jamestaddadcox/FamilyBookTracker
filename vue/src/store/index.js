@@ -51,6 +51,9 @@ export default new Vuex.Store({
     UPDATE_FAMILY_MEMBER_FILTER(state, username){
       state.activeFamilyMemberId = username;
     },
+    UPDATE_FAMILY_MEMBER_FILTER_ID(state, id){
+      state.activeFamilyMemberId = id;
+    }
 
     //CHANGE_MODAL_FLAG(state, modalFlag) {
     //  this.modalFlag = !this.modalFlag;
