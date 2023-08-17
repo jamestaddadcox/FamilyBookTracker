@@ -1,5 +1,5 @@
 <template>
-  <div id="clock">
+  <div id="stopwatch">
   
   <span class="time">{{ time }}</span>
   
@@ -9,10 +9,6 @@
     <a id="reset">Reset</a>
   </div>
   
-  
-  <div class="text">
-    <a href="https://codepen.io/raphael_octau" target="_blank">@raphael_octau</a>
-  </div>
 </div>
 </template>
 
