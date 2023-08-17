@@ -35,7 +35,7 @@
           <router-link
             v-bind:to="{ name: 'settings' }"
             v-if="$store.state.token != ''"
-          >Settings</router-link>
+          >Party</router-link>
         </li>
         <li>
           <router-link

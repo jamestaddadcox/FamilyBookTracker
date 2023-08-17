@@ -23,11 +23,11 @@
         
       </div>
       <div class="footer-links">
-        <router-link to="/about">About</router-link>
+        <!-- <router-link to="/about">About</router-link>
 
         <router-link to="/careers">Careers</router-link>
 
-        <router-link to="/contact">Contact Us</router-link>
+        <router-link to="/contact">Contact Us</router-link> -->
       </div>
     </footer>
   </div>
@@ -208,12 +208,12 @@ right-btn {
         
     }
 
-    .modal-footer {
+    /* .modal-footer {
         border-top: 1px solid #eeeeee;
         flex-direction: column;
         justify-content: flex-end;
         font-family: "Varlea", san-serif;
-    }
+    } */
 
     .modal-body {
         position: relative;
@@ -278,7 +278,7 @@ right-btn {
 .centered-image {
   display: block;
   margin: 20px auto;
-  max-width: 60vw;
+  width: 40%;
 }
 
 .footer {

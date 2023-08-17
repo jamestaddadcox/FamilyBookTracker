@@ -203,8 +203,6 @@ export default {
   width: 150px;
   flex-shrink: 3;
 }
-
-
 .modal-backdrop {
   width: 100%;
   height: 100%;

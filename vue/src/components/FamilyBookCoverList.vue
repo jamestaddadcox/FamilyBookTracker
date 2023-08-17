@@ -75,8 +75,7 @@ align-content: left;
   
 }
 .card {
-  background-color: #efafff;
-  border: 6px solid #545454;
+  display: flex;
   font-family: "Dosis";
   border-radius: 10px;
   max-width: 235px;
@@ -91,6 +90,7 @@ align-content: left;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  padding: 10px; 
+  padding: 70px; 
+  padding-bottom: 100px;
 }
 </style>

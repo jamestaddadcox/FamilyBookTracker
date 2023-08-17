@@ -1,7 +1,7 @@
 <template>
   <div class="book-section">
     <span class="card"><button class="add" @click="showAddBookModal">
-      ADD A BOOK
+      <img src="../assets/add.png">
     </button>
     </span>
 
@@ -67,23 +67,21 @@ flex-grow: 1f;
 align-content: left;
   
 }
-.card {
-  background-color: #c4e4ff ;
-  border: 6px solid #545454;
-  font-family: "Dosis";
-  border-radius: 10px;
-  max-width: 235px;
-  min-width: 175px;
-  flex-grow: 1;
-  height: 350px;
-  margin-top: 25px;
-  margin-left: 20px;
-  padding: auto;
-  align-items: center;
+
+span.card {
   display: flex;
   flex-direction: column;
+  padding: 50px;
+  margin-top: 140px;
+  margin-left: 15px;
   align-items: center;
-  justify-content: space-evenly;
-  padding: 10px; 
+}
+
+.add{
+  margin-left: 2vw;
+  margin-top: 100px;
+  background: none;
+  border: none;
+ 
 }
 </style>

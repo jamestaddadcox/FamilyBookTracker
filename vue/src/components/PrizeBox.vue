@@ -84,24 +84,17 @@ export default {
       }
     },
 
-    claimPrize() {
+      claimPrize() {
+    if (!this.showCongratulationsModal) {
       this.showCongratulationsModal = true;
       this.showConfetti();
       this.$emit("claim-prize");
-    },
+    }
+  },
     closeCongratulationsModal() {
       this.showCongratulationsModal = false;
     },
     showConfetti() {
-        const explodeConfetti = () => {
-        if (this.confettiContainer) {
-          this.confettiContainer.innerHTML = ''; // Clear existing confetti
-        } else {
-          this.confettiContainer = document.createElement("div");
-          // ... set confettiContainer styles ...
-          document.body.appendChild(this.confettiContainer);
-        }
-  
   const confettiContainer = document.createElement("div");
   confettiContainer.style.position = "fixed";
   confettiContainer.style.top = 0;
@@ -114,61 +107,62 @@ export default {
 
   const confettiColors = ["#f03355", "#ffa516", "#03a9f4", "#4caf50", "#ffeb3b"];
   const numConfetti = 300;
-  for (let i = 0; i < numConfetti; i++) {
-    const confetti = document.createElement("div");
-    confetti.style.position = "absolute";
-    confetti.style.width = "20px";
-    confetti.style.height = "20px";
-    confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-    confetti.style.borderRadius = "50%";
-    confetti.style.transform = `translate(${Math.random() * 100}vw, ${Math.random() * 100}vh)`;
-    confetti.style.transition = "transform 2s ease-out, opacity 2s ease-out";
-    confetti.style.opacity = 0;
-    confettiContainer.appendChild(confetti);
 
-document.addEventListener("click", () => {
+  const explodeConfetti = () => {
+    for (let i = 0; i < numConfetti; i++) {
+      const confetti = document.createElement("div");
+      confetti.style.position = "absolute";
+      confetti.style.width = "20px";
+      confetti.style.height = "20px";
+      confetti.style.backgroundColor =
+        confettiColors[Math.floor(Math.random() * confettiColors.length)];
+      confetti.style.borderRadius = "50%";
+      confetti.style.transform = `translate(${Math.random() * 100}vw, ${
+        Math.random() * 100
+      }vh)`;
+      confetti.style.transition = "transform 2s ease-out, opacity 2s ease-out";
+      confetti.style.opacity = 0;
+      confettiContainer.appendChild(confetti);
+    }
+
+    setTimeout(() => {
       for (let i = 0; i < numConfetti; i++) {
         const confetti = confettiContainer.children[i];
         if (confetti) {
-          confetti.style.transform = `translate(${Math.random() * window.innerWidth}px, ${Math.random() * window.innerHeight}px)`;
+          confetti.style.transform = `translate(${Math.random() * window.innerWidth}px, ${
+            Math.random() * window.innerHeight
+          }px)`;
+          confetti.style.opacity = 1;
         }
       }
-    });
 
-    setTimeout(() => {
-      confetti.style.transform = `translate(${Math.random() * window.innerWidth}px, ${Math.random() * window.innerHeight}px)`;
-      confetti.style.opacity = 1;
+      setTimeout(() => {
+        for (let i = 0; i < numConfetti; i++) {
+          const confetti = confettiContainer.children[i];
+          if (confetti) {
+            confetti.style.opacity = 0;
+          }
+        }
+
+        setTimeout(() => {
+          document.body.removeChild(confettiContainer);
+          document.removeEventListener("click", explodeConfetti);
+        }, 2000); // Adjust the duration as needed for the confetti to disappear
+      }, 2000); // Adjust the duration as needed for the confetti to move around
     }, 0);
-  }
+  };
 
-  setTimeout(() => {
-    document.body.removeChild(confettiContainer);
+  this.confettiContainer = confettiContainer;
+  document.addEventListener("click", explodeConfetti);
+
+  explodeConfetti(); // Initial explosion
+
+  // Stop the confetti explosion when the close button is clicked
+  this.$once("close-modal", () => {
     document.removeEventListener("click", explodeConfetti);
-  }, 4000); // Adjust the duration as needed for the message to be displayed
-}
-
-
-     
-
-      explodeConfetti(); // Initial explosion
-
-      // Listen for page interactions to re-explode confetti
-      document.addEventListener("click", explodeConfetti);
-
-      // Stop the confetti explosion when the close button is clicked
-      this.$once("close-modal", () => {
-        document.removeEventListener("click", explodeConfetti);
-        document.body.removeChild(this.confettiContainer);
-      });
-    },
-    stopConfetti() {
-      // Remove confetti container if exists and stop explosion
-      if (this.confettiContainer) {
-        document.removeEventListener("click", this.showConfetti);
-        document.body.removeChild(this.confettiContainer);
-        this.confettiContainer = null;
-      }
-    },   
+    document.body.removeChild(this.confettiContainer);
+  });
+},  
     
     setMilestoneIfFull() {
       if (this.isProgressBarFull) {
@@ -331,13 +325,15 @@ document.addEventListener("click", () => {
 .prize-image {
   flex-grow: 0.15;
   display: flex;
+  width: 6;
+  
   justify-content: center;
   align-items: center;
 }
 
 .prize-image img {
-  max-width: 95%; /* Ensure the image fits within the flex box */
-  max-height: 95% /* Ensure the image fits within the flex box */
+  max-width: 16rem; /* Ensure the image fits within the flex box */
+  max-height: 16rem; /* Ensure the image fits within the flex box */
 
 }
 
