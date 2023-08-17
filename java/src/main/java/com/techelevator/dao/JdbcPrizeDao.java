@@ -106,7 +106,7 @@ public class JdbcPrizeDao implements PrizeDao {
     @Override
     public boolean editPrize(Prize updatedPrize, int id) {
         String sql = "UPDATE prize SET family_id = ?, prize_name = ?, prize_description = ?, milestone = ?, " +
-                     "user_group = ?, start_date = ?, end_date = ?, goal = ?, goal_type = ? WHERE prize_id ?";
+                     "user_group = ?, start_date = ?, end_date = ?, goal = ?, goal_type = ? WHERE prize_id = ?";
 
         try {
             int numberOfRows = jdbcTemplate.update(sql,
@@ -114,12 +114,12 @@ public class JdbcPrizeDao implements PrizeDao {
                     updatedPrize.getName(),
                     updatedPrize.getDescription(),
                     updatedPrize.isMilestone(),
+                    updatedPrize.getUserGroup(),
                     updatedPrize.getStartDate(),
                     updatedPrize.getEndDate(),
-                    updatedPrize.getPrizeId(),
-                    updatedPrize.getUserGroup(),
                     updatedPrize.getGoal(),
-                    updatedPrize.getGoalType()
+                    updatedPrize.getGoalType(),
+                    updatedPrize.getPrizeId()
             );
             return numberOfRows > 0;
         } catch (CannotGetJdbcConnectionException e) {

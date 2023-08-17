@@ -179,12 +179,15 @@ export default {
 
 .modal-content {
   width: 80%;
-  max-width: 300px;
+  max-width: 500px;
   background-color: white;
   padding: 20px;
   border-radius: 4px;
   text-align: left;
-  position: relative;
+  position: fixed; /* Change position to fixed */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust to center perfectly */
 }
 
 h2 {

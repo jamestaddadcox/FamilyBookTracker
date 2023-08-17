@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">    
+  <div class="sidebar" :class="$route.name">    
 
     
   <div id="sidebar-avatar">
@@ -125,8 +125,8 @@ ul{
   margin: 10px 0;
   font-family: "Dosis";
   
+  
 }
-
 menu.linked-list{
   position: sticky;
 }

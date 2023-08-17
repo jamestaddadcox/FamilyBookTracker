@@ -5,22 +5,21 @@
       <!-- <img class="blank-image" src="../assets/noImageFound.png"> -->
       <img
         class="cover-image"
-        :src="
-          'http://covers.openlibrary.org/b/isbn/' + bookuser.isbn + '-M.jpg'
-        "
-        onerror="this.src='../assets/TestAvatar.png"
+        :src="'http://covers.openlibrary.org/b/isbn/' + bookuser.isbn + '-M.jpg'"
+        onerror="this.src='../assets/TestAvatar.png'"
         alt="book cover image"
       />
     </button>
-    <div id="title-box" class="box">
+    <div class="box" id="title-box">
       <h3 class="title" v-if="book.title">{{ book.title }}</h3>
     </div>
-    <div id="author-box" class="box">
-        <h4 class="author">{{book.author}}</h4></div>
-    <div id="minutes-box" class="box">
+    <div class="box" id="author-box">
+      <h4 class="author">{{ book.author }}</h4>
+    </div>
+    <div class="box" id="minutes-box">
       <h5 class="minutes" v-if="bookuser.minutesRead">Mins read: {{ bookuser.minutesRead }}</h5>
     </div>
-    <div id="pages-box" class="box" >
+    <div class="box" id="pages-box">
       <h5 class="pages" v-if="bookuser.pagesRead">
         {{ bookuser.pagesRead }} of {{ book.pages }} pages
       </h5>
@@ -95,7 +94,7 @@ export default {
 }
 
 #cover-box {
-    flex-grow: 1;
+    flex-grow: 2;
 }
 
 #minutes-box {
@@ -125,11 +124,11 @@ export default {
   justify-self: center;
 }
 .title {
-  grid-area: "title";
-  justify-self: center;
-  align-self: center;
-  margin: 5px px 5px 0px;
+  font-family: "Dosis";
+  margin: 5px 0px;
   padding: 0px;
+  word-wrap: break-word;
+  line-height: 4;
 }
 
 .minutes {

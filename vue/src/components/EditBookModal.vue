@@ -3,7 +3,7 @@
     <div class="modal-backdrop">
       <div class="modal">
         <header class="modal-header">
-          <slot name="header">Edit Book Stats</slot>
+          <slot name="header"><h2>Edit Book Stats</h2></slot>
           <button type="button" class="btn-close" @click="close">
             &times;
           </button>
@@ -12,9 +12,9 @@
         <section class="modal-body">
 
           <div id="book-data-display">
-            <div>title: {{book.title}}</div>
-            <div>author: {{book.author}}</div>
-            <div>isbn: {{book.isbn}}</div>
+            <div><b>title:</b>  {{book.title}}</div>
+            <div><b>autor:</b> {{book.author}}</div>
+            <div><b>isbn:</b> {{book.isbn}}</div>
             <div>{{book.description}}</div>
           </div>
 
@@ -32,19 +32,19 @@
             </select>
             </div>
             <div>
-            <label for="completed">have you finished this book?</label>
+            <label for="completed">have you finished this book? </label>
             <input type="checkbox" name="completed" id="completed" v-model="updatedBookUser.completed">
             </div>
             <div>
-              <label for="pages-read"># of pages read:</label>
+              <label for="pages-read"># of pages read: </label>
               <input type="number" name="pages-read" id="pages-read" v-model="updatedBookUser.pagesRead">
             </div>
             <div>
-              <label for="minutes-read">total reading time so far, in minutes:</label>
+              <label for="minutes-read">total reading time so far, in minutes: </label>
               <input type="number" name="minutes-read" id="minutes-read" v-model="updatedBookUser.minutesRead">
             </div>
             <div>
-              <label for="notes">notes:</label>
+              <label for="notes">notes: </label>
             </div>
             <div>
               <textarea name="notes" id="notes" cols="30" rows="4" v-model="updatedBookUser.notes"></textarea>
@@ -112,6 +112,50 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.modal-backdrop {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-body {
+  font-family: "Dosis";
+  font-size: 1.5rem;
+}
+.modal {
+  display: flex;
+  width: 80%;
+  max-width: 500px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  text-align: left;
+  position: fixed; /* Change position to fixed */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust to center perfectly */
+}
 
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
 </style>

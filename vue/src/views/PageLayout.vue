@@ -65,7 +65,32 @@ div.sidebar ul li:hover {
  
   border-radius: 50px 0 0 50px;
   margin-left: -10px;
+  background-color:red;
 }
 
+
+</style>
+
+<style>
+div.sidebar ul li:hover {
+ 
+  border-radius: 50px 0 0 50px;
+  margin-left: -10px;
+  background-color: greenyellow;
+}
+
+div.sidebar ul li a {
+  text-decoration: none;
+  font-size: 50px;
+  color: #545454;
+  width: 70%;
+  margin: 0 auto;
+  margin-left: 60px;
+  display: block;
+  border-radius: 60px;
+  padding: 10px 10px;
+  position: sticky;
+  font-weight: bold;
+}
 
 </style>

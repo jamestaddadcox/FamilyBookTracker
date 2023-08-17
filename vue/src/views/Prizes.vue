@@ -49,12 +49,12 @@ export default {
   },
   computed: {
     userFamilyId() {
-      return this.$store.state.user ? this.$store.state.user.family_id : null;
+      return this.$store.state.user ? this.$store.state.user.prizes_id : null;
     },
   },
     async created() {
     try {
-      this.prizes = await PrizeService.getPrizesByFamilyId(this.$store.state.user.family_id); //hardcoded NEED TO FIX
+      this.prizes = await PrizeService.getPrizesByFamilyId(this.$store.state.user.prizes_id); //hardcoded NEED TO FIX
     } catch (error) {
       console.error("Error fetching prizes:", error);
     }
@@ -97,9 +97,6 @@ headerbar {
   margin-top: 150px; /* Adjust the margin as needed */
 }
 
-headerbar {
-  background-color: #ff5757;
-}  
 
 .prize-view {
   width: 100vw;
@@ -112,11 +109,18 @@ headerbar {
   padding: auto;
   align-items: center;
   width: 12vw;
-  margin-left: 65vw;
-  position: -webkit-sticky;
+  margin-left: 67.5vw;
+  position: -webkit-sticky
 }
 
-.sidebar {
+
+
+
+</style>
+
+<style >
+
+.prize.sidebar {
   grid-area: sidebar;
   padding: 0px;
   height: 100vh;
@@ -125,16 +129,41 @@ headerbar {
   justify-content: space-between;
   background-color: #ff66c4;
 }
+.prize.sidebar ul li:hover {
+  border-radius: 50px 0 0 50px;
+  margin-left: -10px;
+  background-color: rgb(255, 226, 63);
+}
 
-.sidebar ul li {
+.prize.sidebar ul li {
+  background-color: #ffc5e8;
+  padding: 7px 0;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  margin: 10px 0;
+  font-family: "Dosis";
+}
+.prize.sidebar ul li a {
+  text-decoration: none;
+  font-size: 50px;
+  color: #545454;
+  width: 70%;
+  margin: 0 auto;
+  margin-left: 60px;
+  display: block;
+  border-radius: 50px 0 0 50px;
+  margin-left: 30px;
+  padding: 10px 10px;
+  position: sticky;
+  font-weight: bold;
+  
+}
+
+
+.prize .sidebar ul li:hover {
   background-color: red;
 }
 
-</style>
 
-<style >
-.sidebar ul li a {
-  background-color:limegreen;
-}
 
 </style>

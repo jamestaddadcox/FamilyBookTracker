@@ -3,7 +3,7 @@
     <div class="left-column">
       <div class="top-row">
         <div class="edit-image">
-          <img src="../assets/edit.png" alt="">
+          <button class="edit-button" @click="openEditPrizeModal(prize.id)"><img src="../assets/edit.png" alt=""></button>
         </div>
         <h1 class="prize-name">{{ prize.name }}</h1>
       </div>
@@ -27,13 +27,14 @@
         <img src="../assets/greymedal1.png" alt="Grey Image">
       </div>
       <div v-else class="prize-image">
-        <button class="prize-button" @click="claimPrize">
-          <img src="../assets/ggg.png" alt="Prize Image">
-        </button>
-        <!-- CongratulationsModal component -->
+      <button class="prize-button" @click="claimPrize">
+        <img src="../assets/ggg.png" alt="Prize Image">
+      </button>
+      <!-- CongratulationsModal component -->
         <CongratulationsModal :showModal="showCongratulationsModal" @close="closeCongratulationsModal" />
       </div>
     </div>
+         <EditPrizeModal ref="editPrizeModalRef" :initialPrizeData="localPrize" :currentPrize="prize" />
   </div>
 </template>
 
@@ -41,6 +42,7 @@
 import CongratulationsModal from "../components/CongratulationsModal.vue";
 import ProgressBar from "../components/ProgressBar.vue";
 import bookService from "../services/BookService";
+import EditPrizeModal from './EditPrizeModal.vue';
 
 export default {
   name: 'PrizeBox',
@@ -55,7 +57,8 @@ export default {
   },
   components: {
     ProgressBar,
-    CongratulationsModal
+    CongratulationsModal,
+    EditPrizeModal
   },
  
  computed: {
@@ -73,6 +76,14 @@ export default {
     }
   },
   methods: {
+    openEditPrizeModal(prizeId) {
+      if (this.$refs.editPrizeModalRef) {
+        this.$refs.editPrizeModalRef.openModal(prizeId);
+      } else {
+        console.error("EditPrizeModal ref not found.");
+      }
+    },
+
     claimPrize() {
       this.showCongratulationsModal = true;
       this.showConfetti();
@@ -208,6 +219,11 @@ document.addEventListener("click", () => {
 </script>
 
 <style scoped>
+
+.edit-button {
+  background: none;
+  border: none;
+}
 
 .prize-button {
   background: none;

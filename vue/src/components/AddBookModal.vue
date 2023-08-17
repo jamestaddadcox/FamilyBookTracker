@@ -3,7 +3,7 @@
     <div class="modal-backdrop">
       <div class="modal">
         <header class="modal-header">
-          <slot name="header">Add a Book</slot>
+          <slot name="header"><h2>Add a Book</h2></slot>
           <button type="button" class="btn-close" @click="close">
             &times;
           </button>
@@ -14,13 +14,14 @@
 
             <input type="radio" id="by-isbn" name="add" value="isbn" v-model="radioChoice" checked>
             <label for="by-isbn">look up by isbn</label><br>
+
             <input type="radio" id="enter-data" name="add" value="enter-data" v-model="radioChoice">
             <label for="enter-data">enter data</label><br>
 
           </slot>
 
           <div id="enter-isbn" v-show="radioChoice === 'isbn'">
-            <label for="isbn-box">isbn</label>
+            <label for="isbn-box">isbn: </label>
             <input type="text" id="isbn-box" v-model="book.isbn">
             <button type="button" class="btn-green" @click="isbnLookup(book.isbn)">find book!</button>
 
@@ -183,6 +184,72 @@ export default {
 }
 </script>
 
-<style>
+
+<style scoped>
+.isbn-box {
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+#enter-isbn {
+  margin-left: 9px;
+}
+
+#enter-book-data {
+  margin-top: 8px;
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  flex-shrink: 3;
+}
+
+
+.modal-backdrop {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-body {
+  font-family: "Dosis";
+  font-size: 1.5rem;
+}
+.modal {
+  width: 80%;
+  max-width: 500px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  text-align: left;
+  position: fixed; /* Change position to fixed */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust to center perfectly */
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+/* Additional styling for other sections as needed */
 
 </style>
+

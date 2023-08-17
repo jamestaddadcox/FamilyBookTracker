@@ -1,7 +1,6 @@
 <template>
   <div>
-    <button @click="openModal">Edit Prize</button>
-
+   
     <div class="bg-modal" v-show="isModalOpen">
       <form @submit.prevent="editPrize">
         <div class="modal-content">
@@ -97,8 +96,8 @@ import PrizeService from '../services/PrizeService.js';
 
 
 export default {
-  name: "PrizeModal",
-  props:[],
+  name: "EditPrizeModal",
+  props:['currentPrize'],
   data() {
     return {
       isModalOpen: false,
@@ -133,9 +132,9 @@ export default {
         async editPrize() {
             const updatedPrizeData = { ...this.newPrize };
             
-            await PrizeService.updatePrize(this.newPrize.id, updatedPrizeData);
+            await PrizeService.editPrize(this.newPrize.prizeId, updatedPrizeData);
             
-            this.resetModal();
+        
             this.closeModal();
         },
 
@@ -170,6 +169,12 @@ export default {
             this.closeModal();
       }   
     },
+    created(){
+      if(this.currentPrize.name)
+      {
+        this.newPrize = JSON.parse(JSON.stringify(this.currentPrize));
+      }
+    }
   }  
 </script>
 
