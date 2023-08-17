@@ -83,8 +83,9 @@ align-content: left;
   
 }
 .card {
-  background-color: rgb(200, 240, 227);
-  border: 3px solid purple;
+  background-color: #efafff;
+  border: 6px solid #545454;
+  font-family: "Dosis";
   border-radius: 10px;
   max-width: 235px;
   min-width: 175px;

@@ -5,7 +5,9 @@
     </template>
 
     <template v-slot:content>
+      <div class="scrollable-content">
       <family-book-display></family-book-display>
+      </div>
     </template>
 
     <template v-slot:sidebar>
@@ -44,6 +46,11 @@ export default {
   background-color: #d11bff;
 }
 
+.scrollable-content {
+  height: calc(100vh - 200px);
+  overflow-y: scroll;
+}
+
 </style>
 <style>
 
@@ -54,30 +61,28 @@ export default {
 .family.sidebar ul li a {
   text-decoration: none;
   font-size: 50px;
-  background-color:#efafff;
+  
   width: 70%;
   margin: 0 auto;
-  margin-left: -10px;
+  margin-left: 60px;
   display: block;
-  border-radius: 60px;
+  border-radius: 50px 0 0 50px;
+  margin-left: 30px;
   padding: 10px 10px;
   position: sticky;
   font-weight: bold;
 }
 
-family.sidebar ul li {
+.family.sidebar ul li {
   padding: 7px 0;
-  background-color: #c4e4ff; /* Change to light blue button color */
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
+  background-color: #efafff; /* Change to light blue button color */
   margin: 10px 0;
   font-family: "Dosis";
 }
 
 
 .family.sidebar ul li:hover {
-  background-color: #377059; /* Change to highlight color on hover */
-  border-radius: 50px 0 0 50px;
-  margin-left: -10px;
+  background-color: #ff009d; /* Change to highlight color on hover */
+  
 }
 </style>

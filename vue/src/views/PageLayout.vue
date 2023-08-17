@@ -76,7 +76,7 @@ div.sidebar ul li:hover {
  
   border-radius: 50px 0 0 50px;
   margin-left: -10px;
-  background-color: greenyellow;
+  background-color: rgb(222, 255, 172);
 }
 
 div.sidebar ul li a {

@@ -73,6 +73,18 @@ export default {
 </script>
 <style scoped>
 .card {
+  background-color: #c4e4ff;
+  border: 6px solid #545454;
+  font-family: "Dosis";
+  border-radius: 10px;
+  max-width: 235px;
+  min-width: 175px;
+  height: 350px;
+  margin: 25px 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .isbn, .title, .author, .minutes, .pages {
@@ -95,6 +107,7 @@ export default {
 
 #cover-box {
     flex-grow: 2;
+    
 }
 
 #minutes-box {
@@ -115,7 +128,7 @@ export default {
   font-size: 12px;
 }
 #cover-box {
-  max-height: 110px;
+  max-height: 100%;
   margin-top: 10px;
   grid-area: "cover";
   width: 10 px;
@@ -125,10 +138,10 @@ export default {
 }
 .title {
   font-family: "Dosis";
-  margin: 5px 0px;
-  padding: 0px;
+  margin: 5px 0;
+  padding: 0;
   word-wrap: break-word;
-  line-height: 4;
+  line-height: 1.3;
 }
 
 .minutes {
@@ -154,6 +167,8 @@ export default {
   top: 0;
   left: 0;
 }
+
+
 
 /* .blank-image {
   z-index: 1;
