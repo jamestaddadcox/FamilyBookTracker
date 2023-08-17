@@ -1,9 +1,9 @@
 <template>
   <div class="page-layout">
     <div class="box headerbar"><slot name="headerbar"></slot></div>
-    <div class="scrollable-content">
+   
     <div class="box content"><slot name="content"></slot></div>
-    </div>
+    
     <div class="box sidebar"><slot name="sidebar"></slot></div>
   </div>
 </template>
@@ -29,8 +29,6 @@ export default {
 
 div.headerbar {
   grid-area: headerbar;
-  
- 
   background-color: #ff5757;
   color: #545454;
 }
@@ -42,18 +40,57 @@ div.data {
 
 div.sidebar {
   grid-area: sidebar;
-  background-color: #af0000;
   padding: 0px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #ff66c4;
 }
-.scrollable-content {
-  height: calc(100vh - 150px);
-  overflow-y: auto;
-}  
-  
+
+div.sidebar ul li a {
+  text-decoration: none;
+  font-size: 50px;
+  color: #545454;
+  width: 70%;
+  margin: 0 auto;
+  margin-left: 60px;
+  display: block;
+  border-radius: 60px;
+  padding: 10px 10px;
+  position: sticky;
+  font-weight: bold;
+}
+
+div.sidebar ul li:hover {
+ 
+  border-radius: 50px 0 0 50px;
+  margin-left: -10px;
+  background-color:red;
+}
+
+
+</style>
+
+<style>
+div.sidebar ul li:hover {
+ 
+  border-radius: 50px 0 0 50px;
+  margin-left: -10px;
+  background-color: greenyellow;
+}
+
+div.sidebar ul li a {
+  text-decoration: none;
+  font-size: 50px;
+  color: #545454;
+  width: 70%;
+  margin: 0 auto;
+  margin-left: 60px;
+  display: block;
+  border-radius: 60px;
+  padding: 10px 10px;
+  position: sticky;
+  font-weight: bold;
+}
 
 </style>

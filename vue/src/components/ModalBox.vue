@@ -105,7 +105,7 @@ export default {
     }
 
     .modal {
-        background: #ffffff;
+        background-color: white;
         color: #545454;
         box-shadow: 2px 2px 20px 1px;
         overflow-x: auto;
@@ -122,13 +122,13 @@ export default {
 
     .modal-header {
         position: relative;
-        border-bottom: 1px solid #eeeeee;
+        border-bottom: 1px solid white;
         color: blue;
         justify-content: space-between;
     }
 
     .modal-footer {
-        border-top: 1px solid #eeeeee;
+        border-top: 1px solid white;
         flex-direction: column;
         justify-content: flex-end;
     }
