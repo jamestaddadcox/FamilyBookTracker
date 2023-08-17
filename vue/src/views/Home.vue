@@ -27,15 +27,11 @@
 </template>
 
 <script>
-
-import PageLayout from '../views/PageLayout.vue';
-import SideBarMenu from '../components/SideBarMenu.vue';
-import PageHeader from '../components/PageHeader.vue';
-import BookCoverList from '../components/BookCoverList.vue';
+import PageLayout from "../views/PageLayout.vue";
+import SideBarMenu from "../components/SideBarMenu.vue";
+import PageHeader from "../components/PageHeader.vue";
+import BookCoverList from "../components/BookCoverList.vue";
 // import AddBookModal from '../components/AddBookModal.vue';
-
-
-
 
 export default {
   name: "home-view",
@@ -44,13 +40,10 @@ export default {
     SideBarMenu,
     PageHeader,
     BookCoverList,
-    
   },
   data() {
-      return {
-      }
-    },
-   
+    return {};
+  },
 };
 </script>
 <style scoped>
