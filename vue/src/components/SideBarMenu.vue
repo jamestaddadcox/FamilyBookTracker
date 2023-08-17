@@ -17,7 +17,7 @@
           <router-link
             v-bind:to="{ name: 'family' }"
             v-if="$store.state.token != ''"
-          >Family Page</router-link>
+          >Family</router-link>
         </li>
         <li :class="{ active: $route.path.endsWith('/prize') }">
           <router-link
@@ -120,16 +120,10 @@ ul{
 
 .sidebar ul li {
   padding: 7px 0;
-
   background-color: #ffc5e8;
-
-  background-color: rgba(13, 0, 255, 0.6);
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
   margin: 10px 0;
-  border: 5ch solid #545454;
-  border-width: 0px;
-  box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.2); 
   font-family: "Dosis";
   
 }
@@ -140,19 +134,21 @@ menu.linked-list{
 
 .sidebar ul li a {
   text-decoration: none;
-  font-size: 3.5rem;
+  font-size: 50px;
   color: #545454;
   width: 70%;
   margin: 0 auto;
+  margin-left: 60px;
   display: block;
   border-radius: 60px;
   padding: 10px 10px;
   position: sticky;
+  font-weight: bold;
 }
 
 .sidebar ul li:hover {
   background-color: rgba(255, 255, 0, 0.777);
-  border-radius: 30px 0 0 30px;
+  border-radius: 50px 0 0 50px;
   margin-left: -10px;
 }
 
@@ -163,8 +159,8 @@ menu.linked-list{
   display: flex;
   outline: solid 3px black;
   border-radius: 50%;
-  height: 125px;
-  width: 125px;
+  height: 150px;
+  width: 150px;
 }
 #avatar:hover {
   outline: solid 5px lime;
