@@ -1,3 +1,4 @@
+
 <template>
   <transition name="modal-fade">
     <div class="modal-backdrop">
@@ -16,12 +17,10 @@
                 Invalid username and password!
               </div>
               <div role="alert" v-if="credentialsNotFound">
-                I'm sorry, we appear to be experiencing techincal difficulties...
+                I'm sorry, we appear to be experiencing technical difficulties...
               </div>
 
-
-              <div class="username-password">
-              <div class="username">
+              <div class="form-group">
                 <label for="username">Username: </label>
                 <input
                   type="text"
@@ -31,7 +30,7 @@
                   autofocus
                 />
               </div>
-              <div class="password">
+              <div class="form-group">
                 <label for="password">Password:</label>
                 <input
                   type="password"
@@ -40,13 +39,11 @@
                   required
                 />
               </div>
-              </div>
 
               <button type="submit" class="btn-green">SIGN IN!</button>
             </form>
           </slot>
         </section>
-
       </div>
     </div>
   </transition>
@@ -101,5 +98,66 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.modal-backdrop {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-body {
+  font-family: "Dosis";
+  font-size: 1.5rem;
+}
+.modal {
+  width: 80%;
+  max-width: 500px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  text-align: left;
+  position: fixed; /* Change position to fixed */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust to center perfectly */
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 25px; /* Adjust the font size as needed */
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+/* Adjust the input box height and font size */
+.form-group input {
+  height: 40px; /* Adjust as needed */
+  font-size: 16px; /* Adjust as needed */
+}
+
 </style>

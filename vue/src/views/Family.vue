@@ -82,7 +82,7 @@ export default {
 
 
 .family.sidebar ul li:hover {
-  background-color: #ff009d; /* Change to highlight color on hover */
+  background-color: #ff26ed; /* Change to highlight color on hover */
   
 }
 </style>

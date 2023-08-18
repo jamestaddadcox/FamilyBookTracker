@@ -219,7 +219,7 @@ right-btn {
         position: relative;
         padding: 30px 50px;
         z-index: 5;
-        font-family: "Varela ", san-serif;
+        font-family: "Dosis", san-serif;
 
         
     }

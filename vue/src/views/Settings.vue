@@ -1,51 +1,68 @@
 <template>
-  <div id="rainbow-page">
-
+  <div class="rainbow-page">
     <avatar class="psychedelic-you"></avatar>
   </div>
 </template>
 
 <script>
-import Avatar from '../components/Avatar.vue'
+import Avatar from '../components/Avatar.vue';
 
 export default {
-    name: "settings",
-    components: {
-        Avatar,
-    }
-
-}
+  name: "avatar-container",
+  components: {
+    Avatar,
+  },
+};
 </script>
 
 <style scoped>
-
 .rainbow-page {
-    background-color: aqua;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  animation: rainbowBackground 3s linear infinite;
 }
-body{
-    background-color: aqua;
-}
-div{ background-color: aqua;
-height: 100vh;
+
+@keyframes rainbowBackground {
+  0% { background: rgb(238, 130, 189); }
+  14% { background: rgb(170, 50, 255); }
+  28% { background: rgb(0, 195, 255); }
+  42% { background: rgb(52, 255, 187); }
+  57% { background: rgb(255, 255, 11); }
+  71% { background: rgb(255, 182, 46); }
+  85% { background: rgb(255, 56, 56); }
+  100% { background: rgb(253, 0, 156); }
 }
 
 .psychedelic-you {
-  animation: rainbow 3s linear infinite;
+  animation: moveAvatar 4s ease-in-out infinite, rotateAvatar 6s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-@keyframes rainbow {
-  0% { filter: hue-rotate(0deg); }
-  10% { filter: hue-rotate(30deg); }
-  20% { filter: hue-rotate(60deg); }
-  30% { filter: hue-rotate(90deg); }
-  40% { filter: hue-rotate(120deg); }
-  50% { filter: hue-rotate(150deg); }
-  60% { filter: hue-rotate(180deg); }
-  70% { filter: hue-rotate(210deg); }
-  80% { filter: hue-rotate(289deg); }
-  90% { filter: hue-rotate(300deg); }
-  100% { filter: hue-rotate(360deg); }
+@keyframes moveAvatar {
+  0%, 100% {
+    transform: translate(-50%, -50%);
+  }
+  25% {
+    transform: translate(calc(-50% - 40px), calc(-50% - 40px));
+  }
+  50% {
+    transform: translate(calc(-50% - 40px), calc(-50% + 40px));
+  }
+  75% {
+    transform: translate(calc(-50% + 40px), calc(-50% + 40px));
+  }
 }
 
-  .psychedelic-you{padding:150px}
+@keyframes rotateAvatar {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
 </style>
+

@@ -71,10 +71,11 @@ align-content: left;
 span.card {
   display: flex;
   flex-direction: column;
-  padding: 50px;
+  padding: 60px;
   margin-top: 140px;
   margin-left: 15px;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .add{

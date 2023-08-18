@@ -15,8 +15,8 @@
               <div role="alert" class="alertmsg" v-if="registrationErrors">
                 {{ registrationErrorMsg }}
               </div>
-              <div>
-                <label for="username">username</label>
+              <div class="form-group">
+                <label for="username">Username:</label>
                 <input
                   type="text"
                   id="username"
@@ -25,8 +25,8 @@
                   autofocus
                 />
               </div>
-              <div>
-                <label for="firstName">first name</label>
+              <div class="form-group">
+                <label for="firstName">First Name:</label>
                 <input
                   type="text"
                   id="firstName"
@@ -34,8 +34,8 @@
                   required
                 />
               </div>
-              <div>
-                <label for="lastName">last name</label>
+              <div class="form-group">
+                <label for="lastName">Last Name:</label>
                 <input
                   type="text"
                   id="lastName"
@@ -43,8 +43,8 @@
                   required
                 />
               </div>
-              <div>
-                <label for="familyName">family or group name</label>
+              <div class="form-group">
+                <label for="familyName">Family or Group Name:</label>
                 <input
                   type="text"
                   id="familyName"
@@ -52,8 +52,8 @@
                   required
                 />
               </div>
-              <div>
-                <label for="password">password</label>
+              <div class="form-group">
+                <label for="password">Password:</label>
                 <input
                   type="password"
                   id="password"
@@ -61,8 +61,8 @@
                   required
                 />
               </div>
-              <div class="form-input-group">
-                <label for="confirmPassword">confirm password</label>
+              <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
                 <input
                   type="password"
                   id="confirmPassword"
@@ -74,12 +74,11 @@
             </form>
           </slot>
         </section>
-
-        
       </div>
     </div>
   </transition>
 </template>
+
 
 <script>
 import authService from "../services/AuthService";
@@ -163,5 +162,66 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.modal-backdrop {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-body {
+  font-family: "Dosis";
+  font-size: 1.5rem;
+}
+.modal {
+  width: 80%;
+  max-width: 500px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  text-align: left;
+  position: fixed; /* Change position to fixed */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust to center perfectly */
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 25px; /* Adjust the font size as needed */
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+/* Adjust the input box height and font size */
+.form-group input {
+  height: 40px; /* Adjust as needed */
+  font-size: 16px; /* Adjust as needed */
+}
+
 </style>

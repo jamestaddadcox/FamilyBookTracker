@@ -8,22 +8,22 @@
           <h2>Add Prize</h2>
           <div id="close" @click="closeModal">+</div>
           
-        <div class="wrapper">
-          <div class="radio-button">
-            <div class="option">
-              <input type="radio" name="count-option" id="number-of-books" v-model="newPrize.goalType" value="books">
-              <label for="number-of-books">Number of Books Finished</label> <br>
-            </div>
-            <div class="option">
-              <input type="radio" name="count-option" id="number-of-pages" v-model="newPrize.goalType" value="pages">
-              <label for="number-of-pages">Number of Pages Read</label> <br>
-            </div>
-            <div class="option">
-              <input type="radio" name="count-option" id="amount-of-time" v-model="newPrize.goalType" value="time">
-              <label for="amount-of-time">Amount of Time</label> <br>
+          <div class="wrapper">
+            <div class="radio-button">
+              <div class="option">
+                <input type="radio" name="count-option" id="number-of-books" v-model="newPrize.goalType" value="books">
+                <label for="number-of-books">Number of Books Finished</label> <br>
+              </div>
+              <div class="option">
+                <input type="radio" name="count-option" id="number-of-pages" v-model="newPrize.goalType" value="pages">
+                <label for="number-of-pages">Number of Pages Read</label> <br>
+              </div>
+              <div class="option">
+                <input type="radio" name="count-option" id="amount-of-time" v-model="newPrize.goalType" value="time">
+                <label for="amount-of-time">Amount of Time</label> <br>
+              </div>
             </div>
           </div>
-        </div>
 
           <div class="input-prize">
             <div class="popup-book" v-if="newPrize.goalType === 'books'">
@@ -38,13 +38,13 @@
             </div>
 
             <div class="popup-pages" v-if="newPrize.goalType === 'pages'">
-                <label for="number-of-pages-prize">Number of Pages:</label>
-                <input type="text" name="number-of-pages-prize" id="number-of-pages" maxlength="5" integer v-model="newPrize.goal">
+              <label for="number-of-pages-prize">Number of Pages:</label>
+              <input type="text" name="number-of-pages-prize" id="number-of-pages" maxlength="5" integer v-model="newPrize.goal">
             </div>
 
-           <div class="popup-time" v-if="newPrize.goalType === 'time'">
-                <label for="datetime">Time:</label> <br>
-                <input type="text" name="datetime" id="amount-of-time" placeholder="Minutes" integer v-model="newPrize.goal">
+            <div class="popup-time" v-if="newPrize.goalType === 'time'">
+              <label for="datetime">Time:</label> <br>
+              <input type="text" name="datetime" id="amount-of-time" placeholder="Minutes" integer v-model="newPrize.goal">
             </div>
             <div class="prize">
               <label for="prize">Prize:</label>
@@ -52,39 +52,39 @@
             </div>
 
             <div class="description-prize">
-                <label for="description">Description:</label>
-                <textarea name="description-text-area" id="prize-description" maxlength="200" v-model="newPrize.description"></textarea>
+              <label for="description">Description:</label>
+              <textarea name="description-text-area" id="prize-description" maxlength="200" v-model="newPrize.description"></textarea>
             </div>
 
             <div class="checkboxes">
-            <div class="adults">
+              <div class="adults">
                 <label for="adult-user">Adult:</label>
                 <input type="radio" name="user-group" id="adult-user" value="adult" v-model="selectedUserGroup">
-            </div>
+              </div>
 
-            <div class="children">
+              <div class="children">
                 <label for="child-user">Child:</label>
                 <input type="radio" name="user-group" id="child-user" value="child" v-model="selectedUserGroup">
-            </div>
+              </div>
 
-            <div class="both">
+              <div class="both">
                 <label for="both-user">Both:</label>
                 <input type="radio" name="user-group" id="both-user" value="both" v-model="selectedUserGroup">
-            </div>
+              </div>
             </div>
 
             <div class="date-fields">
-            <div class="start-date-prize">
-              <label for="start-date">Start Date:</label>
-              <input type="date" name="start-date" id="start-date" required v-model="newPrize.startDate">
+              <div class="start-date-prize">
+                <label for="start-date">Start Date:</label>
+                <input type="date" name="start-date" id="start-date" required v-model="newPrize.startDate">
+              </div>
+              <div class="end-date-prize">
+                <label for="end-date">End Date:</label>
+                <input type="date" name="end-date" id="end-date" required v-model="newPrize.endDate">
+              </div>
             </div>
-            <div class="end-date-prize">
-              <label for="end-date">End Date:</label>
-              <input type="date" name="end-date" id="end-date" required v-model="newPrize.endDate">
-            </div>
-          </div>
 
-          <button type="submit">Go!</button>
+            <button type="submit">Go!</button>
           </div>
         </div>
       </form>
@@ -97,7 +97,7 @@ import PrizeService from '../services/PrizeService.js';
 
 export default {
   name: "PrizeModal",
-  props:['prize'],
+  props: ['prize'],
   data() {
     return {
       isModalOpen: false,
@@ -112,55 +112,53 @@ export default {
         "endDate": '',
         "goal": '',
         "goalType": ''
-        
       }
     };
   },
   watch: {
     selectedUserGroup: 'updateUserGroup',
-    selectedOption: 'updatedSelectedOption'
+    selectedOption: 'updateSelectedOption'
   },
-    methods: {
-        openModal() {
-            this.isModalOpen = true;
-        },
-
-        closeModal() {
-            this.isModalOpen = false;
-            this.resetModal();
-        },
-
-        resetModal() {
-            this.selectedOption = '';
-            this.newPrize.prize_name = '';
-            this.newPrize.prize_description = '';
-            this.newPrize.milestone = false;
-            this.newPrize.start_date = '';
-            this.newPrize.user_group = '';
-            this.newPrize.end_date = '';
-            this.newPrize.goal = '';
-        },
-
-        updateUserGroup() {
-           this.newPrize.userGroup = this.selectedUserGroup;
-        },
-
-        updateSelectedOption() {
-          this.newPrize.goalType = this.selectedOption;
-        },
-
-        addPrize() {
-          this.newPrize.familyId = this.$store.state.user.familyId;
-            PrizeService.addPrize(this.newPrize)
-            .then((response) => {
-              response.data;
-            this.resetModal();
-            this.closeModal();
-
-            })
-      }   
+  methods: {
+    openModal() {
+      this.isModalOpen = true;
     },
-  } 
+
+    closeModal() {
+      this.isModalOpen = false;
+      this.resetModal();
+    },
+
+    resetModal() {
+      this.selectedOption = '';
+      this.newPrize.prize_name = '';
+      this.newPrize.prize_description = '';
+      this.newPrize.milestone = false;
+      this.newPrize.start_date = '';
+      this.newPrize.user_group = '';
+      this.newPrize.end_date = '';
+      this.newPrize.goal = '';
+    },
+
+    updateUserGroup() {
+      this.newPrize.userGroup = this.selectedUserGroup;
+    },
+
+    updateSelectedOption() {
+      this.newPrize.goalType = this.selectedOption;
+    },
+
+    addPrize() {
+      this.newPrize.familyId = this.$store.state.user.familyId;
+      PrizeService.addPrize(this.newPrize)
+        .then((response) => {
+          response.data;
+          this.resetModal();
+          this.closeModal();
+        });
+    }
+  }
+}
 </script>
 
 <style scoped>

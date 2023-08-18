@@ -19,14 +19,18 @@
             <label for="enter-data">enter data</label><br>
 
           </slot>
-
+          <div>
           <div id="enter-isbn" v-show="radioChoice === 'isbn'">
             <label for="isbn-box">isbn: </label>
+            <br>
             <input type="text" id="isbn-box" v-model="book.isbn">
+            <br>
             <button type="button" class="btn-green" @click="isbnLookup(book.isbn)">find book!</button>
 
           </div>
 
+          
+</div>
           <div id="book-data-display" v-show="radioChoice === 'isbnDataReturned'">
             <div>title: {{book.title}}</div>
             <div>author: {{book.author}}</div>
@@ -35,6 +39,7 @@
             <button type="button" class="btn-green" v-show="!userDataFlag" @click="enterUserData">this looks right!</button>
           </div>
 
+          <div>
           <div id="enter-user-data" v-show="userDataFlag">
             <div>
             <label for="format">what format are you reading this book in?</label>
@@ -66,8 +71,10 @@
             <div>
               <textarea name="notes" id="notes" cols="30" rows="4" v-model="bookUser.notes"></textarea>
             </div>
-
             <button type="button" class="btn-green" @click="addBook(book)">add book!</button>
+
+
+          </div>
 
           </div>
 

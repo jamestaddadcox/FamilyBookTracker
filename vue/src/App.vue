@@ -15,10 +15,5 @@ export default {
 
 <style>
 
-body {
-  overflow: hidden;
-}
-
 </style>
-
 

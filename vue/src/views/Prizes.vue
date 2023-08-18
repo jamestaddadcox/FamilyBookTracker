@@ -109,7 +109,7 @@ headerbar {
   padding: auto;
   align-items: center;
   width: 12vw;
-  margin-left: 67.5vw;
+  margin-left: 65vw;
   position: -webkit-sticky
 }
 
